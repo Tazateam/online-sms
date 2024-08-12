@@ -21,21 +21,50 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="~/assets/css/register.css">
+
+
+    <style>
+        .form-title {
+            color: white;
+        }
+
+        .signin-content {
+            background: #545151 !important;
+            border-radius: 10px !important;
+        }
+
+        input {
+            background: transparent !important;
+            color: white;
+        }
+
+            input:focus {
+                border-bottom: 1px solid white;
+            }
+
+        .form-group > label > i {
+            color: white;
+        }
+
+        .form-submit {
+            background: #2789e3 !important;
+        }
+
+    </style>
 </head>
 <body>
-
     <div class="main">
         <!-- Sing in  Form -->
         <section class="sign-in">
             <div class="container">
-                <div class="signin-content" style="background:url(~/assets/img/register/signin.png);background-position:center;background-size:cover;">
+                <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="~/assets/img/register/signin.png" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">Create an account</a>
+                        <figure><img src="@Url.Content("~/assets/img/register/signin.png")" alt="sign "></figure>
+
                     </div>
 
                     <div class="signin-form">
-                        <h2 class="form-title">Sign In</h2>
+                        <h2 class="form-title"> Sign In  </h2>
                         <form method="POST" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -49,9 +78,9 @@
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
                             </div>
                         </form>
-                       
                     </div>
                 </div>
+
             </div>
         </section>
 
