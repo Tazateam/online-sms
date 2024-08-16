@@ -41,6 +41,22 @@
       "PackagePath": "staticwebassets\\assets\\css\\bootstrap.min.css"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\components\\custom-sweetalert.css",
+      "PackagePath": "staticwebassets\\assets\\css\\components\\custom-sweetalert.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\dashboard\\dash_2.css",
+      "PackagePath": "staticwebassets\\assets\\css\\dashboard\\dash_2.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\elements\\alert.css",
+      "PackagePath": "staticwebassets\\assets\\css\\elements\\alert.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\elements\\tooltip.css",
+      "PackagePath": "staticwebassets\\assets\\css\\elements\\tooltip.css"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\flaticon.css",
       "PackagePath": "staticwebassets\\assets\\css\\flaticon.css"
     },
@@ -153,6 +169,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\jquery-ui.min.css"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\loader.css",
+      "PackagePath": "staticwebassets\\assets\\css\\loader.css"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\magnific-popup.css",
       "PackagePath": "staticwebassets\\assets\\css\\magnific-popup.css"
     },
@@ -169,8 +189,16 @@
       "PackagePath": "staticwebassets\\assets\\css\\owl.min.css"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\plugins.css",
+      "PackagePath": "staticwebassets\\assets\\css\\plugins.css"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\register.css",
       "PackagePath": "staticwebassets\\assets\\css\\register.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\structure.css",
+      "PackagePath": "staticwebassets\\assets\\css\\structure.css"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\style.css",
@@ -179,6 +207,14 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\style.css.map",
       "PackagePath": "staticwebassets\\assets\\css\\style.css.map"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\users\\account-setting.css",
+      "PackagePath": "staticwebassets\\assets\\css\\users\\account-setting.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\users\\main.css",
+      "PackagePath": "staticwebassets\\assets\\css\\users\\main.css"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-brands-400-1.eot",
@@ -3661,6 +3697,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\users\\9.jpg"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\img\\users\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\img\\users\\logo.png"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\img\\visa.png",
       "PackagePath": "staticwebassets\\assets\\img\\visa.png"
     },
@@ -3671,6 +3711,10 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\apexcharts.js",
       "PackagePath": "staticwebassets\\assets\\js\\apexcharts.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\app.js",
+      "PackagePath": "staticwebassets\\assets\\js\\app.js"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\blog-post.js",
@@ -3773,6 +3817,14 @@
       "PackagePath": "staticwebassets\\assets\\js\\dashboard.sampledata.js"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\dashboard\\custom.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboard\\custom.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\dashboard\\dash_2.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboard\\dash_2.js"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\ecommerce-dashboard.js",
       "PackagePath": "staticwebassets\\assets\\js\\ecommerce-dashboard.js"
     },
@@ -3811,6 +3863,14 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\left-menu.js",
       "PackagePath": "staticwebassets\\assets\\js\\left-menu.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\libs\\jquery-3.1.1.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\libs\\jquery-3.1.1.min.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\loader.js",
+      "PackagePath": "staticwebassets\\assets\\js\\loader.js"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\mail.js",
@@ -4225,6 +4285,14 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\amazeui-datetimepicker\\js\\locales\\amazeui.datetimepicker.zh-TW.js"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\apex\\apexcharts.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\apex\\apexcharts.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\apex\\apexcharts.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\apex\\apexcharts.min.js"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\apexcharts\\apexcharts.js",
       "PackagePath": "staticwebassets\\assets\\plugins\\apexcharts\\apexcharts.js"
     },
@@ -4267,6 +4335,14 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\bootstrap-daterangepicker\\moment.min.js",
       "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-daterangepicker\\moment.min.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.js"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\bootstrap\\css\\bootstrap-grid.css",
@@ -5235,6 +5311,18 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\gallery\\picturefill.js",
       "PackagePath": "staticwebassets\\assets\\plugins\\gallery\\picturefill.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\highlight\\styles\\monokai-sublime.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\highlight\\styles\\monokai-sublime.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\input-mask\\input-mask.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\input-mask\\input-mask.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\input-mask\\jquery.inputmask.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\input-mask\\jquery.inputmask.bundle.min.js"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\inputtags\\inputtags.css",
@@ -8693,6 +8781,10 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.common.js"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.css"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.esm.js",
       "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.esm.js"
     },
@@ -9795,6 +9887,26 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweet-alert\\sweetalert.scss",
       "PackagePath": "staticwebassets\\assets\\plugins\\sweet-alert\\sweetalert.scss"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\custom-sweetalert.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\custom-sweetalert.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\promise-polyfill.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\promise-polyfill.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\sweetalert.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\sweetalert.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\sweetalert2.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\sweetalert2.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\sweetalert2.min.js"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\tabs\\jquery.multipurpose_tabcontent.js",
@@ -18715,6 +18827,22 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
