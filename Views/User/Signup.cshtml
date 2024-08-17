@@ -1,7 +1,7 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
+@model online_sms.Models.User;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,26 +40,23 @@
                         <h4 class="title">Start Sending SMS</h4>
                     </div>
                     <div class="account-body">
-                        <form class="account-form" method="POST">
+                        <form class="account-form" asp-action="Signup">
                             <div class="form-group">
-                                <label for="first_name">First Name</label>
-                                <input type="text" placeholder="Enter Your First Name" name="first_name" value="" id="first_name" required="">
+                                <label asp-for="Username">User Name</label>
+                                <input type="text" placeholder="Enter Your User Name" asp-for="Username" value="" id="first_name" required="">
+                            </div>
+                          
+                            <div class="form-group">
+                                <label asp-for="Email">Your Email </label>
+                                <input type="email" placeholder="Enter Your Email" asp-for="Email" value="" id="sign-up" required="">
                             </div>
                             <div class="form-group">
-                                <label for="last_name">Last Name</label>
-                                <input type="text" placeholder="Enter Your Last Name" name="last_name" value="" id="last_name" required="">
+                                <label asp-for="MobileNumber"> MobileNumber </label>
+                                <input type="number" placeholder="Phone Number" asp-for="MobileNumber" id="sign-up" required="" style="margin-bottom:-35px;">
                             </div>
                             <div class="form-group">
-                                <label for="sign-up">Your Email </label>
-                                <input type="email" placeholder="Enter Your Email" name="email" value="" id="sign-up" required="">
-                            </div>
-                            <div class="form-group">
-                                <label for="sign-up">Phone Number </label>
-                                <input type="number" placeholder="Phone Number" name="phone" id="sign-up" required="" style="margin-bottom:-35px;">
-                            </div>
-                            <div class="form-group">
-                                <label for="sign-up">Password </label>
-                                <input type="password" placeholder="Your Password" name="password" id="sign-up" required="">
+                                <label asp-for="Password">Password </label>
+                                <input type="password" placeholder="Your Password" asp-for="Password" id="sign-up" required="">
                             </div>
 
                             <div class="form-group text-center">
