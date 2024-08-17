@@ -18,6 +18,10 @@ namespace online_sms.Controllers
         {
             return View();
         }
+        public IActionResult Signup()
+        {
+            return View();
+        }
 
     }
 }

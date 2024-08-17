@@ -5,14 +5,211 @@
       "PackagePath": "staticwebassets\\online-sms.bundle.scp.css"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\Flaticon-1.eot",
+      "PackagePath": "staticwebassets\\assets\\css\\Flaticon-1.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\Flaticon.eot",
+      "PackagePath": "staticwebassets\\assets\\css\\Flaticon.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\Flaticon.svg",
+      "PackagePath": "staticwebassets\\assets\\css\\Flaticon.svg"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\Flaticon.ttf",
+      "PackagePath": "staticwebassets\\assets\\css\\Flaticon.ttf"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\Flaticon.woff",
+      "PackagePath": "staticwebassets\\assets\\css\\Flaticon.woff"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\Flaticon.woff2",
+      "PackagePath": "staticwebassets\\assets\\css\\Flaticon.woff2"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\all.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\animate.css",
+      "PackagePath": "staticwebassets\\assets\\css\\animate.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\components\\custom-sweetalert.css",
+      "PackagePath": "staticwebassets\\assets\\css\\components\\custom-sweetalert.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\dashboard\\dash_2.css",
+      "PackagePath": "staticwebassets\\assets\\css\\dashboard\\dash_2.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\elements\\alert.css",
+      "PackagePath": "staticwebassets\\assets\\css\\elements\\alert.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\elements\\tooltip.css",
+      "PackagePath": "staticwebassets\\assets\\css\\elements\\tooltip.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\flaticon.css",
+      "PackagePath": "staticwebassets\\assets\\css\\flaticon.css"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\icon-list.css",
       "PackagePath": "staticwebassets\\assets\\css\\icon-list.css"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\addon-bg.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\addon-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\after.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\after.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\arrow.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\arrow.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\banner-shape-14.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\banner-shape-14.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\banner-shape-9.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\banner-shape-9.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\before.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\before.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\bottom-shape.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\bottom-shape.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\do-bg.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\do-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\ex-bg.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\ex-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\feature-bg.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\feature-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\feature-tab.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\feature-tab.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\footer-shape.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\footer-shape.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\frame.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\frame.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\how-bottom2.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\how-bottom2.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\how-top2.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\how-top2.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\map.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\map.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\mobile-container.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\mobile-container.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\page-header.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\page-header.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\page-header2.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\page-header2.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\review-after.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\review-after.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\review-before.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\review-before.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\slide-container.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\slide-container.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\team_odd.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\team_odd.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\top-shape.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\top-shape.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\img\\work-shape.png",
+      "PackagePath": "staticwebassets\\assets\\css\\img\\work-shape.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\jquery-ui.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\jquery-ui.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\loader.css",
+      "PackagePath": "staticwebassets\\assets\\css\\loader.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\magnific-popup.css",
+      "PackagePath": "staticwebassets\\assets\\css\\magnific-popup.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\main.css",
+      "PackagePath": "staticwebassets\\assets\\css\\main.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\nice-select.css",
+      "PackagePath": "staticwebassets\\assets\\css\\nice-select.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\owl.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\owl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\plugins.css",
+      "PackagePath": "staticwebassets\\assets\\css\\plugins.css"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\register.css",
       "PackagePath": "staticwebassets\\assets\\css\\register.css"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\structure.css",
+      "PackagePath": "staticwebassets\\assets\\css\\structure.css"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\style.css",
       "PackagePath": "staticwebassets\\assets\\css\\style.css"
     },
@@ -21,6 +218,89 @@
       "PackagePath": "staticwebassets\\assets\\css\\style.css.map"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\users\\account-setting.css",
+      "PackagePath": "staticwebassets\\assets\\css\\users\\account-setting.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\css\\users\\main.css",
+      "PackagePath": "staticwebassets\\assets\\css\\users\\main.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-brands-400-1.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-brands-400-1.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-regular-400-1.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-regular-400-1.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-solid-900-1.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-solid-900-1.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-solid-900.woff2"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\fonts\\material-icon\\css\\material-design-iconic-font.css",
       "PackagePath": "staticwebassets\\assets\\fonts\\material-icon\\css\\material-design-iconic-font.css"
     },
@@ -3429,6 +3709,13 @@
       "PackagePath": "staticwebassets\\assets\\img\\users\\9.jpg"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\img\\users\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\img\\users\\logo.png"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\img\\visa.png",
       "PackagePath": "staticwebassets\\assets\\img\\visa.png"
     },
@@ -3441,6 +3728,13 @@
       "PackagePath": "staticwebassets\\assets\\js\\apexcharts.js"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\app.js",
+      "PackagePath": "staticwebassets\\assets\\js\\app.js"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\blog-post.js",
       "PackagePath": "staticwebassets\\assets\\js\\blog-post.js"
     },
@@ -3541,6 +3835,17 @@
       "PackagePath": "staticwebassets\\assets\\js\\dashboard.sampledata.js"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\dashboard\\custom.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboard\\custom.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\dashboard\\dash_2.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboard\\dash_2.js"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\ecommerce-dashboard.js",
       "PackagePath": "staticwebassets\\assets\\js\\ecommerce-dashboard.js"
     },
@@ -3581,6 +3886,17 @@
       "PackagePath": "staticwebassets\\assets\\js\\left-menu.js"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\libs\\jquery-3.1.1.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\libs\\jquery-3.1.1.min.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\loader.js",
+      "PackagePath": "staticwebassets\\assets\\js\\loader.js"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\js\\mail.js",
       "PackagePath": "staticwebassets\\assets\\js\\mail.js"
     },
@@ -3993,6 +4309,17 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\amazeui-datetimepicker\\js\\locales\\amazeui.datetimepicker.zh-TW.js"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\apex\\apexcharts.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\apex\\apexcharts.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\apex\\apexcharts.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\apex\\apexcharts.min.js"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\apexcharts\\apexcharts.js",
       "PackagePath": "staticwebassets\\assets\\plugins\\apexcharts\\apexcharts.js"
     },
@@ -4037,6 +4364,17 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-daterangepicker\\moment.min.js"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-select\\bootstrap-select.min.js"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\bootstrap\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap\\css\\bootstrap-grid.css"
     },
@@ -5005,6 +5343,21 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\gallery\\picturefill.js"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\highlight\\styles\\monokai-sublime.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\highlight\\styles\\monokai-sublime.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\input-mask\\input-mask.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\input-mask\\input-mask.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\input-mask\\jquery.inputmask.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\input-mask\\jquery.inputmask.bundle.min.js"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\inputtags\\inputtags.css",
       "PackagePath": "staticwebassets\\assets\\plugins\\inputtags\\inputtags.css"
     },
@@ -8461,6 +8814,13 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.common.js"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.css"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.esm.js",
       "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\perfect-scrollbar.esm.js"
     },
@@ -9565,6 +9925,29 @@
       "PackagePath": "staticwebassets\\assets\\plugins\\sweet-alert\\sweetalert.scss"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\custom-sweetalert.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\custom-sweetalert.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\promise-polyfill.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\promise-polyfill.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\sweetalert.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\sweetalert.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\sweetalert2.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\sweetalerts\\sweetalert2.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalerts\\sweetalert2.min.js"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\plugins\\tabs\\jquery.multipurpose_tabcontent.js",
       "PackagePath": "staticwebassets\\assets\\plugins\\tabs\\jquery.multipurpose_tabcontent.js"
     },
@@ -18485,6 +18868,25 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map"
+    },
+    {
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },

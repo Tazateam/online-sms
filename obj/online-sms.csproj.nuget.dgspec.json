@@ -45,6 +45,7 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+<<<<<<< HEAD
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.20, )"
@@ -59,6 +60,8 @@
               "target": "Package",
               "version": "[7.0.12, )"
             },
+=======
+>>>>>>> 5b5938b4a0358ffb681f1876afd5a8dba1f99df4
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[7.0.12, )"
