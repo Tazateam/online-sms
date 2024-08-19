@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 using online_sms.Models;
+using System.Security.Claims;
 
 namespace online_sms.Controllers
 {
@@ -44,6 +47,29 @@ namespace online_sms.Controllers
         }
         public IActionResult Login()
         {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(User logg)
+        {
+            var user = db.Users.FirstOrDefault(x => x.Email == logg.Email && x.Password == logg.Password);
+
+            if (user != null)
+            {
+                var identity = new ClaimsIdentity(new[] {
+            new Claim(ClaimTypes.Name, logg.Email),
+            new Claim(ClaimTypes.Sid, user.UserId.ToString())
+        }, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var principal = new ClaimsPrincipal(identity);
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                return RedirectToAction("Index", "userdata");
+            }
+
             return View();
         }
 
