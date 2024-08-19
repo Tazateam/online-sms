@@ -11,8 +11,8 @@ builder.Services.AddDbContext<OnlineMessagesContext>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
     op =>
     {
-        op.LoginPath = "/User/login";
-        op.AccessDeniedPath = "/User/login";
+        op.LoginPath = "/userdata/login";
+        op.AccessDeniedPath = "/userdata/login";
         op.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     }
 
