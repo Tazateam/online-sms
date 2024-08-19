@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\online-sms.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\banner-bg-14.jpg",
+      "PackagePath": "staticwebassets\\assets\\user\\banner-bg-14.jpg"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\bootstrap\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\assets\\user\\bootstrap\\css\\bootstrap.min.css"
     },
@@ -53,8 +57,52 @@
       "PackagePath": "staticwebassets\\assets\\user\\css\\users\\account-setting.css"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\home-dash.jpg",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\home-dash.jpg"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\logo-icon-white.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\logo-icon-white.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\logo-icon.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\logo-icon.png"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\logo.png",
       "PackagePath": "staticwebassets\\assets\\user\\img\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\screens\\bulksms-audience.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\screens\\bulksms-audience.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\screens\\bulksms-send.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\screens\\bulksms-send.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\screens\\bulksms-sent-pending.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\screens\\bulksms-sent-pending.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\screens\\number-activate.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\screens\\number-activate.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\screens\\number-configure-sms-api.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\screens\\number-configure-sms-api.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\screens\\number-configure.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\screens\\number-configure.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\screens\\number-forward-sms-to-email.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\screens\\number-forward-sms-to-email.png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\img\\sms-watch.png",
+      "PackagePath": "staticwebassets\\assets\\user\\img\\sms-watch.png"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\app.js",

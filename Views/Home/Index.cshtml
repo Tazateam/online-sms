@@ -1,17 +1,24 @@
-﻿
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/LandingLayout.cshtml";
 }
 
-<section class="banner-14 oh bg_img pos-rel" data-background="https://smsarc.com/assets_l/images/banner/banner-bg-14.jpg">
+
+<style>
+    .bottom-shape{
+        top:0px !important;
+
+    }</style>
+
+<section class="banner-14 oh  pos-rel" >
     <div class="bottom-shape d-lg-block d-none">
-        <img src="assets_l/css/img/banner-shape-14.png" alt="banner">
+        <img src="~/assets/user/banner-bg-14.jpg" alt="banner">
     </div>
     <div class="container">
         <div class="row align-items-center justify-content-between flex-wrap-reverse">
             <div class="col-lg-6 rtl">
-                <img src="assets_l/images/banner/banner-15.png" alt="banner" style="width:100%; max-width:600px;">
+                <img src="~/assets/user/landing/images/banner/banner-15.png" alt="banner" style="width:100%; max-width:600px;">
 
 
             </div>
@@ -30,7 +37,7 @@
 
 
 <!--============= To Access Section Starts Here =============-->
-<section class="to-access-section padding-top padding-bottom bg_img mb-lg-5" data-background="https://smsarc.com/assets_l/images/feature/to-access-bg.png" id="feature">
+<section class="to-access-section padding-top padding-bottom bg_img mb-lg-5" data-background="~/assets/user/img/images/feature/to-access-bg.png" id="feature">
     <div class="container">
         <div class="section-header">
             <h5 class="cate">Let's Enhance Your Business</h5>
@@ -47,7 +54,7 @@
                     <div class="to-access-thumb">
                         <span class="anime"></span>
                         <div class="thumb">
-                            <img src="assets_l/images/icon/access3.png" alt="SMS Forwarding">
+                            <img src="~/assets/user/img/images/icon/access3.png" alt="SMS Forwarding">
                         </div>
                     </div>
                     <h5 class="title">SMS Forwarding</h5>
@@ -59,7 +66,7 @@
                     <div class="to-access-thumb">
                         <span class="anime"></span>
                         <div class="thumb">
-                            <img src="assets_l/images/icon/access1.png" alt="Developer API">
+                            <img src="~/assets/user/img/images/icon/access1.png" alt="Developer API">
                         </div>
                     </div>
                     <h5 class="title">Developer API</h5>
@@ -71,7 +78,7 @@
                     <div class="to-access-thumb">
                         <span class="anime"></span>
                         <div class="thumb">
-                            <img src="assets_l/images/icon/access4.png" alt="SMS">
+                            <img src="~/assets/user/img/images/icon/access4.png" alt="SMS">
                         </div>
                     </div>
                     <h5 class="title">Send Bulk SMS</h5>
@@ -83,7 +90,7 @@
                     <div class="to-access-thumb">
                         <span class="anime"></span>
                         <div class="thumb">
-                            <img src="assets_l/images/icon/access2.png" alt="SMS Arc">
+                            <img src="~/assets/user/img/images/icon/access2.png" alt="SMS Arc">
                         </div>
                     </div>
                     <h5 class="title">Call Forwarding</h5>
@@ -98,7 +105,7 @@
 </section>
 <!--============= To Access Section Ends Here =============-->
 <!--============= How It Works Section Starts Here =============-->
-<section class="work-section bg_img mb-md-95 pb-md-0" data-background="https://smsarc.com/assets_l/images/work/work-bg.jpg">
+<section class="work-section bg_img mb-md-95 pb-md-0" data-background="~/assets/user/img/images/work/work-bg.jpg">
     <div class="oh padding-top pos-rel">
         <div class="top-shape d-none d-lg-block">
             <img src="assets_l/css/img/work-shape.png" alt="Simple SMS Marketing">
@@ -115,7 +122,7 @@
             <div class="work-slider">
                 <div class="work-item">
                     <div class="work-thumb">
-                        <img src="assets_l/images/work/work1.png" alt="Send International SMS">
+                        <img src="~/assets/user/img/images/work/work1.png" alt="Send International SMS">
                     </div>
                     <div class="work-content cl-white">
                         <h3 class="title">Send International SMS</h3>
@@ -136,7 +143,7 @@
     <div class="container">
         <div class="advance-feature-item style-two">
             <div class="advance-feature-thumb">
-                <img src="assets_l/images/feature/advance4.png" alt="Virtual Numbers Online">
+                <img src="~/assets/user/img/images/feature/advance4.png" alt="Virtual Numbers Online">
             </div>
             <div class="advance-feature-content">
                 <div class="section-header left-style mb-olpo">
@@ -153,7 +160,7 @@
         </div>
         <div class="advance-feature-item style-two ">
             <div class="advance-feature-thumb">
-                <img src="assets_l/images/feature/advance5.png" alt="Toll Free Call Forwarding">
+                <img src="~/assets/user/img/images/feature/advance5.png" alt="Toll Free Call Forwarding">
             </div>
             <div class="advance-feature-content">
                 <div class="section-header left-style mb-olpo">
@@ -169,7 +176,7 @@
         </div>
         <div class="advance-feature-item style-two">
             <div class="advance-feature-thumb">
-                <img src="assets_l/images/feature/advance6.png" alt="SMS Gateway for Developers">
+                <img src="~/assets/user/img/images/feature/advance6.png" alt="SMS Gateway for Developers">
             </div>
             <div class="advance-feature-content">
                 <div class="section-header left-style mb-olpo">
@@ -185,7 +192,7 @@
         </div>
         <div class="advance-feature-item style-two">
             <div class="advance-feature-thumb">
-                <img src="assets_l/images/feature/feat8.png" alt="Forward SMS To Email or Phone">
+                <img src="~/assets/user/img/images/feature/feat8.png" alt="Forward SMS To Email or Phone">
             </div>
             <div class="advance-feature-content">
                 <div class="section-header left-style mb-olpo">
@@ -204,7 +211,7 @@
 <!--============= Advance Feature Section Ends Here =============-->
 
 
-<section class="convence-feature padding-bottom bg_img pb-xl-0" data-background="https://smsarc.com/assets_l/images/bg/c-feature.jpg" id="feature">
+<section class="convence-feature padding-bottom bg_img pb-xl-0" data-background="~/assets/user/img/images/bg/c-feature.jpg" id="feature">
     <div class="lg-oh" style="padding-top:45px;">
         <div class="container">
 
@@ -214,7 +221,7 @@
             <div class="owl-theme owl-carousel feature-item-2-slider mb--10">
                 <div class="feature-item-2">
                     <div class="feature-thumb">
-                        <img src="assets_l/images/feature/advance3.png" alt="Instant SMS Delivery">
+                        <img src="~/assets/user/img/images/feature/advance3.png" alt="Instant SMS Delivery">
                     </div>
                     <div class="feature-content">
                         <span class="title">Instant SMS Delivery</span><br>
@@ -223,7 +230,7 @@
                 </div>
                 <div class="feature-item-2">
                     <div class="feature-thumb">
-                        <img src="assets_l/images/feature/advance2.png" alt="Simple SMS API">
+                        <img src="~/assets/user/img/images/feature/advance2.png" alt="Simple SMS API">
                     </div>
                     <div class="feature-content">
                         <span class="title">Easy Integration</span><br>
@@ -232,7 +239,7 @@
                 </div>
                 <div class="feature-item-2">
                     <div class="feature-thumb">
-                        <img src="assets_l/images/feature/advance1.png" alt="Cheap SMS">
+                        <img src="~/assets/user/img/images/feature/advance1.png" alt="Cheap SMS">
                     </div>
                     <div class="feature-content">
                         <span class="title">Simple Pricing</span><br>
@@ -244,7 +251,7 @@
             <div class="row align-items-center flex-wrap-reverse">
                 <div class="col-md-6 col-lg-7">
                     <div class="convencing-feature-thumb">
-                        <br><img src="assets_l/images/feature/cf1.png" alt="Programmable SMS API">
+                        <br><img src="~/assets/user/img/images/feature/cf1.png" alt="Programmable SMS API">
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
@@ -303,7 +310,7 @@
 
 
 <!--============= Coverage Section Starts Here =============-->
-<section class="experience-section padding-bottom padding-top bg_img top_center bg-max-lg-ash oh" data-background="https://smsarc.com/assets_l/images/feature/experience-bg.png" id="feature">
+<section class="experience-section padding-bottom padding-top bg_img top_center bg-max-lg-ash oh" data-background="~/assets/user/img/images/feature/experience-bg.png" id="feature">
     <div class="container">
         <span class="desktop-only"><br><br></span>
         <div class="row align-items-center">
@@ -324,7 +331,7 @@
                 </div>
             </div>
         </div>
-        <div class="coverage-wrapper bg_img" data-background="https://smsarc.com/assets_l/images/bg/world-map.png">
+        <div class="coverage-wrapper bg_img" data-background="~/assets/user/img/images/bg/world-map.png">
             <b style="font-size:12px;" class="desktop-only">Devices Verified:</b><br>
             <div class="border-item-1">
                 <span class="name">North America</span>
@@ -355,7 +362,7 @@
 </section>
 <!--============= Coverage Section Ends Here =============-->
 <!--============= Pricing Section Starts Here =============-->
-<section class="pricing-section padding-top oh padding-bottom pb-md-0 bg_img pos-rel" data-background="https://smsarc.com/assets_l/images/bg/pricing-bg.jpg" id="pricing">
+<section class="pricing-section padding-top oh padding-bottom pb-md-0 bg_img pos-rel" data-background="~/assets/user/img/images/bg/pricing-bg.jpg" id="pricing">
     <div class="top-shape d-none d-md-block">
         <img src="assets_l/css/img/top-shape.png" alt="css">
     </div>
@@ -363,22 +370,22 @@
         <img src="assets_l/css/img/bottom-shape.png" alt="css">
     </div>
     <div class="ball-2" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60" data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="assets_l/images/balls/1.png" alt="balls">
+        <img src="~/assets/user/img/images/balls/1.png" alt="balls">
     </div>
     <div class="ball-3" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30" data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="assets_l/images/balls/2.png" alt="balls">
+        <img src="~/assets/user/img/images/balls/2.png" alt="balls">
     </div>
     <div class="ball-4" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30" data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="assets_l/images/balls/3.png" alt="balls">
+        <img src="~/assets/user/img/images/balls/3.png" alt="balls">
     </div>
     <div class="ball-5" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30" data-paroller-type="foreground" data-paroller-direction="vertical">
-        <img src="assets_l/images/balls/4.png" alt="balls">
+        <img src="~/assets/user/img/images/balls/4.png" alt="balls">
     </div>
     <div class="ball-6" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60" data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="assets_l/images/balls/5.png" alt="balls">
+        <img src="~/assets/user/img/images/balls/5.png" alt="balls">
     </div>
     <div class="ball-7" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60" data-paroller-type="foreground" data-paroller-direction="vertical">
-        <img src="assets_l/images/balls/6.png" alt="balls">
+        <img src="~/assets/user/img/images/balls/6.png" alt="balls">
     </div>
     <div class="container">
         <div class="section-header pb-30 cl-white">
@@ -396,7 +403,7 @@
                     <div class="pricing-thumb">
                         <div class="feature-item-2">
                             <div class="feature-thumb" style="max-width:110px;max-height:110px;">
-                                <img src="assets_l/images/feature/featurei2.png" alt="SMS API Gateway">
+                                <img src="~/assets/user/img/images/feature/featurei2.png" alt="SMS API Gateway">
                             </div>
                         </div>
                     </div>
@@ -422,7 +429,7 @@
                     <div class="pricing-thumb">
                         <div class="feature-item-2">
                             <div class="feature-thumb" style="max-width:110px;max-height:110px;">
-                                <img src="assets_l/images/feature/featurei1.png" alt="feature">
+                                <img src="~/assets/user/img/images/feature/featurei1.png" alt="feature">
                             </div>
                         </div>
                     </div>
@@ -449,7 +456,7 @@
                     <div class="pricing-thumb">
                         <div class="feature-item-2">
                             <div class="feature-thumb" style="max-width:110px;max-height:110px;">
-                                <img src="assets_l/images/feature/featurei3.png" alt="feature">
+                                <img src="~/assets/user/img/images/feature/featurei3.png" alt="feature">
                             </div>
                         </div>
                     </div>
@@ -478,7 +485,7 @@
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6 col-xl-5 d-none d-lg-block rtl">
-                <img src="assets_l/images/feature/safe.png" alt="feature">
+                <img src="~/assets/user/img/images/feature/safe.png" alt="feature">
             </div>
             <div class="col-lg-6">
                 <div class="safe-content">
@@ -513,12 +520,12 @@
         </div>
         <div class="row justify-content-between">
             <div class="col-lg-6 rtl d-none d-lg-block">
-                <img src="assets_l/images/feature/help.png" alt="feature">
+                <img src="~/assets/user/img/images/feature/help.png" alt="feature">
             </div>
             <div class="col-lg-6 col-xl-5 mb-30-none">
                 <div class="help-item">
                     <div class="help-thumb">
-                        <img src="assets_l/images/feature/help2.png" alt="help">
+                        <img src="~/assets/user/img/images/feature/help2.png" alt="help">
                     </div>
                     <div class="help-content">
                         <h5 class="title">Send Ticket</h5>
@@ -527,7 +534,7 @@
                 </div>
                 <div class="help-item">
                     <div class="help-thumb">
-                        <img src="assets_l/images/feature/help3.png" alt="help">
+                        <img src="~/assets/user/img/images/feature/help3.png" alt="help">
                     </div>
                     <div class="help-content">
                         <h5 class="title">Explore FAQs</h5>
