@@ -1,3 +1,7 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
 @{
     Layout = null;
 }
@@ -33,15 +37,15 @@
 <body>
     <div class="main">
         <!-- Sing in  Form -->
-        <div class="account-section bg_img" >
+        <div class="account-section bg_img">
             <div class="container">
-             
+
                 <div class="account-wrapper">
                     <div class="account-body">
                         <h4 class="title mb-20">Account Login</h4>
 
 
-                        <form class="account-form"  method="POST">
+                        <form class="account-form" asp-action="Login">
                             <div class="form-group">
                                 <label for="sign-up">Your Email </label>
                                 <input type="email" placeholder="Enter Your Email" name="email" value="" id="sign-up" autocomplete="username" required="">
@@ -75,3 +79,4 @@
     <script src="~/assets/user/landing/js/main.js"></script>
 </body>
 </html>
+

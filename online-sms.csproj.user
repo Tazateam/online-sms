@@ -13,4 +13,7 @@
     <WebStackScaffolding_LayoutPageFile>~/Views/Shared/LandingLayout.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_EnablerDialogWidth>650</WebStackScaffolding_EnablerDialogWidth>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>
