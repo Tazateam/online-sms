@@ -33,7 +33,8 @@ namespace online_sms.Controllers
             {
                 db.Users.Add(enter);
                 db.SaveChanges();
-            }
+				return RedirectToAction("Login", "userdata");
+			}
             else
             {
                 ViewBag.b = "Already Registered";
