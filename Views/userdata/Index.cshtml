@@ -1,0 +1,346 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "userLaout";
+}
+
+<div class="main-container" id="container">
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN TOPBAR  -->
+    <div class="topbar-nav header navbar" role="banner">
+        <nav id="topbar">
+            <ul class="navbar-nav theme-brand flex-row  text-center">
+                <li class="nav-item theme-logo">
+                    <a href="">
+                        <img src="~/assets/img/user/logo.png" class="navbar-logo" alt="logo" style="width:auto;max-width: 140px; height:auto!important;">
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled menu-categories" id="topAccordion">
+
+                <li class="menu single-menu active">
+                    <a href="" class="">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span>Dashboard</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="menu single-menu">
+                    <a href="https://smsarc.com/ui/messenger/" class="">
+                        <div class="">
+                            &nbsp; <i class="fa fa-mobile-alt" style="font-size:18px;"></i>&nbsp;
+                            <span>Two-Way SMS</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu single-menu">
+                    <a href="#nav_numbers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="fa fa-phone" style="font-size:18px;"></i>&nbsp;
+                            <span>Phone Numbers</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="nav_numbers" data-parent="#topAccordion">
+                        <li>
+                            <a>My Phone Numbers </a>
+                        </li>
+                        <li>
+                            <a> Call Conferencing</a>
+                        </li>
+                        <li class="sub-sub-submenu-list">
+                            <a href="#number_guides" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> More Info <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                            <ul class="collapse list-unstyled sub-submenu" id="number_guides" data-parent="#nav_numbers">
+                                <li>
+                                    <a> SMS Forwarding <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                                <li>
+                                    <a> Call Forwarding <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="color-green" style="font-weight:bold;"> Activate Numbers  </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu single-menu">
+                    <a href="#components" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="fa fa-comments" style="font-size:18px;"></i>&nbsp;
+                            <span>Bulk SMS</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="components" data-parent="#topAccordion">
+
+                        <li>
+                            <a>Manage Contacts</a>
+                        </li>
+                        <li>
+                            <a>Previously Sent</a>
+                        </li>
+                        <li>
+                            <a>Quick Start <i class="fa fa-question-circle desktop-only"></i></a>
+                        </li>
+                        <li>
+                            <a class="color-green bold">Send New</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                <li class="menu single-menu">
+                    <a href="#nav_captchas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="fa fa-robot" style="font-size:18px;"></i>&nbsp;
+                            <span>SMS Captcha</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="nav_captchas" data-parent="#topAccordion">
+                        <li>
+                            <a href="https://smsarc.com/ui/captchas/"> My SMS Captchas </a>
+                        </li>
+                        <li class="sub-sub-submenu-list">
+                            <a href="#captcha_guides" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> More Info <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                            <ul class="collapse list-unstyled sub-submenu" id="captcha_guides" data-parent="#nav_captchas">
+                                <li>
+                                    <a href="https://smsarc.com/docs/sms-captcha/?fr=nav-ui" class="">Setup Guide <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://smsarc.com/sms-captcha/?fr=nav-ui"> About <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="prompt_create_captcha desktop-only color-green bold"> New Captcha </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+                <li class="menu single-menu">
+                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                            <span>More</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="more" data-parent="#topAccordion">
+                        <li>
+                            <a href="https://smsarc.com/ui/profile/"> My Profile</a>
+                        </li>
+                        <li>
+                            <a href="https://smsarc.com/ui/billing/"> Billing</a>
+                        </li>
+                        <li>
+                            <a href="https://smsarc.com/contact/"> Support</a>
+                        </li>
+                        <li>
+                            <a href="https://smsarc.com/logout/"> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!--  END TOPBAR  -->
+    <!--  BEGIN CONTENT PART  -->
+    <div id="content" class="main-content">
+        <div class="layout-px-spacing">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-arrow-right alert-icon-right alert-light-info mb-4" role="alert" style="margin-top:20px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+                        <a href="#" style="color:#2196f3;" class="bs-tooltip prompt_confirm_email" data-placement="bottom" title="Click to resend email"><strong>Confirm Your Email!</strong> Click here to resend verification.</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="page-header">
+                <div class="page-title">
+                    <h3>Account Dashboard</h3>
+                </div>
+                <div class="dropdown filter custom-dropdown-icon">
+                    <a class="dropdown-toggle btn" href="#" role="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text"><span>Show</span> : Daily Analytics</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filterDropdown">
+                        <a class="dropdown-item" data-value="<span>Show</span> : Daily Analytics" href="javascript:void(0);">Monthly Analytics</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row layout-top-spacing">
+
+
+                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                    <div class="widget widget-one">
+                        <div class="widget-heading">
+                            <h6 class="">Captcha Statistics</h6>
+                        </div>
+                        <div class="w-chart">
+                            <div class="w-chart-section">
+                                <div class="w-detail">
+                                    <p class="w-title">Total</p>
+                                    <p class="w-stats">0</p>
+                                </div>
+                                <div class="w-chart-render-one">
+                                    <div id="total-users"></div>
+                                </div>
+                            </div>
+
+                            <div class="w-chart-section">
+                                <div class="w-detail">
+                                    <p class="w-title">Validated</p>
+                                    <p class="w-stats">0</p>
+                                </div>
+                                <div class="w-chart-render-one">
+                                    <div id="paid-visits"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                    <div class="widget widget-five">
+                        <div class="widget-content">
+
+                            <div class="header">
+                                <div class="header-body">
+                                    <h6>Active Phone Numbers</h6>
+                                </div>
+                                <div class="task-action">
+                                    <div class="dropdown  custom-dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="pendingTask" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="pendingTask">
+                                            <a class="dropdown-item" href="https://smsarc.com/ui/numbers/activate/">Add New</a>
+                                            <a class="dropdown-item" href="https://smsarc.com/ui/numbers/">View Existing</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-content">
+                                <div class="">
+                                    <p class="task-completed"><span>0 Local Numbers</span></p>
+                                    <p class="task-hight-priority"><span>0 Toll Free Numbers</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                    <div class="widget widget-account-invoice-two">
+                        <div class="widget-content">
+                            <div class="account-box">
+                                <div class="info">
+                                    <h5 class="">Account Balance</h5>
+                                    <p class="inv-balance">$0.00</p>
+                                </div>
+                                <div class="acc-action">
+                                    <div class="">
+                                        <a href="https://smsarc.com/ui/billing/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                                    </div>
+                                    <a href="https://smsarc.com/ui/billing/">Manage Balance</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                    <h4>Phone Number Statistics</h4>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                    <div class="row widget-statistic">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="widget widget-one_hybrid widget-followers">
+                                <div class="widget-heading">
+                                    <div class="w-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                    </div>
+                                    <p class="w-value">0 </p>
+                                    <h5 class=" bs-tooltip" data-placement="top" title="Sent by API or Bulk SMS">SMS Sent <sup><i class="fa fa-question-circle color-blue"></i></sup></h5>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="w-chart">
+                                        <div id="hybrid_followers"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="widget widget-one_hybrid widget-referral">
+                                <div class="widget-heading">
+                                    <div class="w-icon">
+                                        <i class="fa fa-comments-o"></i>
+                                    </div>
+                                    <p class="w-value">0</p>
+                                    <h5 class="bs-tooltip" data-placement="top" title="SMS Forwarded or Sent to Email">SMS Forwarded <sup><i class="fa fa-question-circle color-blue"></i></sup></h5>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="w-chart">
+                                        <div id="hybrid_followers1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="widget widget-one_hybrid widget-engagement">
+                                <div class="widget-heading">
+                                    <div class="w-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <p class="w-value">0</p>
+                                    <h5 class="">Calls Forwarded </h5>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="w-chart">
+                                        <div id="hybrid_followers3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <!--  END CONTENT PART  -->
+
+</div>
+
+
+
