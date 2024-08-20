@@ -9,75 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = online_sms
 build_property.RootNamespace = online_sms
-build_property.ProjectDir = C:\Users\Anas brother\OneDrive\Desktop\online-sms\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\asp\Desktop\online-sms\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Anas brother\OneDrive\Desktop\online-sms
+build_property.MSBuildProjectDirectory = C:\Users\asp\Desktop\online-sms
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Pages/Error.cshtml]
+[C:/Users/asp/Desktop/online-sms/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Pages/_Layout.cshtml]
+[C:/Users/asp/Desktop/online-sms/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Pages/_ViewImports.cshtml]
+[C:/Users/asp/Desktop/online-sms/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Pages/_ViewStart.cshtml]
+[C:/Users/asp/Desktop/online-sms/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Home/Index.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Home/Privacy.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Shared/Error.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Shared/userLaout.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/Shared/userLaout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHVzZXJMYW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/Index.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/Login.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/Profile.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/Signup.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Signup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcU2lnbnVwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/_ViewImports.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/_ViewStart.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Shared/_Layout.cshtml]
+[C:/Users/asp/Desktop/online-sms/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-049wanigi2
