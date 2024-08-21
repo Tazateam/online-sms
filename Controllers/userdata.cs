@@ -37,7 +37,6 @@ namespace online_sms.Controllers
 
 			}
 			else
-
             {
                 ViewBag.b = "Already Registered";
             }
@@ -75,15 +74,12 @@ namespace online_sms.Controllers
 
             return View();
         }
-
-
-        public IActionResult Inbox()
+        public IActionResult Logout()
         {
-       
-            return View();
+            var lgoin = HttpContext.SignOutAsync
+                (CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
         }
-
-
 
     }
 }
