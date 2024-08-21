@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Dashboard | SMS ARC</title>
+
+
+
+
+    <link href="~/assets/user/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="~/assets/user/js/loader.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="~/assets/user/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/user/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/css/elements/tooltip.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/user/css/elements/alert.css">
+    <link href="~/assets/user/css/users/account-setting.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/3aeca4f384.js" crossorigin="anonymous"></script>
+    <script src="~/assets/user/plugins/sweetalerts/promise-polyfill.js"></script>
+    <link href="~/assets/user/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/user/plugins/bootstrap-select/bootstrap-select.min.css">
+
+    <!-- Select2 css  -->
+
+    <link href="~/assets/user/plugins/select2/css/select2.min.css" rel="stylesheet">
+
+    <!-- Internal Gallery css-->
+    <link href="~/assets/user/plugins/gallery/gallery.css" rel="stylesheet">
+
+    <style>
+        .apexcharts-tooltip {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container">
+        <header class="header navbar navbar-expand-sm">
+
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
+            <div class="nav-logo align-self-center">
+                <a class="navbar-brand" href=""><img alt="logo" src="~/assets/user/img/logo.png" style="width:auto; max-width:150px; height:auto;" alt="SMS Arc"></a>
+            </div>
+
+            <ul class="navbar-item flex-row mr-auto">
+            </ul>
+
+            <ul class="navbar-item flex-row nav-dropdowns">
+
+
+                <li class="nav-item dropdown user-profile-dropdown order-lg-0 order-1">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media">
+                            <div class="media-body align-self-center">
+                                <h6><span>Hi,</span> class</h6>
+                            </div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="user-profile-dropdown">
+                        <div class="">
+                            <div class="dropdown-item">
+                                <a class="" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> My Profile</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg> Billing</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Support</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+    <!--  BEGIN TOPBAR  -->
+    <div class="topbar-nav header navbar" role="banner">
+        <nav id="topbar">
+            <ul class="navbar-nav theme-brand flex-row  text-center">
+                <li class="nav-item theme-logo">
+                    <a href="">
+                        <img src="~/assets/user/img/logo.png" class="navbar-logo" alt="logo" style="width:auto;max-width: 140px; height:auto!important;">
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled menu-categories" id="topAccordion">
+
+                <li class="menu single-menu active">
+                    <a href="" class="">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span>Dashboard</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="menu single-menu">
+                    <a href="https://smsarc.com/ui/messenger/" class="">
+                        <div class="">
+                            &nbsp; <i class="fa fa-mobile-alt" style="font-size:18px;"></i>&nbsp;
+                            <span>Two-Way SMS</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu single-menu">
+                    <a href="#nav_numbers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="fa fa-phone" style="font-size:18px;"></i>&nbsp;
+                            <span>Phone Numbers</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="nav_numbers" data-parent="#topAccordion">
+                        <li>
+                            <a>My Phone Numbers </a>
+                        </li>
+                        <li>
+                            <a> Call Conferencing</a>
+                        </li>
+                        <li class="sub-sub-submenu-list">
+                            <a href="#number_guides" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> More Info <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                            <ul class="collapse list-unstyled sub-submenu" id="number_guides" data-parent="#nav_numbers">
+                                <li>
+                                    <a> SMS Forwarding <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                                <li>
+                                    <a> Call Forwarding <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="color-green" style="font-weight:bold;"> Activate Numbers  </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu single-menu">
+                    <a href="#components" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="fa fa-comments" style="font-size:18px;"></i>&nbsp;
+                            <span>Bulk SMS</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="components" data-parent="#topAccordion">
+
+                        <li>
+                            <a>Manage Contacts</a>
+                        </li>
+                        <li>
+                            <a>Previously Sent</a>
+                        </li>
+                        <li>
+                            <a>Quick Start <i class="fa fa-question-circle desktop-only"></i></a>
+                        </li>
+                        <li>
+                            <a class="color-green bold">Send New</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                <li class="menu single-menu">
+                    <a href="#nav_captchas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="fa fa-robot" style="font-size:18px;"></i>&nbsp;
+                            <span>SMS Captcha</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="nav_captchas" data-parent="#topAccordion">
+                        <li>
+                            <a href="https://smsarc.com/ui/captchas/"> My SMS Captchas </a>
+                        </li>
+                        <li class="sub-sub-submenu-list">
+                            <a href="#captcha_guides" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> More Info <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                            <ul class="collapse list-unstyled sub-submenu" id="captcha_guides" data-parent="#nav_captchas">
+                                <li>
+                                    <a href="https://smsarc.com/docs/sms-captcha/?fr=nav-ui" class="">Setup Guide <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://smsarc.com/sms-captcha/?fr=nav-ui"> About <i class="fa fa-question-circle desktop-only"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="prompt_create_captcha desktop-only color-green bold"> New Captcha </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+                <li class="menu single-menu">
+                    <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                            <span>More</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <ul class="collapse submenu list-unstyled" id="more" data-parent="#topAccordion">
+                        <li>
+                            <a href="https://smsarc.com/ui/profile/"> My Profile</a>
+                        </li>
+                        <li>
+                            <a href="https://smsarc.com/ui/billing/"> Billing</a>
+                        </li>
+                        <li>
+                            <a href="https://smsarc.com/contact/"> Support</a>
+                        </li>
+                        <li>
+                            <a href="https://smsarc.com/logout/"> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    @RenderBody()
+
+    <div class="footer-wrapper">
+        <div class="footer-section f-section-1">
+            <p class="">Copyright &copy; 2020 SMS ARC, <a target="_blank" href="https://onamal.com">Onamal Inc.</a> All rights reserved.</p>
+        </div>
+        <div class="footer-section f-section-2">
+            <p class=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
+        </div>
+    </div>
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/assets/user/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="~/assets/user/bootstrap/js/popper.min.js"></script>
+    <script src="~/assets/user/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/user/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/user/js/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="~/assets/user/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="~/assets/user/plugins/apex/apexcharts.min.js"></script>
+    <script src="~/assets/user/js/dashboard/dash_2.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+    <script src="~/assets/user/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+
+    <script src="~/assets/user/plugins/sweetalerts/sweetalert2.min.js"></script>
+    <script src="~/assets/user/plugins/sweetalerts/custom-sweetalert.js"></script>
+
+    <script>
+        $(".phone_input").inputmask({
+            mask: "(999) 999-9999"
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
