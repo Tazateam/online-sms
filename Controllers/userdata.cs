@@ -34,8 +34,10 @@ namespace online_sms.Controllers
                 db.Users.Add(enter);
                 db.SaveChanges();
 				return RedirectToAction("Login", "userdata");
+
 			}
-            else
+			else
+
             {
                 ViewBag.b = "Already Registered";
             }
@@ -73,6 +75,15 @@ namespace online_sms.Controllers
 
             return View();
         }
+
+
+        public IActionResult Inbox()
+        {
+       
+            return View();
+        }
+
+
 
     }
 }
