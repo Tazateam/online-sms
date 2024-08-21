@@ -4825,10 +4825,6 @@
       "PackagePath": "staticwebassets\\assets\\admin\\plugins\\jquery-steps\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\admin\\plugins\\jquery-steps\\build\\jQuery.Steps.1.1.0.nupkg",
-      "PackagePath": "staticwebassets\\assets\\admin\\plugins\\jquery-steps\\build\\jQuery.Steps.1.1.0.nupkg"
-    },
-    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\admin\\plugins\\jquery-steps\\build\\jquery.steps-1.1.0.zip",
       "PackagePath": "staticwebassets\\assets\\admin\\plugins\\jquery-steps\\build\\jquery.steps-1.1.0.zip"
     },
@@ -18057,6 +18053,10 @@
       "PackagePath": "staticwebassets\\assets\\user\\css\\components\\custom-sweetalert.css"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\css\\dashboard\\chat.css",
+      "PackagePath": "staticwebassets\\assets\\user\\css\\dashboard\\chat.css"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\css\\dashboard\\dash_2.css",
       "PackagePath": "staticwebassets\\assets\\user\\css\\dashboard\\dash_2.css"
     },
@@ -18143,6 +18143,10 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\custom.js",
       "PackagePath": "staticwebassets\\assets\\user\\js\\custom.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\dashboard\\chat.js",
+      "PackagePath": "staticwebassets\\assets\\user\\js\\dashboard\\chat.js"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\dashboard\\dash_2.js",

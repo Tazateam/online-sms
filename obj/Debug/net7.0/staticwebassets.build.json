@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "d0CAzfxroSlRKFk1ZiQmhB43eC5CcpI3rp4fLQZGT9I=",
+  "Hash": "f1AdaC0F6HPXOxpnHHxYakblXurG3O0NmoNEF4B5SfM=",
   "Source": "online-sms",
   "BasePath": "_content/online-sms",
   "Mode": "Default",
@@ -21044,23 +21044,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\admin\\plugins\\jquery-sparkline\\jquery.sparkline.min.js"
-    },
-    {
-      "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\admin\\plugins\\jquery-steps\\build\\jQuery.Steps.1.1.0.nupkg",
-      "SourceId": "online-sms",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\",
-      "BasePath": "_content/online-sms",
-      "RelativePath": "assets/admin/plugins/jquery-steps/build/jQuery.Steps.1.1.0.nupkg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\admin\\plugins\\jquery-steps\\build\\jQuery.Steps.1.1.0.nupkg"
     },
     {
       "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\admin\\plugins\\jquery-steps\\build\\jquery.steps.min.js",

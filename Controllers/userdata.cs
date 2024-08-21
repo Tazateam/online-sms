@@ -74,6 +74,12 @@ namespace online_sms.Controllers
 
             return View();
         }
+        public IActionResult Logout()
+        {
+            var lgoin = HttpContext.SignOutAsync
+                (CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
 
     }
 }
