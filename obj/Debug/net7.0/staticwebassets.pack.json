@@ -18053,6 +18053,10 @@
       "PackagePath": "staticwebassets\\assets\\user\\css\\components\\custom-sweetalert.css"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\css\\dashboard\\chat.css",
+      "PackagePath": "staticwebassets\\assets\\user\\css\\dashboard\\chat.css"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\css\\dashboard\\dash_2.css",
       "PackagePath": "staticwebassets\\assets\\user\\css\\dashboard\\dash_2.css"
     },
@@ -18139,6 +18143,10 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\custom.js",
       "PackagePath": "staticwebassets\\assets\\user\\js\\custom.js"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\dashboard\\chat.js",
+      "PackagePath": "staticwebassets\\assets\\user\\js\\dashboard\\chat.js"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\dashboard\\dash_2.js",
