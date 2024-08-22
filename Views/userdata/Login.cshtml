@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Account | SMS Arc</title>
+    <link rel="stylesheet" href="~/assets/user/landing/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/all.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/animate.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/nice-select.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/owl.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/flaticon.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/main.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../favi/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favi/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favi/favicon-16x16.png">
+    <style>
+        svg path {
+            fill: #FFF;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main">
+        <!-- Sing in  Form -->
+        <div class="account-section bg_img">
+            <div class="container">
+
+                <div class="account-wrapper">
+                    <div class="account-body">
+                        <h4 class="title mb-20">Account Login</h4>
+
+
+                        <form class="account-form" asp-action="Login">
+                            <div class="form-group">
+                                <label for="sign-up">Your Email </label>
+                                <input type="email" placeholder="Enter Your Email" name="email" value="" id="sign-up" autocomplete="username" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass">Password</label>
+                                <input type="password" name="password" placeholder="Enter Your Password" id="pass" required="" autocomplete="current-password">
+                                <span class="sign-in-recovery">Forgot your password? <a href="../reset-password/index.htm" title="Reset SMS Arc Password">recover password</a></span>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="hidden" name="login-submit" value="1">
+                                <input type="hidden" name="page" value="">
+                                <button type="submit" class="mt-2 mb-2">Sign In</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="or">
+                        <span>OR</span>
+                    </div>
+                    <div class="account-header pb-0">
+                        <br><a href="../register/index-10.htm" title="Create SMS Arc Account" class="sign-in-with active" style="font-weight:bold;"><span>Create Account</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JS -->
+    <!-- Jquery js-->
+    <script src="~/assets/user/landing/plugins/jquery/jquery.min.js"></script>
+
+    <script src="~/assets/user/landing/js/main.js"></script>
+</body>
+</html>
+
