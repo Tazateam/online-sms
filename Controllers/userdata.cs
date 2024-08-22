@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
 using online_sms.Models;
 using System.Security.Claims;
 
@@ -74,6 +73,32 @@ namespace online_sms.Controllers
 
             return View();
         }
+        public IActionResult Logout()
+        {
+            var lgoin = HttpContext.SignOutAsync
+                (CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
 
+        public IActionResult Add_acount()
+        {
+            ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add_acount(Contact con)
+        {
+            var number = db.Contacts.FirstOrDefault(Contacts => Contacts.ContactNumber == con.ContactNumber);
+
+            if (number == null)
+            {
+                db.Contacts.Add(con);
+                db.SaveChanges();
+				return RedirectToAction("Login", "userdata");
+
+			}
+            return View();
+        }
     }
 }
