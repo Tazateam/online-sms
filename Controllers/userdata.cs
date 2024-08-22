@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
 using online_sms.Models;
 using System.Security.Claims;
 
@@ -81,5 +80,13 @@ namespace online_sms.Controllers
             return RedirectToAction("Login");
         }
 
-    }
+		public IActionResult Inbox()
+		{
+			return View();
+		}
+		public IActionResult Contact()
+		{
+			return View();
+		}
+	}
 }
