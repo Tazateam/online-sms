@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\asp\\Desktop\\online-sms\\online-sms.csproj": {}
+    "C:\\Users\\exam1\\Desktop\\online-sms\\online-sms.csproj": {}
   },
   "projects": {
-    "C:\\Users\\asp\\Desktop\\online-sms\\online-sms.csproj": {
+    "C:\\Users\\exam1\\Desktop\\online-sms\\online-sms.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asp\\Desktop\\online-sms\\online-sms.csproj",
+        "projectUniqueName": "C:\\Users\\exam1\\Desktop\\online-sms\\online-sms.csproj",
         "projectName": "online-sms",
-        "projectPath": "C:\\Users\\asp\\Desktop\\online-sms\\online-sms.csproj",
-        "packagesPath": "C:\\Users\\asp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asp\\Desktop\\online-sms\\obj\\",
+        "projectPath": "C:\\Users\\exam1\\Desktop\\online-sms\\online-sms.csproj",
+        "packagesPath": "C:\\Users\\exam1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\exam1\\Desktop\\online-sms\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\asp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\exam1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
