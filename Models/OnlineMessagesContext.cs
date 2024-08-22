@@ -15,6 +15,8 @@ public partial class OnlineMessagesContext : DbContext
     {
     }
 
+    public virtual DbSet<Contact> Contacts { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
@@ -25,6 +27,23 @@ public partial class OnlineMessagesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Contact>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Contact__3214EC07621520DA");
+
+            entity.ToTable("Contact");
+
+            entity.Property(e => e.ContactNumber)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.LastName)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACE79BE343");
