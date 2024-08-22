@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "J/Vl6Crx0U56Cm4FLl3dnaK441bpFxEZaId/yyVtRVg=",
+=======
+  "Hash": "yQCHUt+a6v1EAAw7dZ4fYMlaxpCAMWNLEqtQCn1iUFc=",
+>>>>>>> 35f3cfe8e52f17713a347353490c44aad6d8e7e3
   "Source": "online-sms",
   "BasePath": "_content/online-sms",
   "Mode": "Default",
@@ -76755,7 +76759,28 @@
       "OriginalItemSpec": "wwwroot\\assets\\user\\css\\components\\custom-sweetalert.css"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\exam1\\Desktop\\online-sms\\wwwroot\\assets\\user\\css\\dashboard\\chat.css",
+=======
+      "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\css\\dashboard\\chat.css",
+      "SourceId": "online-sms",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\",
+      "BasePath": "_content/online-sms",
+      "RelativePath": "assets/user/css/dashboard/chat.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\user\\css\\dashboard\\chat.css"
+    },
+    {
+      "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\css\\dashboard\\dash_2.css",
+>>>>>>> 35f3cfe8e52f17713a347353490c44aad6d8e7e3
       "SourceId": "online-sms",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\exam1\\Desktop\\online-sms\\wwwroot\\",
@@ -77146,7 +77171,28 @@
       "OriginalItemSpec": "wwwroot\\assets\\user\\js\\custom.js"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\exam1\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\dashboard\\chat.js",
+=======
+      "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\dashboard\\chat.js",
+      "SourceId": "online-sms",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\",
+      "BasePath": "_content/online-sms",
+      "RelativePath": "assets/user/js/dashboard/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\user\\js\\dashboard\\chat.js"
+    },
+    {
+      "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\js\\dashboard\\dash_2.js",
+>>>>>>> 35f3cfe8e52f17713a347353490c44aad6d8e7e3
       "SourceId": "online-sms",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\exam1\\Desktop\\online-sms\\wwwroot\\",
