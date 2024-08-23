@@ -44,28 +44,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asp/Desktop/online-sms/Views/Shared/userLaout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHVzZXJMYW91dC5jc2h0bWw=
+[C:/Users/asp/Desktop/online-sms/Views/Shared/LandingLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExhbmRpbmdMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/asp/Desktop/online-sms/Views/Shared/userLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHVzZXJMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/asp/Desktop/online-sms/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asp/Desktop/online-sms/Views/User/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Inbox.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcSW5ib3guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asp/Desktop/online-sms/Views/User/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asp/Desktop/online-sms/Views/User/profile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxwcm9maWxlLmNzaHRtbA==
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/asp/Desktop/online-sms/Views/User/Signup.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTaWdudXAuY3NodG1s
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/asp/Desktop/online-sms/Views/userdata/Signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcU2lnbnVwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/asp/Desktop/online-sms/Views/_ViewImports.cshtml]
