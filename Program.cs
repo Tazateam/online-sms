@@ -1,8 +1,22 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+using online_sms.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<OnlineMessagesContext>();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+    op =>
+    {
+        op.LoginPath = "/userdata/login";
+        op.AccessDeniedPath = "/userdata/login";
+        op.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    }
+
+    );
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -17,8 +31,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization(); 
 
 app.MapControllerRoute(
     name: "default",

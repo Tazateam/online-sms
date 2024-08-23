@@ -1,0 +1,86 @@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@model online_sms.Models.User;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Create Account | SMS Arc</title>
+    <link rel="stylesheet" href="~/assets/user/landing/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/all.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/animate.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/nice-select.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/owl.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/flaticon.css">
+    <link rel="stylesheet" href="~/assets/user/landing/css/main.css">
+
+    <style>
+        svg path {
+            fill: #FFF;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="account-section bg_img">
+            <div class="container">
+                <div class="account-wrapper">
+                    <div class="account-header" style="padding:0;">
+                        <h4 class="title">Start Sending SMS</h4>
+                    </div>
+                    <div class="account-body">
+                        <form class="account-form" asp-action="Signup">
+                            <div class="form-group">
+                                <label asp-for="Username">User Name</label>
+                                <input type="text" placeholder="Enter Your User Name" asp-for="Username" value="" id="first_name" required="">
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Email">Your Email </label>
+                                <input type="email" placeholder="Enter Your Email" asp-for="Email" value="" id="sign-up" required="">
+                                <p class="text-danger">@ViewBag.b</p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MobileNumber"> MobileNumber </label>
+                                <input type="number" placeholder="Phone Number" asp-for="MobileNumber" id="sign-up" required="" style="margin-bottom:-35px;">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password">Password </label>
+                                <input type="password" placeholder="Your Password" asp-for="Password" id="sign-up" required="">
+                            </div>
+
+                            <div class="form-group text-center">
+                                <input type="hidden" name="register-submit" value="1">
+                                <input type="hidden" name="referred" value="0">
+                                <input type="hidden" name="page" value="">
+                                <button type="submit">Create Account</button>
+                                <span class="d-block mt-15">Already have an account? <a href="../login/index.htm" title="SMS Arc Login">Sign In</a></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <!-- Jquery js-->
+    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+
+    <script src="~/assets/js/main.js"></script>
+</body>
+</html>
