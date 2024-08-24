@@ -15,57 +15,59 @@ public partial class OnlineMessagesContext : DbContext
     {
     }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Contact> Contacts { get; set; }
 
-    public virtual DbSet<UserProfile> UserProfiles { get; set; }
+    public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=DESKTOP-DIBKE47\\SQLEXPRESS;initial catalog=Online_Messages;user id=sa;password=anas; TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("data source=.;initial catalog=Online_Messages;user id=sa;password=aptech; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC3CD6520D");
+            entity.HasKey(e => e.Contactid).HasName("PK__Contacts__5C6521B3A448FF23");
 
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-            entity.Property(e => e.Email)
-                .HasMaxLength(200)
-                .IsUnicode(false);
-            entity.Property(e => e.Password)
-                .HasMaxLength(200)
-                .IsUnicode(false);
-            entity.Property(e => e.Username)
-                .HasMaxLength(200)
-                .IsUnicode(false);
+            entity.HasIndex(e => e.ContactNumber, "UQ__Contacts__570665C6A78F43E5").IsUnique();
+
+            entity.Property(e => e.ContactNumber).HasMaxLength(10);
+            entity.Property(e => e.FirstName).HasMaxLength(50);
+            entity.Property(e => e.LastName).HasMaxLength(50);
+
+            entity.HasOne(d => d.User).WithMany(p => p.Contacts)
+                .HasForeignKey(d => d.Userid)
+                .HasConstraintName("FK__Contacts__Userid__3D5E1FD2");
         });
 
-        modelBuilder.Entity<UserProfile>(entity =>
+        modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__UserProf__1788CCACC22E9DA3");
+            entity.HasKey(e => e.Userid).HasName("PK__Users__1797D0241CBEC52B");
 
-            entity.Property(e => e.UserId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("UserID");
-            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1F5DF0BD0").IsUnique();
+
+            entity.HasIndex(e => e.Username, "UQ__Users__536C85E469B73161").IsUnique();
+
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534EC3A75B9").IsUnique();
+
+            entity.Property(e => e.Address).HasMaxLength(100);
+            entity.Property(e => e.Bio).HasMaxLength(100);
             entity.Property(e => e.Cuisines).HasMaxLength(255);
             entity.Property(e => e.Dislikes).HasMaxLength(255);
             entity.Property(e => e.Dob)
-                .HasColumnType("date")
-                .HasColumnName("DOB");
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.Gender).HasMaxLength(10);
-            entity.Property(e => e.Hobbies).HasMaxLength(255);
+            entity.Property(e => e.FirstName).HasMaxLength(50);
+            entity.Property(e => e.Gender).HasMaxLength(50);
+            entity.Property(e => e.Hobbies).HasMaxLength(50);
+            entity.Property(e => e.LastName).HasMaxLength(50);
             entity.Property(e => e.Likes).HasMaxLength(255);
             entity.Property(e => e.MaritalStatus).HasMaxLength(20);
-            entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.MobileNumber).HasMaxLength(10);
+            entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.Sports).HasMaxLength(255);
-
-            entity.HasOne(d => d.User).WithOne(p => p.UserProfile)
-                .HasForeignKey<UserProfile>(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__UserProfi__UserI__4BAC3F29");
+            entity.Property(e => e.Username).HasMaxLength(50);
         });
 
         OnModelCreatingPartial(modelBuilder);
