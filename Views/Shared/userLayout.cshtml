@@ -1,4 +1,5 @@
 @using System.Security.Claims;
+@model online_sms.Models.Contact;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -264,21 +265,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form asp-action="Add_acount">
                         <div class="mb-3">
-                            <label for="first-name" class="col-form-label">First Name:</label>
-                            <input type="text" class="form-control" id="first-name">
+                            <label asp-for="FirstName" class="col-form-label">First Name:</label>
+                            <input asp-for="FirstName" type="text" class="form-control" id="first-name">
                         </div>
                         <div class="mb-3">
-                            <label for="last-name" class="col-form-label">Last Name:</label>
-                            <input type="text" class="form-control" id="last-name">
+                            <label asp-for="LastName" class="col-form-label">Last Name:</label>
+                            <input asp-for="LastName" type="text" class="form-control" id="last-name">
                         </div>
                         <div class="mb-3">
-                            <label for="contact-number" class="col-form-label">Contact Number:</label>
-                            <input type="number" class="form-control" id="contact-number">
+                            <label asp-for="ContactNumber" class="col-form-label">Contact Number:</label>
+                            <input asp-for="ContactNumber" type="number" class="form-control" id="contact-number">
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-end ">
-                            <button type="button" class="btn btn-primary">Add Contact</button>
+                            <button type="submit" class="btn btn-primary">Add Contact</button>
                         </div>
 
                     </form>
