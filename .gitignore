@@ -402,3 +402,7 @@ FodyWeavers.xsd
 /obj/Debug/net7.0/project.razor.vs.json
 /obj/online-sms.csproj.nuget.g.props
 /obj/project.nuget.cache
+/obj/Debug/net7.0/online-sms.GeneratedMSBuildEditorConfig.editorconfig
+/.vs/online-sms/DesignTimeBuild/.dtbcache.v2
+/obj/online-sms.csproj.nuget.dgspec.json
+/obj/project.assets.json
