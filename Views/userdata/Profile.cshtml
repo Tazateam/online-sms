@@ -7,7 +7,7 @@
 @{
 	Layout = "userLayout";
 }
-@model online_sms.Models.User;
+@model online_sms.Models.UserProfile;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -228,25 +228,24 @@
 							<div class="main-content-body tab-pane p-4 border-top-0" id="edit">
 								<div class="card-body border">
 									<div class="mb-4 main-content-label">Personal Information</div>
-									<form class="form-horizontal" asp-action="">
-										<div class="mb-4 main-content-label">Name</div>
+									<form asp-action="Profile" class="form-horizontal">
 										<div class="form-group ">
 											<div class="row row-sm">
 												<div class="col-md-3">
-														<label asp-for="Username" class="form-label">User Name</label>
+														<label asp-for="Name" class="form-label">Name</label>
 												</div>
 												<div class="col-md-9">
-														<input type="text" asp-for="Username" class="form-control" placeholder="User Name" value="Mack Adamia">
+														<input type="text" asp-for="Name" class="form-control" placeholder="Name" value="Mack Adamia">
 												</div>
 											</div>
 										</div
 										<div class="form-group ">
 											<div class="row row-sm">
 												<div class="col-md-3">
-														<label class="form-label">First Name</label>
+														<label asp-for="Gender"class="form-label">Gender</label>
 												</div>
 												<div class="col-md-9">
-													<input type="text"  class="form-control" placeholder="First Name" value="Mack Adamia">
+													<input asp-for="Gender"type="text"  class="form-control" placeholder="Gender" value="Mack Adamia">
 												</div>
 											</div>
 										</div>
