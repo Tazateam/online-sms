@@ -6,6 +6,7 @@
     Layout = null;
 }
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +35,7 @@
     </style>
 
 </head>
+@model online_sms.Models.User;
 <body>
     <div class="main">
         <!-- Sing in  Form -->
@@ -47,12 +49,12 @@
 
                         <form class="account-form" asp-action="Login">
                             <div class="form-group">
-                                <label for="sign-up">Your Email </label>
-                                <input type="email" placeholder="Enter Your Email" name="email" value="" id="sign-up" autocomplete="username" required="">
+                                <label asp-for="Email">Your Email </label>
+                                <input type="email" placeholder="Enter Your Email" asp-for="Email" value="" id="sign-up" autocomplete="username" required="">
                             </div>
                             <div class="form-group">
-                                <label for="pass">Password</label>
-                                <input type="password" name="password" placeholder="Enter Your Password" id="pass" required="" autocomplete="current-password">
+                                <label asp-for="Password">Password</label>
+                                <input type="password" asp-for="Password" placeholder="Enter Your Password" id="password" required="" autocomplete="current-password">
                                 <span class="sign-in-recovery">Forgot your password? <a href="../reset-password/index.htm" title="Reset SMS Arc Password">recover password</a></span>
                             </div>
                             <div class="form-group text-center">
