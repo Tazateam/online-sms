@@ -21,15 +21,13 @@ public partial class UserProfile
 
     public string? Hobbies { get; set; }
 
-    public string? Likes { get; set; }
-
-    public string? Dislikes { get; set; }
-
-    public string? Cuisines { get; set; }
-
     public string? Sports { get; set; }
 
     public byte[]? ProfilePhoto { get; set; }
+
+    public string? Qualification { get; set; }
+
+    public string? Designation { get; set; }
 
     public virtual User User { get; set; } = null!;
 }
