@@ -18,7 +18,7 @@ namespace online_sms.Controllers
 
         public IActionResult Signup()
         {
-            ViewBag.a = new SelectList(db.Users, "UserId", "Username");
+            ViewBag.a = new SelectList(db.Users, "Userid", "Username");
             return View();
         }
 
@@ -39,7 +39,7 @@ namespace online_sms.Controllers
             {
                 ViewBag.b = "Already Registered";
             }
-            ViewBag.a = new SelectList(db.Users, "UserId", "Username");
+            ViewBag.a = new SelectList(db.Users, "Userid", "Username");
             return View();
         }
         public IActionResult Profile()
@@ -61,7 +61,7 @@ namespace online_sms.Controllers
             {
                 var identity = new ClaimsIdentity(new[] {
             new Claim(ClaimTypes.Name, logg.Email),
-            new Claim(ClaimTypes.Sid, user.UserId.ToString())
+            new Claim(ClaimTypes.Sid, user.Userid.ToString())
         }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 var principal = new ClaimsPrincipal(identity);
@@ -90,25 +90,25 @@ namespace online_sms.Controllers
         {
             return View();
         }
-        //     public IActionResult Add_acount()
-        //     {
-        //         ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
-        //         return View();
-        //     }
-        //     [HttpPost]
-        //     [ValidateAntiForgeryToken]
-        //     public IActionResult Add_acount(Contact con)
-        //     {
-        //         var number = db.Contacts.FirstOrDefault(Contacts => Contacts.ContactNumber == con.ContactNumber);
+        public IActionResult Add_acount()
+        {
+            ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add_acount(Contact con)
+        {
+            var number = db.Contacts.FirstOrDefault(Contacts => Contacts.ContactNumber == con.ContactNumber);
 
-        //         if (number == null)
-        //         {
-        //             db.Contacts.Add(con);
-        //             db.SaveChanges();
-        //	return RedirectToAction("Login", "userdata");
+            if (number == null)
+            {
+                db.Contacts.Add(con);
+                db.SaveChanges();
+                return RedirectToAction("Login", "userdata");
 
-        //}
-        //         return View();
-        //     }
+            }
+            return View();
+        }
     }
 }
