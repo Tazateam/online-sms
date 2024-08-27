@@ -42,22 +42,80 @@ namespace online_sms.Controllers
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
-        public IActionResult Profile()
-        {
-            return View();
-        }
+		public IActionResult Profile()
+		{
+
+			var email = User.Identity.Name;
+
+			if (string.IsNullOrEmpty(email))
+			{
+				ViewBag.ErrorMessage = "User email not found.";
+				return View();
+			}
+
+			var profile = db.UserProfiles.FirstOrDefault(up => up.Email == email);
+
+			if (profile == null)
+			{
+				ViewBag.ErrorMessage = "Profile not found.";
+				return View();
+			}
+
+			var model = new UserProfile
+			{
+				Name = profile.Name,
+				Gender = profile.Gender,
+				Dob = profile.Dob,
+				Address = profile.Address,
+				MaritalStatus = profile.MaritalStatus,
+				Qualification = profile.Qualification,
+				Sports = profile.Sports,
+				Hobbies = profile.Hobbies,
+				Designation = profile.Designation,
+				Email = profile.Email,
+				ProfilePhoto = profile.ProfilePhoto
+			};
+
+			return View(model);
+		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Profile(UserProfile usp)
+		public IActionResult Profile(UserProfile model)
 		{
-            if (ModelState.IsValid)
-            {
-				db.UserProfiles.Add(usp);
+			if (ModelState.IsValid)
+			{
+				var profile = db.UserProfiles.FirstOrDefault(up => up.Email == model.Email);
+
+				if (profile == null)
+				{
+					ViewBag.ErrorMessage = "Profile not found.";
+					return View(model);
+				}
+				profile.Name = model.Name;
+				profile.Gender = model.Gender;
+				profile.Dob = model.Dob;
+				profile.Address = model.Address;
+				profile.MaritalStatus = model.MaritalStatus;
+				profile.Qualification = model.Qualification;
+				profile.Sports = model.Sports;
+				profile.Hobbies = model.Hobbies;
+				profile.Designation = model.Designation;
+				profile.Email = model.Email;
+				profile.ProfilePhoto = model.ProfilePhoto;
+
+				db.UserProfiles.Add(model);
 				db.SaveChanges();
+
+				TempData["SuccessMessage"] = "Profile updated successfully!";
+				return RedirectToAction("Profile");
 			}
-            return View();
+
+			return View(model);
 		}
-		public IActionResult Login()
+	
+
+	public IActionResult Login()
         {
             return View();
         }
@@ -101,25 +159,6 @@ namespace online_sms.Controllers
         {
             return View();
         }
-        //public IActionResult Add_acount()
-        //{
-        //    ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
-        //    return View();
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Add_acount(Contact con)
-        //{
-        //    var number = db.Contacts.FirstOrDefault(Contacts => Contacts.ContactNumber == con.ContactNumber);
-
-        //    if (number == null)
-        //    {
-        //        db.Contacts.Add(con);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Login", "userdata");
-
-        //    }
-        //    return View();
-        //}
+      
     }
 }
