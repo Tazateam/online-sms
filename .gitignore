@@ -398,11 +398,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /.vs/online-sms/FileContentIndex/0f2f5c12-030c-4f2c-83c7-e4a668fa41f9.vsidx
-/obj/Debug/net7.0/online-sms.assets.cache
-/obj/Debug/net7.0/project.razor.vs.json
-/obj/online-sms.csproj.nuget.g.props
-/obj/project.nuget.cache
-/obj/Debug/net7.0/online-sms.GeneratedMSBuildEditorConfig.editorconfig
-/.vs/online-sms/DesignTimeBuild/.dtbcache.v2
-/obj/online-sms.csproj.nuget.dgspec.json
-/obj/project.assets.json
+/.vs/online-sms/v17/.suo
+/.gitignore

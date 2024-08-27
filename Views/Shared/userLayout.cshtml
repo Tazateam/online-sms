@@ -1,4 +1,5 @@
 @using System.Security.Claims;
+@model online_sms.Models.Contact;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,7 +121,8 @@
                 <li class="menu single-menu">
                     <a href="https://smsarc.com/ui/messenger/" class="">
                         <div class="">
-                            &nbsp; <i class="fa fa-mobile-alt" style="font-size:18px;"></i>&nbsp;
+                            &nbsp; <i class="fa fa-comments" style="font-size:18px;"></i>&nbsp;
+
                             <span>Two-Way SMS</span>
                         </div>
                     </a>
@@ -128,103 +130,11 @@
                 <li class="menu single-menu"   >
                     <a class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <div class="">
-                            &nbsp; <i class="fa fa-mobile-alt" style="font-size:18px;"></i>&nbsp;
+                            &nbsp; <i class="fa fa-mobile-alt" style="font-size:18px;color:#6259ca;"></i>&nbsp;
                             <span>Add Contact</span>
                         </div>
                     </a>
                 </li>
-                <li class="menu single-menu">
-                    <a href="#nav_numbers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <i class="fa fa-phone" style="font-size:18px;"></i>&nbsp;
-                            <span>Phone Numbers</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </a>
-                    <ul class="collapse submenu list-unstyled" id="nav_numbers" data-parent="#topAccordion">
-                        <li>
-                            <a>My Phone Numbers </a>
-                        </li>
-                        <li>
-                            <a> Call Conferencing</a>
-                        </li>
-                        <li class="sub-sub-submenu-list">
-                            <a href="#number_guides" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> More Info <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
-                            <ul class="collapse list-unstyled sub-submenu" id="number_guides" data-parent="#nav_numbers">
-                                <li>
-                                    <a> SMS Forwarding <i class="fa fa-question-circle desktop-only"></i></a>
-                                </li>
-                                <li>
-                                    <a> Call Forwarding <i class="fa fa-question-circle desktop-only"></i></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="color-green" style="font-weight:bold;"> Activate Numbers  </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="menu single-menu">
-                    <a href="#components" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <i class="fa fa-comments" style="font-size:18px;"></i>&nbsp;
-                            <span>Bulk SMS</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </a>
-                    <ul class="collapse submenu list-unstyled" id="components" data-parent="#topAccordion">
-
-                        <li>
-                            <a>Manage Contacts</a>
-                        </li>
-                        <li>
-                            <a>Previously Sent</a>
-                        </li>
-                        <li>
-                            <a>Quick Start <i class="fa fa-question-circle desktop-only"></i></a>
-                        </li>
-                        <li>
-                            <a class="color-green bold">Send New</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-
-                <li class="menu single-menu">
-                    <a href="#nav_captchas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <div class="">
-                            <i class="fa fa-robot" style="font-size:18px;"></i>&nbsp;
-                            <span>SMS Captcha</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </a>
-                    <ul class="collapse submenu list-unstyled" id="nav_captchas" data-parent="#topAccordion">
-                        <li>
-                            <a href="https://smsarc.com/ui/captchas/"> My SMS Captchas </a>
-                        </li>
-                        <li class="sub-sub-submenu-list">
-                            <a href="#captcha_guides" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> More Info <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
-                            <ul class="collapse list-unstyled sub-submenu" id="captcha_guides" data-parent="#nav_captchas">
-                                <li>
-                                    <a href="https://smsarc.com/docs/sms-captcha/?fr=nav-ui" class="">Setup Guide <i class="fa fa-question-circle desktop-only"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://smsarc.com/sms-captcha/?fr=nav-ui"> About <i class="fa fa-question-circle desktop-only"></i></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="prompt_create_captcha desktop-only color-green bold"> New Captcha </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-
-
-
                 <li class="menu single-menu">
                     <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
@@ -264,21 +174,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form asp-action="Add_acount">
                         <div class="mb-3">
-                            <label for="first-name" class="col-form-label">First Name:</label>
-                            <input type="text" class="form-control" id="first-name">
+                            <label asp-for="FirstName" class="col-form-label">First Name:</label>
+                            <input asp-for="FirstName" type="text" class="form-control" id="first-name">
                         </div>
                         <div class="mb-3">
-                            <label for="last-name" class="col-form-label">Last Name:</label>
-                            <input type="text" class="form-control" id="last-name">
+                            <label asp-for="LastName" class="col-form-label">Last Name:</label>
+                            <input asp-for="LastName" type="text" class="form-control" id="last-name">
                         </div>
                         <div class="mb-3">
-                            <label for="contact-number" class="col-form-label">Contact Number:</label>
-                            <input type="number" class="form-control" id="contact-number">
+                            <label asp-for="ContactNumber" class="col-form-label">Contact Number:</label>
+                            <input asp-for="ContactNumber" type="number" class="form-control" id="contact-number">
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-end ">
-                            <button type="button" class="btn btn-primary">Add Contact</button>
+                            <button type="submit" class="btn btn-primary">Add Contact</button>
                         </div>
 
                     </form>
