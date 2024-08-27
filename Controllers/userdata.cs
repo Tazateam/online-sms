@@ -86,9 +86,53 @@ namespace online_sms.Controllers
             return View();
         }
 
+
         public IActionResult Inbox()
         {
+            // Fetch users from the database
+            var users = db.Users.ToList();
+
+            // Pass the users list to the view using ViewBag
+            ViewBag.Users = users;
+
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Inbox(Message model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Save the new message to the database
+                var message = new Message
+                {
+                    SenderUserId = model.SenderUserId,
+                    ReceiverUserId = model.ReceiverUserId,
+                    MessageText = model.MessageText,
+                    SentAt = DateTime.Now
+                };
+
+                db.Messages.Add(message);
+                db.SaveChanges();
+
+                // Redirect or reload the chat history
+                return RedirectToAction("Inbox", new { receiverId = model.ReceiverUserId });
+            }
+
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult GetChatHistory(int receiverId)
+        {
+           
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // Ensure this is the correct claim type
+            var messages = db.Messages
+                .Where(m => (m.SenderUserId == currentUserId && m.ReceiverUserId == receiverId) ||
+                            (m.SenderUserId == receiverId && m.ReceiverUserId == currentUserId))
+                .OrderBy(m => m.SentAt)
+                .ToList();
+
+            return PartialView("_ChatHistory", messages);
         }
         //public IActionResult Add_acount()
         //{
