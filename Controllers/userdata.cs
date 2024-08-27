@@ -46,7 +46,18 @@ namespace online_sms.Controllers
         {
             return View();
         }
-        public IActionResult Login()
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult Profile(UserProfile usp)
+		{
+            if (ModelState.IsValid)
+            {
+				db.UserProfiles.Add(usp);
+				db.SaveChanges();
+			}
+            return View();
+		}
+		public IActionResult Login()
         {
             return View();
         }
@@ -80,25 +91,35 @@ namespace online_sms.Controllers
             return RedirectToAction("Login");
         }
 
-   //     public IActionResult Add_acount()
-   //     {
-   //         ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
-   //         return View();
-   //     }
-   //     [HttpPost]
-   //     [ValidateAntiForgeryToken]
-   //     public IActionResult Add_acount(Contact con)
-   //     {
-   //         var number = db.Contacts.FirstOrDefault(Contacts => Contacts.ContactNumber == con.ContactNumber);
 
-   //         if (number == null)
-   //         {
-   //             db.Contacts.Add(con);
-   //             db.SaveChanges();
-			//	return RedirectToAction("Login", "userdata");
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
-			//}
-   //         return View();
-   //     }
+        public IActionResult Inbox()
+        {
+            return View();
+        }
+        //public IActionResult Add_acount()
+        //{
+        //    ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
+        //    return View();
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Add_acount(Contact con)
+        //{
+        //    var number = db.Contacts.FirstOrDefault(Contacts => Contacts.ContactNumber == con.ContactNumber);
+
+        //    if (number == null)
+        //    {
+        //        db.Contacts.Add(con);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Login", "userdata");
+
+        //    }
+        //    return View();
+        //}
     }
 }

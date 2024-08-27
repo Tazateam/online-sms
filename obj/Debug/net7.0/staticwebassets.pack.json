@@ -18357,6 +18357,10 @@
       "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\bg\\2.png"
     },
     {
+      "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\bg\\to-access-bg.png",
+      "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\bg\\to-access-bg.png"
+    },
+    {
       "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\button\\play2.png",
       "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\button\\play2.png"
     },
@@ -18603,6 +18607,30 @@
     {
       "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\team\\icon1.png",
       "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\team\\icon1.png"
+    },
+    {
+      "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\work\\advance4.png",
+      "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\work\\advance4.png"
+    },
+    {
+      "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\work\\advance5.png",
+      "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\work\\advance5.png"
+    },
+    {
+      "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\work\\advance6.png",
+      "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\work\\advance6.png"
+    },
+    {
+      "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\work\\feat8.png",
+      "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\work\\feat8.png"
+    },
+    {
+      "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\work\\work-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\work\\work-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\work\\work-shape.png",
+      "PackagePath": "staticwebassets\\assets\\user\\landing\\images\\work\\work-shape.png"
     },
     {
       "Id": "C:\\Users\\Anas brother\\OneDrive\\Desktop\\online-sms\\wwwroot\\assets\\user\\landing\\images\\work\\work1.png",
