@@ -13,8 +13,9 @@
     Layout = "userLayout";
 }
 @using System.Security.Claims;
-@model online_sms.Models.Message;
-@model IEnumerable<Message>
+@model online_sms.Models.Message
+
+
 <div class="main-container" id="container">
 
     <!-- partial:index.partial.html -->
@@ -27,16 +28,15 @@
                 <input type="text" placeholder="search" />
                 <i class="fa fa-search"></i>
             </div>
-            <ul class="list">
-
+                    <ul id="userList">
                         @if (ViewBag.Users != null)
                         {
                             foreach (var user in ViewBag.Users)
                             {
-                                <li class="clearfix" data-userid="@user.UserId">
+                                <li class="clearfix userClick" data-userid="@user.UserId" data-username="@user.Username">
                                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
                                     <div class="about">
-                                        <div class="name">@user.Username</div>
+                                        <div class="name ">@user.Username</div>
                                         <div class="status">
                                             <i class="fa fa-circle online"></i> online
                                         </div>
@@ -44,9 +44,8 @@
                                 </li>
                             }
                         }
+                    </ul>
 
-              
-            </ul>
         </div>
         </div>
             <div class="col-md-8">
@@ -55,46 +54,43 @@
                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
 
                 <div class="chat-about">
-                    <div class="chat-with">Chat with Vincent Porter</div>
+                            <div class="chat-with  user_name">Chat with Vincent Porter</div>
                     <div class="chat-num-messages">already 1 902 messages</div>
                 </div>
                 <i class="fa fa-star"></i>
             </div> <!-- end chat-header -->
 
-            <div class="chat-history">
-               <ul>
-    @foreach (var message in Model)
-    {
-        <li class="clearfix @(message.SenderUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value ? "me" : "other")">
-            <div class="message-data @(message.SenderUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value ? "align-right" : "")">
-                <span class="message-data-time">@message.SentAt.ToString("hh:mm tt")</span> &nbsp; &nbsp;
-                <span class="message-data-name">@(message.SenderUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value ? "You" : "Other")</span> 
-                <i class="fa fa-circle @(message.SenderUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value ? "me" : "other")"></i>
-            </div>
-            <div class="message @(message.SenderUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value ? "my-message" : "other-message float-right")">
-                @message.MessageText
-            </div>
-        </li>
-    }
-</ul>
+         
+                            <div class="chat-history" id="chat-history">
+                              
+                                <ul>
+                                
+                                </ul>
 
-            </div> <!-- end chat-history -->
+                                   
+                                
+                            </div>
 
-               <form asp-action="Inbox" >
-            <div class="chat-message clearfix">
+
+                    <form id="message-form" asp-action="Inbox" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="chat-message clearfix">
                             @if (User.Identity.IsAuthenticated)
-                            {                             
-                                <input type="hidden" asp-for="SenderUserId" value=" @User.FindFirst(ClaimTypes.Sid)?.Value" />
+                            {
+                                <input type="hidden" id="receiver-user-id" name="ReceiverUserId"  />
+                                <input type="hidden" name="SenderUserId" value="@User.FindFirst(ClaimTypes.Sid)?.Value" />
                             }
-                            <textarea  asp-for="MessageText" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+                            <textarea id="MessageText" name="MessageText" placeholder="Type your message" rows="3"></textarea>
 
-                <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-                <i class="fa fa-file-image-o"></i>
+                            <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-file-image-o"></i>
 
-                <button>Send</button>
+                            <button type="submit">Send</button>
+                        </div>
+                    </form>
 
-            </div> <!-- end chat-message -->
-               </form>
+
+
 
         </div> <!-- end chat -->
         </div>
@@ -132,37 +128,122 @@
 
 <script>
     $(document).ready(function () {
-        // Handle user click
-        $('.clearfix').click(function () {
-            var userId = $(this).data('userid');
-            var username = $(this).find('.name').text();
+        $('.userClick').click(function () {
+            var receiverId = $(this).data('userid');
+            var username = $(this).data('username');
+            $(".user_name").text(username);
+            $("#receiver-user-id").val(receiverId);
 
-            $('#receiver-user-id').val(userId);
-            $('#chat-with').text('Chat with ' + username);
+            $.ajax({
+                url: '@Url.Action("GetMessages", "userdata")', // Replace with your controller name
+                type: 'GET',
+                data: { receiverId: receiverId },
+                success: function (response) {
+                    if (response.success) {
+                        var chatHistory = $('#chat-history ul');
+                        chatHistory.empty(); // Clear existing messages
+                        console.log(response)
+                        // Iterate over messages and append them
+                        response.messages.forEach(function (message) {
+                            var messageItem = '';
+                            var messageTime = new Date(message.sentAt).toLocaleTimeString(); // Format time as needed
+                            var messageName = message.senderUserId === receiverId ? username : 'You'; // Example names
+                            var messageClass = message.senderUserId === receiverId ? 'my-message' : 'other-message';
+                            var alignClass = message.senderUserId === receiverId ? '' : 'align-right';
 
-            // Load chat history for the selected user
-            $.get('/Chat/GetChatHistory', { receiverId: userId }, function (data) {
-                $('#chat-history').html(data);
+                            messageItem = `
+                                <li class="clearfix">
+                                    <div class="message-data ${alignClass}">
+                                        <span class="message-data-time">${messageTime}</span> &nbsp; &nbsp;
+                                        <span class="message-data-name">${messageName}</span>
+                                        <i class="fa fa-circle ${message.senderUserId === receiverId ? 'me' : 'online'}"></i>
+                                    </div>
+                                    <div class="message ${messageClass} float-${message.senderUserId === receiverId ? 'right' : 'left'}">
+                                        ${message.messageText}
+                                    </div>
+                                </li>
+                            `;
+
+                            chatHistory.append(messageItem);
+                        });
+                    } else {
+                        console.log('Failed to retrieve messages.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
             });
         });
 
-        // Handle message sending
         $('#message-form').submit(function (e) {
-            e.preventDefault();
+            e.preventDefault(); // Prevent the default form submission
 
-            var formData = $(this).serialize();
+            var form = $(this);
+            var formData = new FormData(form[0]);
 
-            $.post('/Chat/Inbox', formData, function () {
-                // Reload chat history after sending the message
-                var receiverId = $('#receiver-user-id').val();
-                $.get('/Chat/GetChatHistory', { receiverId: receiverId }, function (data) {
-                    $('#chat-history').html(data);
-                });
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        var receiverId = $("#receiver-user-id").val();
+                        // Reload messages for the current conversation
+                        $.ajax({
+                            url: '@Url.Action("GetMessages", "userdata")', // Replace with your controller name
+                            type: 'GET',
+                            data: { receiverId: receiverId },
+                            success: function (response) {
+                                if (response.success) {
+                                    var chatHistory = $('#chat-history ul');
+                                    chatHistory.empty(); // Clear existing messages
 
-                // Clear message textarea
-                $('#message-to-send').val('');
+                                    // Iterate over messages and append them
+                                    response.messages.forEach(function (message) {
+                                        var messageItem = '';
+                                        var messageTime = new Date(message.sentAt).toLocaleTimeString(); // Format time as needed
+                                        var messageName = message.senderUserId === receiverId ? 'You' : 'Other'; // Example names
+                                        var messageClass = message.senderUserId === receiverId ? 'my-message' : 'other-message';
+                                        var alignClass = message.senderUserId === receiverId ? '' : 'align-right';
+
+                                        messageItem = `
+                                            <li class="clearfix">
+                                                <div class="message-data ${alignClass}">
+                                                    <span class="message-data-time">${messageTime}</span> &nbsp; &nbsp;
+                                                    <span class="message-data-name">${messageName}</span>
+                                                    <i class="fa fa-circle ${message.senderUserId === receiverId ? 'me' : 'online'}"></i>
+                                                </div>
+                                                <div class="message ${messageClass} float-${message.senderUserId === receiverId ? 'right' : 'left'}">
+                                                    ${message.messageText}
+                                                </div>
+                                            </li>
+                                        `;
+
+                                        chatHistory.append(messageItem);
+                                    });
+                                } else {
+                                    console.log('Failed to retrieve messages.');
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Error:', error);
+                            }
+                        });
+                    } else {
+                        console.log('Failed to send message.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
             });
         });
     });
+
+        
+
 </script>
 

@@ -89,25 +89,32 @@ namespace online_sms.Controllers
 
         public IActionResult Inbox()
         {
+            // Get the current user's ID (you might need to adjust this based on your authentication setup)
+            var currentUserId = User.FindFirstValue(ClaimTypes.Sid); // or use another method to get the current user's ID
+
             // Fetch users from the database
             var users = db.Users.ToList();
 
-            // Pass the users list to the view using ViewBag
-            ViewBag.Users = users;
+            // Exclude the current user from the list
+            var filteredUsers = users.Where(u => u.UserId !=  Convert.ToInt32(currentUserId)).ToList();
+
+            // Pass the filtered users list to the view using ViewBag
+            ViewBag.Users = filteredUsers;
 
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Inbox(Message model)
+        public IActionResult Inbox(Message model, int? SenderUserId, int? ReceiverUserId)
         {
             if (ModelState.IsValid)
             {
                 // Save the new message to the database
                 var message = new Message
                 {
-                    SenderUserId = model.SenderUserId,
-                    ReceiverUserId = model.ReceiverUserId,
+                    SenderUserId = SenderUserId,
+                    ReceiverUserId = ReceiverUserId,
                     MessageText = model.MessageText,
                     SentAt = DateTime.Now
                 };
@@ -115,25 +122,53 @@ namespace online_sms.Controllers
                 db.Messages.Add(message);
                 db.SaveChanges();
 
-                // Redirect or reload the chat history
-                return RedirectToAction("Inbox", new { receiverId = model.ReceiverUserId });
+                // Return the updated chat history as JSON
+                var chatMessages = db.Messages
+                    .Where(m => (m.SenderUserId == SenderUserId && m.ReceiverUserId == ReceiverUserId) ||
+                                (m.SenderUserId == ReceiverUserId && m.ReceiverUserId == SenderUserId))
+                    .ToList();
+
+                return Json(new { success = true, messages = chatMessages });
             }
 
-            return View(model);
+            return Json(new { success = false, message = "Failed to send message" });
         }
-        [HttpGet]
-        public IActionResult GetChatHistory(int receiverId)
-        {
-           
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // Ensure this is the correct claim type
-            var messages = db.Messages
-                .Where(m => (m.SenderUserId == currentUserId && m.ReceiverUserId == receiverId) ||
-                            (m.SenderUserId == receiverId && m.ReceiverUserId == currentUserId))
-                .OrderBy(m => m.SentAt)
-                .ToList();
 
-            return PartialView("_ChatHistory", messages);
+
+        [HttpGet]
+        public IActionResult GetMessages(int receiverId)
+        {
+            var userIdString = User.FindFirst(ClaimTypes.Sid)?.Value;
+
+            try
+            {
+                int userId = Convert.ToInt32(userIdString);
+                var messages = GetMessages(userId, receiverId);
+                return Json(new { success = true, messages });
+            }
+            catch (FormatException)
+            {
+                // Handle the case where conversion fails
+                return Json(new { success = false, message = "Invalid user ID format" });
+            }
+            catch (OverflowException)
+            {
+                // Handle the case where the number is too large or too small
+                return Json(new { success = false, message = "User ID is out of range" });
+            }
         }
+
+        public IEnumerable<Message> GetMessages(int userId, int receiverId)
+        {
+            // Example using Entity Framework
+            return db.Messages
+                     .Where(m => (m.SenderUserId == userId && m.ReceiverUserId == receiverId) ||
+                                 (m.SenderUserId == receiverId && m.ReceiverUserId == userId))
+                     .ToList();
+        }
+
+
+
         //public IActionResult Add_acount()
         //{
         //    ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
