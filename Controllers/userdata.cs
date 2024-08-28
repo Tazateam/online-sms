@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using online_sms.Models;
 using System.Security.Claims;
-
+using System.Collections.Specialized;
+using System.Net;
+using System.Web;
 namespace online_sms.Controllers
 {
     public class userdata : Controller
@@ -42,11 +45,80 @@ namespace online_sms.Controllers
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
-        public IActionResult Profile()
-        {
-            return View();
-        }
-        public IActionResult Login()
+		public IActionResult Profile()
+		{
+
+			var email = User.Identity.Name;
+
+			if (string.IsNullOrEmpty(email))
+			{
+				ViewBag.ErrorMessage = "User email not found.";
+				return View();
+			}
+
+			var profile = db.UserProfiles.FirstOrDefault(up => up.Email == email);
+
+			if (profile == null)
+			{
+				ViewBag.ErrorMessage = "Profile not found.";
+				return View();
+			}
+
+			var model = new UserProfile
+			{
+				Name = profile.Name,
+				Gender = profile.Gender,
+				Dob = profile.Dob,
+				Address = profile.Address,
+				MaritalStatus = profile.MaritalStatus,
+				Qualification = profile.Qualification,
+				Sports = profile.Sports,
+				Hobbies = profile.Hobbies,
+				Designation = profile.Designation,
+				Email = profile.Email,
+				ProfilePhoto = profile.ProfilePhoto
+			};
+
+			return View(model);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult Profile(UserProfile model)
+		{
+			if (ModelState.IsValid)
+			{
+				var profile = db.UserProfiles.FirstOrDefault(up => up.Email == model.Email);
+
+				if (profile == null)
+				{
+					ViewBag.ErrorMessage = "Profile not found.";
+					return View(model);
+				}
+				profile.Name = model.Name;
+				profile.Gender = model.Gender;
+				profile.Dob = model.Dob;
+				profile.Address = model.Address;
+				profile.MaritalStatus = model.MaritalStatus;
+				profile.Qualification = model.Qualification;
+				profile.Sports = model.Sports;
+				profile.Hobbies = model.Hobbies;
+				profile.Designation = model.Designation;
+				profile.Email = model.Email;
+				profile.ProfilePhoto = model.ProfilePhoto;
+
+				db.UserProfiles.Add(model);
+				db.SaveChanges();
+
+				TempData["SuccessMessage"] = "Profile updated successfully!";
+				return RedirectToAction("Profile");
+			}
+
+			return View(model);
+		}
+	
+
+	public IActionResult Login()
         {
             return View();
         }
@@ -60,8 +132,9 @@ namespace online_sms.Controllers
             if (user != null)
             {
                 var identity = new ClaimsIdentity(new[] {
-            new Claim(ClaimTypes.Name, logg.Email),
-            new Claim(ClaimTypes.Sid, user.UserId.ToString())
+            new Claim(ClaimTypes.Email, logg.Email),
+			new Claim(ClaimTypes.Name, user.Username),
+			new Claim(ClaimTypes.Sid, user.UserId.ToString())
         }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 var principal = new ClaimsPrincipal(identity);
@@ -81,10 +154,7 @@ namespace online_sms.Controllers
         }
 
 
-        public IActionResult Contact()
-        {
-            return View();
-        }
+
 
 
         public IActionResult Inbox()
@@ -96,7 +166,7 @@ namespace online_sms.Controllers
             var users = db.Users.ToList();
 
             // Exclude the current user from the list
-            var filteredUsers = users.Where(u => u.UserId !=  Convert.ToInt32(currentUserId)).ToList();
+            var filteredUsers = users.Where(u => u.UserId != Convert.ToInt32(currentUserId)).ToList();
 
             // Pass the filtered users list to the view using ViewBag
             ViewBag.Users = filteredUsers;
@@ -169,25 +239,100 @@ namespace online_sms.Controllers
 
 
 
-        //public IActionResult Add_acount()
-        //{
-        //    ViewBag.c = new SelectList(db.Contacts, "Id", "FirstName");
-        //    return View();
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Add_acount(Contact con)
-        //{
-        //    var number = db.Contacts.FirstOrDefault(Contacts => Contacts.ContactNumber == con.ContactNumber);
 
-        //    if (number == null)
-        //    {
-        //        db.Contacts.Add(con);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Login", "userdata");
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(Contact con)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.Sid);
 
-        //    }
-        //    return View();
-        //}
+                if (userId == null)
+                {
+                    ModelState.AddModelError("", "User is not authenticated.");
+                    return View(con);  // This will try to return the current view with errors.
+                }
+
+                if (!int.TryParse(userId, out int userIdInt))
+                {
+                    ModelState.AddModelError("", "Invalid User ID.");
+                    return View(con);  // This will try to return the current view with errors.
+                }
+                var contact = new Contact
+                {
+                    FirstName = con?.FirstName?.Trim(),
+                    LastName = con?.LastName?.Trim(),
+                    ContactNumber = con?.ContactNumber?.Trim(), 
+                    UserId = userIdInt
+                };
+
+                db.Contacts.Add(contact);  // Ensure you add the newly created contact, not the form's con object
+                db.SaveChanges();
+
+                // If you want to redirect after successfully adding the contact
+                return RedirectToAction("Index");  // Redirect to Index action after adding
+            }
+
+            return View(con);  // Return the current view with the model (including validation errors).
+        }
+
+        public ActionResult GetContacts()
+        {
+            var contacts = db.Contacts.ToList(); 
+            return PartialView("_ContactsPartial", contacts); 
+        }
+
+        public ActionResult SendBulkMessage(int contactId)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+
+            // Get the contact that matches the contactId
+            var contact = db.Contacts.SingleOrDefault(c => c.ContactId == contactId);
+
+            if (contact == null)
+            {
+                // Handle the case where the contact is not found
+                return NotFound();
+            }
+
+            // Send the contact's phone number to the view using ViewBag
+            ViewBag.ContactNumber = contact.ContactNumber;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult sendBulkMessage(string reciverNumber, string message)
+        {
+            string result = sendSMS(reciverNumber, message);
+            ViewBag.Message = "SMS sent successfully!";
+            return View(); 
+        }
+        public string sendSMS(string reciverNumber, string message)
+        {
+            String encodedMessage = HttpUtility.UrlEncode(message);
+            using (var wb = new WebClient())
+            {
+                byte[] response = wb.UploadValues("https://api.txtlocal.com/send/", new NameValueCollection()
+            {
+                {"apikey" , "MzI2NzU2NzE0NDY5NTY1YTQzNjI2MTZmNmE3YTM3NzE="}, 
+                {"numbers" , reciverNumber},
+                {"message" , encodedMessage},
+                {"sender" , "Zeeshan "}
+            });
+                string result = System.Text.Encoding.UTF8.GetString(response);
+                return result;
+            }
+        }
+
+
+
+
+
+
+
     }
 }
