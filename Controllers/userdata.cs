@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -129,8 +130,9 @@ namespace online_sms.Controllers
             if (user != null)
             {
                 var identity = new ClaimsIdentity(new[] {
-            new Claim(ClaimTypes.Name, logg.Email),
-            new Claim(ClaimTypes.Sid, user.UserId.ToString())
+            new Claim(ClaimTypes.Email, logg.Email),
+			new Claim(ClaimTypes.Name, user.Username),
+			new Claim(ClaimTypes.Sid, user.UserId.ToString())
         }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 var principal = new ClaimsPrincipal(identity);
@@ -149,10 +151,44 @@ namespace online_sms.Controllers
             return RedirectToAction("Login");
         }
 
-
-        public IActionResult Contact()
+		
+		public IActionResult Add_Contact()
         {
             return View();
+        }
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+        public IActionResult Add_Contact(Contact con)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                if (userId == null)
+                {
+                    ModelState.AddModelError("", "User is not authenticated.");
+                    return View(con); 
+                }
+
+                int userIdInt;
+                if (!int.TryParse(userId, out userIdInt))
+                {
+                    ModelState.AddModelError("", "Invalid User ID.");
+                    return View(con);
+                }
+                var contact = new Contact
+                {
+                    FirstName = con.FirstName,
+                    LastName = con.LastName,
+                    ContactNumber = con.ContactNumber,
+                    UserId = userIdInt 
+                };
+
+                db.Contacts.Add(con);
+                db.SaveChanges();
+            }
+            return View(con);
         }
 
         public IActionResult Inbox()

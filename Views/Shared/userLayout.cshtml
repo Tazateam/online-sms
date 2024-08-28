@@ -174,23 +174,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form asp-action="Add_acount">
+                    <form asp-action="Add_Contact">
                         <div class="mb-3">
                             <label asp-for="FirstName" class="col-form-label">First Name:</label>
-                            <input asp-for="FirstName" type="text" class="form-control" id="first-name">
+                            <input asp-for="FirstName" type="text" class="form-control" id="first-name" required />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label asp-for="LastName" class="col-form-label">Last Name:</label>
-                            <input asp-for="LastName" type="text" class="form-control" id="last-name">
+                            <input asp-for="LastName" type="text" class="form-control" id="last-name" required />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label asp-for="ContactNumber" class="col-form-label">Contact Number:</label>
-                            <input asp-for="ContactNumber" type="number" class="form-control" id="contact-number">
+                            <input asp-for="ContactNumber" type="number" class="form-control" id="contact-number" required />
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-end ">
                             <button type="submit" class="btn btn-primary">Add Contact</button>
                         </div>
-
                     </form>
                 </div>
                
