@@ -102,20 +102,34 @@ public partial class OnlineMessagesContext : DbContext
         {
             entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACB876F459");
 
-            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1488A2C35").IsUnique();
+            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1A04AAC8F").IsUnique();
 
             entity.HasIndex(e => e.Username, "UQ__Users__536C85E4C2A5E621").IsUnique();
 
             entity.HasIndex(e => e.Email, "UQ__Users__A9D10534DD288A0A").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.Designation).HasMaxLength(255);
+            entity.Property(e => e.Dob)
+                .HasColumnType("date")
+                .HasColumnName("DOB");
             entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.FirstName).HasMaxLength(100);
+            entity.Property(e => e.Gender).HasMaxLength(10);
+            entity.Property(e => e.Hobbies).HasMaxLength(255);
             entity.Property(e => e.IsVerified).HasDefaultValueSql("((0))");
-            entity.Property(e => e.MobileNumber).HasMaxLength(10);
+            entity.Property(e => e.LastName)
+                .HasMaxLength(100)
+                .HasColumnName("lastName");
+            entity.Property(e => e.MaritalStatus).HasMaxLength(20);
+            entity.Property(e => e.MobileNumber).HasMaxLength(15);
             entity.Property(e => e.Password).HasMaxLength(50);
+            entity.Property(e => e.Qualification).HasMaxLength(255);
+            entity.Property(e => e.Sports).HasMaxLength(255);
             entity.Property(e => e.Username).HasMaxLength(50);
             entity.Property(e => e.VerificationCode).HasMaxLength(10);
         });
