@@ -9,7 +9,7 @@
         top:0px !important;
 
     }</style>
-
+@model online_sms.Models.ContactU;
 <section class="banner-14 oh  pos-rel" >
     <div class="bottom-shape d-lg-block d-none">
         <img src="~/assets/user/banner-bg-14.jpg" alt="banner">
@@ -201,12 +201,35 @@
         </div>
     </div>
 </section>
-<form class="account-form">
+<div class="container">
+    <div class="row" >
+        <div class="col-md-6">
+            img
+        </div>
+            <div class="col-md-6" >     
+<form class="account-form" asp-action="Index" >
+    @Html.AntiForgeryToken()
 
-    <input type="text" name="FirstName" placeholder="FirstName">
-    <input type="text" name="LastName" placeholder="LastName">
-    <input type="text" name="ContactNumber" placeholder="ContactNumber">
-        <input type="text" name="Message" placeholder="message">
-                                <button type="submit">Send</button>
-                           
-                        </form>
+    <div class="form-group" >
+        <input type="text" asp-for="FirstName" placeholder="First Name" />
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        <input type="text" asp-for="LastName" placeholder="Last Name" />
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    <div class="form-group">
+        <input type="text" asp-for="ContactNumber" placeholder="Contact Number" />
+        @Html.ValidationMessageFor(m => m.ContactNumber)
+    </div>
+    <div class="form-group">
+        <textarea asp-for="Message" placeholder="Message"></textarea>
+        @Html.ValidationMessageFor(m => m.Message)
+    </div>
+    <button >Send</button>
+</form>
+
+            </div>
+        </div>
+    
+</div>
