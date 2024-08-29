@@ -6,9 +6,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using online_sms.Models;
 using System.Security.Claims;
-using System.Collections.Specialized;
 using System.Net;
 using System.Web;
+using RestSharp;
+using System.Threading.Tasks;
+using Infobip.Api.SDK;
+using Infobip.Api.SDK.SMS.Models;
+using System.Collections.Specialized;
 namespace online_sms.Controllers
 {
     public class userdata : Controller
@@ -302,35 +306,105 @@ namespace online_sms.Controllers
             return View();
         }
 
+
+        //private readonly string MyApiKey = "923422704726-6b2eb1f1-1af6-4c6b-b016-7cf09f8cd3ae"; // Your API Key
+        //private readonly string MyUsername = "923422704726"; // Your SendPK username
+        //private readonly string MyPassword = "Merijaan"; // Your SendPK password
+        //private readonly string Masking = "SMS Alert"; // Your Company Brand Name
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //public async Task<IActionResult> sendBulkMessage(string reciverNumber, string message)
+        //{
+        //    var configuration = new ApiClientConfiguration(
+        //        "https://e1vz92.api.infobip.com",
+        //        "f23377a18161d10f311f63d1defe8a7d-6c5dce47-5a02-4604-961a-c7d0ef4c6cd2"
+        //    );
+        //    var client = new InfobipApiClient(configuration);
+
+        //    var destination = new SmsDestination(
+        //        to:"923132239840"
+        //    );
+        //    var msg = new SmsMessage(
+        //        destinations: new List<SmsDestination> { destination },
+        //        from: "Infobip SMS",
+        //        text: message
+        //    );
+        //    var request = new SendSmsMessageRequest(
+        //        messages: new List<SmsMessage> { msg }
+        //    );
+
+        //    var response = await client.Sms.SendSmsMessage(request);
+
+        //    ViewBag.Message = response?.Messages?[0]?.Status?.Description ?? "SMS sent successfully!";
+        //    return View();
+        //}
 
         public IActionResult sendBulkMessage(string reciverNumber, string message)
         {
             string result = sendSMS(reciverNumber, message);
-            ViewBag.Message = "SMS sent successfully!";
-            return View(); 
+            ViewBag.Message = result; // Display the response from the API
+            return View();
         }
-        public string sendSMS(string reciverNumber, string message)
+
+        public string sendSMS(string reciver, string message)
         {
-            String encodedMessage = HttpUtility.UrlEncode(message);
+            String msg = HttpUtility.UrlEncode(message);
             using (var wb = new WebClient())
             {
                 byte[] response = wb.UploadValues("https://api.txtlocal.com/send/", new NameValueCollection()
-            {
-                {"apikey" , "MzI2NzU2NzE0NDY5NTY1YTQzNjI2MTZmNmE3YTM3NzE="}, 
-                {"numbers" , reciverNumber},
-                {"message" , encodedMessage},
-                {"sender" , "Zeeshan "}
-            });
+                {
+                {"apikey" , "MzI2NzU2NzE0NDY5NTY1YTQzNjI2MTZmNmE3YTM3NzE="},
+                {"numbers" , "+923422704726"},
+                {"message" , msg},
+                {"sender" , "Zeeshan"}
+                });
                 string result = System.Text.Encoding.UTF8.GetString(response);
                 return result;
             }
         }
 
+        //public IActionResult sendBulkMessage(string reciverNumber, string message)
+        //{
+        //    string result = sendSMS(reciverNumber, message);
+        //    ViewBag.Message = result; // Display the response from the API
+        //    return View();
+        //}
 
+        //public string sendSMS(string reciverNumber, string message)
+        //{
+        //    string URI = "https://sendpk.com/api/sms.php?" +
+        //                 "api_key=" + MyApiKey +
+        //                 "&sender=" + Masking +
+        //                 "&mobile=" + 923142780007 +
+        //                 "&message=" + Uri.UnescapeDataString(message);
 
-
+        //    try
+        //    {
+        //        WebRequest req = WebRequest.Create(URI);
+        //        WebResponse resp = req.GetResponse();
+        //        using (var sr = new System.IO.StreamReader(resp.GetResponseStream()))
+        //        {
+        //            return sr.ReadToEnd().Trim();
+        //        }
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        var httpWebResponse = ex.Response as HttpWebResponse;
+        //        if (httpWebResponse != null)
+        //        {
+        //            switch (httpWebResponse.StatusCode)
+        //            {
+        //                case HttpStatusCode.NotFound:
+        //                    return "404: URL not found: " + URI;
+        //                case HttpStatusCode.BadRequest:
+        //                    return "400: Bad Request";
+        //                default:
+        //                    return httpWebResponse.StatusCode.ToString();
+        //            }
+        //        }
+        //        return "Error occurred while sending SMS.";
+        //    }
+        //}
 
 
 
