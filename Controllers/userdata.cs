@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -114,9 +115,7 @@ namespace online_sms.Controllers
 			}
 			return View(model);
 		}
-	
-
-	public IActionResult Login()
+		public IActionResult Login()
         {
             return View();
         }
@@ -148,7 +147,7 @@ namespace online_sms.Controllers
         {
             var lgoin = HttpContext.SignOutAsync
                 (CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
         }
 
 		
