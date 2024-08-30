@@ -38,7 +38,7 @@ public partial class OnlineMessagesContext : DbContext
             entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB93A6574A");
 
             entity.Property(e => e.ContactId).HasColumnName("ContactID");
-            entity.Property(e => e.ContactNumber).HasMaxLength(10);
+            entity.Property(e => e.ContactNumber).HasMaxLength(15);
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.LastName).HasMaxLength(50);
             entity.Property(e => e.UserId).HasColumnName("UserID");
@@ -71,11 +71,12 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037CA5509A82");
+            entity.HasKey(e => e.MessageId).HasName("PK__tmp_ms_x__C87C037C34B83D0F");
 
             entity.Property(e => e.MessageId).HasColumnName("MessageID");
             entity.Property(e => e.MessageText).HasMaxLength(120);
             entity.Property(e => e.ReceiverContactNumber).HasMaxLength(10);
+            entity.Property(e => e.ReceiverUserId).HasColumnName("ReceiverUserID");
             entity.Property(e => e.SenderUserId).HasColumnName("SenderUserID");
             entity.Property(e => e.SentAt)
                 .HasDefaultValueSql("(getdate())")
@@ -83,7 +84,7 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.SenderUser).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.SenderUserId)
-                .HasConstraintName("FK__Messages__Sender__4BAC3F29");
+                .HasConstraintName("FK__Messages__Sender__534D60F1");
         });
 
         modelBuilder.Entity<Service>(entity =>

@@ -9,6 +9,8 @@ public partial class Message
 
     public int? SenderUserId { get; set; }
 
+    public int? ReceiverUserId { get; set; }
+
     public string? ReceiverContactNumber { get; set; }
 
     public string? MessageText { get; set; }
