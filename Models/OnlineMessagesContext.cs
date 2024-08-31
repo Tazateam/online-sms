@@ -50,23 +50,26 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasKey(e => new { e.UserId, e.FriendUserId }).HasName("PK__Friends__11BD2B9C4DDEA983");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC2742A0EB80");
 
-            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.HasIndex(e => new { e.UserId, e.FriendUserId }, "UQ_UserFriend").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.FriendUserId).HasColumnName("FriendUserID");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
                 .HasDefaultValueSql("('Pending')");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
 
             entity.HasOne(d => d.FriendUser).WithMany(p => p.FriendFriendUsers)
                 .HasForeignKey(d => d.FriendUserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Friends__FriendU__4AB81AF0");
+                .HasConstraintName("FK_Friends_FriendUserId");
 
             entity.HasOne(d => d.User).WithMany(p => p.FriendUsers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Friends__UserID__49C3F6B7");
+                .HasConstraintName("FK_Friends_UserId");
         });
 
         modelBuilder.Entity<Message>(entity =>
