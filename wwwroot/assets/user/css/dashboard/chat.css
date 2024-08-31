@@ -61,6 +61,7 @@ body {
 
 .chat {
   float: left;
+  width:100%;
   background: #F2F5F8;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;

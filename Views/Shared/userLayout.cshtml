@@ -71,26 +71,7 @@
                                     <h6><span>Welcome, @User.FindFirst(ClaimTypes.Name)?.Value</span></h6>
                                 }
                             </div>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </a>
-                    <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="user-profile-dropdown">
-                        <div class="">
-                            <div class="dropdown-item">
-                                <a class="" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> My Profile</a>
-                            </div>
-                            <div class="dropdown-item">
-                                <a class="" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg> Billing</a>
-                            </div>
-                            <div class="dropdown-item">
-                                <a class="" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Support</a>
-                            </div>
-                            <div class="dropdown-item">
-                                <a asp-action="Logout" asp-controller="userdata" class="" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</a>
-                            </div>
-                        </div>
-                    </div>
-
+                        </div>                      
                 </li>
             </ul>
         </header>
@@ -145,18 +126,22 @@
                     </a>
                     <ul class="collapse submenu list-unstyled" id="more" data-parent="#topAccordion">
                         <li>
-                            <a href="https://smsarc.com/ui/profile/"> My Profile</a>
+                            <a asp-action="Profile" asp-controller="userdata"> My Profile</a>
+                        </li>   
+                        <li>
+                            <a data-bs-toggle="modal" data-bs-target="#myContact"> My Contacts</a>
                         </li>
                         <li>
-                            <a href="https://smsarc.com/ui/billing/"> Billing</a>
-                        </li>
-                        <li>
-                            <a href="https://smsarc.com/contact/"> Support</a>
-                        </li>
-                        <li>
-                            <a href="https://smsarc.com/logout/"> Logout</a>
+                            <a asp-action="Logout" asp-controller="userdata"> Logout</a>
                         </li>
                     </ul>
+                </li>
+                <li class="menu single-menu">
+                    <a class="" data-bs-toggle="modal" id="friendPost" data-bs-target="#requests">
+                        <div class="">                         
+                            <span>Requests</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -174,29 +159,86 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form asp-action="Add_acount">
+                    <form asp-controller="userdata" asp-action="Index">
                         <div class="mb-3">
                             <label asp-for="FirstName" class="col-form-label">First Name:</label>
-                            <input asp-for="FirstName" type="text" class="form-control" id="first-name">
+                            <input asp-for="FirstName" type="text" class="form-control" id="first-name" required />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label asp-for="LastName" class="col-form-label">Last Name:</label>
-                            <input asp-for="LastName" type="text" class="form-control" id="last-name">
+                            <input asp-for="LastName" type="text" class="form-control" id="last-name" required />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label asp-for="ContactNumber" class="col-form-label">Contact Number:</label>
-                            <input asp-for="ContactNumber" type="number" class="form-control" id="contact-number">
+                            <input asp-for="ContactNumber" type="number" class="form-control" id="contact-number" required />
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
                         </div>
                         <div class="mb-3 d-flex align-items-center justify-content-end ">
                             <button type="submit" class="btn btn-primary">Add Contact</button>
                         </div>
-
                     </form>
                 </div>
                
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Contacts</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="btn btn-primary   active  " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#friends" type="button" role="tab" aria-controls="friends" aria-selected="false">Friends</button>
+                            <button class="btn btn-primary   ms-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">Contacts</button>
+                            <button class="btn btn-primary   ms-2" id="nav-sugested-tab" data-bs-toggle="tab" data-bs-target="#suggested_user" type="button" role="tab" aria-controls="suggested_user" aria-selected="true">Suggested Friends</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="friends" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">Friends</div>
+                        <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                            <ul class="list-group">
+                               
+                               
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade " id="suggested_user" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                            <ul class="list-group">
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="requests" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Friend Requests</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="getFrnd" >
+
+                    <ul class="list-group">
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <div class="footer-wrapper">
         <div class="footer-section f-section-1">
@@ -234,11 +276,57 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
     <script src="~/assets/user/js/dashboard/chat.js"></script>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#nav-home-tab').on('click', function () {
+                $.ajax({
+                    url: '/userdata/GetContacts',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#contact').html(data); // Load the returned partial view into the #contact div
+                    },
+                    error: function () {
+                        alert('Failed to load contacts.');
+                    }
+                });
+            });
+            $('#nav-sugested-tab').on('click', function () {
+                $.ajax({
+                    url: '/userdata/GetSuggested',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#suggested_user').html(data); // Load the returned partial view into the #contact div
+                    },
+                    error: function () {
+                        alert('Failed to load contacts.');
+                    }
+                });
+            });
+            $('#friendPost').on('click', function () {
+                $.ajax({
+                    url: '/userdata/GetFriendRequest',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#getFrnd').html(data); // Load the returned partial view into the #getFrnd div
+                    },
+                    error: function () {
+                        alert('Failed to load friend requests.');
+                    }
+                });
+            });
+
+        });
+    </script>
+    
     <script>
         $(".phone_input").inputmask({
             mask: "(999) 999-9999"
         });
     </script>
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

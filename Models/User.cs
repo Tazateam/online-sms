@@ -21,6 +21,28 @@ public partial class User
 
     public DateTime? CreatedAt { get; set; }
 
+    public string? FirstName { get; set; }
+
+    public string? LastName { get; set; }
+
+    public string? Gender { get; set; }
+
+    public DateTime? Dob { get; set; }
+
+    public string? Address { get; set; }
+
+    public string? MaritalStatus { get; set; }
+
+    public string? Hobbies { get; set; }
+
+    public string? Sports { get; set; }
+
+    public byte[]? ProfilePhoto { get; set; }
+
+    public string? Qualification { get; set; }
+
+    public string? Designation { get; set; }
+
     public virtual ICollection<Contact> Contacts { get; set; } = new List<Contact>();
 
     public virtual ICollection<Friend> FriendFriendUsers { get; set; } = new List<Friend>();
@@ -28,8 +50,6 @@ public partial class User
     public virtual ICollection<Friend> FriendUsers { get; set; } = new List<Friend>();
 
     public virtual ICollection<Message> Messages { get; set; } = new List<Message>();
-
-    public virtual UserProfile? UserProfile { get; set; }
 
     public virtual ICollection<UserService> UserServices { get; set; } = new List<UserService>();
 }
