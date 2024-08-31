@@ -320,7 +320,7 @@ namespace online_sms.Controllers
             };
             db.Friends.Add(contact); 
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index");
         }
 
 
@@ -339,7 +339,43 @@ namespace online_sms.Controllers
             return PartialView("_GetFriendRequest", friendRequests);
         }
 
+        [HttpPost]
+        public IActionResult RespondToFriendRequest(int friend_id, string response)
+        {
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
 
+            // Find the existing friend request
+            var friendRequest = db.Friends
+                .FirstOrDefault(f => f.FriendUserId == userId && f.UserId == friend_id && f.Status == "Pending");
+
+            if (friendRequest != null)
+            {
+                if (response == "Accept")
+                {
+                    // Update the status of the friend request to "Accepted"
+                    friendRequest.Status = "Accepted";
+
+                    // Check if the reciprocal friendship exists; if not, create it
+                    var reciprocalFriendship = db.Friends
+                        .FirstOrDefault(f => f.UserId == friend_id && f.FriendUserId == userId);
+
+                    if (reciprocalFriendship == null)
+                    {
+                        db.Friends.Add(new Friend { UserId = friend_id, FriendUserId = userId, Status = "Accepted" });
+                    }
+                }
+                else if (response == "Reject")
+                {
+                    // Update the status of the friend request to "Rejected"
+                    friendRequest.Status = "Rejected";
+                }
+
+                db.SaveChanges();
+            }
+
+            // Redirect to the same view or another appropriate action
+            return RedirectToAction("Index");
+        }
 
         public ActionResult SendBulkMessage(int contactId)
         {
