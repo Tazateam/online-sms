@@ -29,13 +29,13 @@ public partial class OnlineMessagesContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=DESKTOP-DIBKE47\\SQLEXPRESS;initial catalog=Online_Messages;user id=sa;password=anas; TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("data source=.;initial catalog=Online_Messages;user id=sa;password=aptech; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BBDD58E7F5");
+            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB1009D9BA");
 
             entity.Property(e => e.ContactId).HasColumnName("ContactID");
             entity.Property(e => e.ContactNumber).HasMaxLength(15);
@@ -45,33 +45,36 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Contacts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Contacts__UserID__5AEE82B9");
+                .HasConstraintName("FK__Contacts__UserID__35BCFE0A");
         });
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasKey(e => new { e.UserId, e.FriendUserId }).HasName("PK__Friends__11BD2B9CE2E587AC");
+            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC2772A5A3D9");
 
-            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.HasIndex(e => new { e.UserId, e.FriendUserId }, "UQ_UserFriend").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.FriendUserId).HasColumnName("FriendUserID");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
                 .HasDefaultValueSql("('Pending')");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
 
             entity.HasOne(d => d.FriendUser).WithMany(p => p.FriendFriendUsers)
                 .HasForeignKey(d => d.FriendUserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Friends__FriendU__5CD6CB2B");
+                .HasConstraintName("FK_Friends_FriendUserId");
 
             entity.HasOne(d => d.User).WithMany(p => p.FriendUsers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Friends__UserID__5BE2A6F2");
+                .HasConstraintName("FK_Friends_UserId");
         });
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037CA9948945");
+            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037CECB98D1F");
 
             entity.Property(e => e.MessageId).HasColumnName("MessageID");
             entity.Property(e => e.MessageText).HasMaxLength(120);
@@ -84,12 +87,12 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.SenderUser).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.SenderUserId)
-                .HasConstraintName("FK__Messages__Sender__5DCAEF64");
+                .HasConstraintName("FK__Messages__Sender__38996AB5");
         });
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EAF05A1494");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA596DB840");
 
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
@@ -99,13 +102,13 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACE7CE7584");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC05ABD44A");
 
-            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1869E0F5B").IsUnique();
+            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1244766DB").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Users__536C85E46CBA5994").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__536C85E4EB562509").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D1053457A010B3").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534BCFF7E75").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Address).HasMaxLength(255);
@@ -133,7 +136,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<UserService>(entity =>
         {
-            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF967421642");
+            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF901A4BA07");
 
             entity.Property(e => e.UserServiceId).HasColumnName("UserServiceID");
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
@@ -144,11 +147,11 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.Service).WithMany(p => p.UserServices)
                 .HasForeignKey(d => d.ServiceId)
-                .HasConstraintName("FK__UserServi__Servi__5FB337D6");
+                .HasConstraintName("FK__UserServi__Servi__3A81B327");
 
             entity.HasOne(d => d.User).WithMany(p => p.UserServices)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__UserServi__UserI__5EBF139D");
+                .HasConstraintName("FK__UserServi__UserI__398D8EEE");
         });
 
         OnModelCreatingPartial(modelBuilder);

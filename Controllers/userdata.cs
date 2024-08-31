@@ -294,6 +294,53 @@ namespace online_sms.Controllers
             return PartialView("_ContactsPartial", contacts); 
         }
 
+        public ActionResult GetSuggested()
+        {
+            // Get the current user's ID
+            var userId = User.FindFirstValue(ClaimTypes.Sid);
+
+            // Get the list of users excluding the current user
+            var contacts = db.Users.Where(u => u.UserId != Convert.ToInt32(userId)).ToList();
+
+            // Return the filtered list of users to the partial view
+            return PartialView("_SuggestedUser", contacts);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SendFriendRequest(Friend frnd,int friend_id)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+            var contact = new Friend
+            {
+                UserId = Convert.ToInt32(currentUserId),
+                FriendUserId= friend_id,
+                Status = "Pending",
+              
+            };
+            db.Friends.Add(contact); 
+            db.SaveChanges();
+            return View();
+        }
+
+
+        public ActionResult GetFriendRequest()
+        {
+            
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+
+            // Get the list of friend requests where the current user is the FriendUserId (receiving the request)
+            var friendRequests = db.Friends
+                .Where(f => f.FriendUserId == userId && f.Status == "Pending")
+                .Select(f => f.User) // Select the User who sent the request
+                .ToList();
+
+            // Return the list of users who sent the friend requests to the partial view
+            return PartialView("_GetFriendRequest", friendRequests);
+        }
+
+
+
         public ActionResult SendBulkMessage(int contactId)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.Sid);

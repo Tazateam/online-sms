@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<online_sms.Models.User>
+
+<ul class="list-group">
+    @foreach (var contact in Model)
+    {
+        <li style="background: transparent;border: 1px solid gray;margin-top: 5px;margin-left:10px;" class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <p>@contact.FirstName</p>
+                <p>@contact.LastName</p>
+            </div>
+            <form asp-action="+" method="post">
+                <input type="hidden" name="friend_id" value="@contact.UserId" />
+                <button type="submit" name="response" value="Accept" class="btn btn-primary">Accept Request</button>
+                <button type="submit" name="response" value="Reject" class="btn btn-danger">Reject Request</button>
+            </form>
+        </li>
+    }
+</ul>

@@ -136,6 +136,13 @@
                         </li>
                     </ul>
                 </li>
+                <li class="menu single-menu">
+                    <a class="" data-bs-toggle="modal" id="friendPost" data-bs-target="#requests">
+                        <div class="">                         
+                            <span>Requests</span>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -190,7 +197,7 @@
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="btn btn-primary   active  " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#friends" type="button" role="tab" aria-controls="friends" aria-selected="false">Friends</button>
                             <button class="btn btn-primary   ms-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">Contacts</button>
-                          
+                            <button class="btn btn-primary   ms-2" id="nav-sugested-tab" data-bs-toggle="tab" data-bs-target="#suggested_user" type="button" role="tab" aria-controls="suggested_user" aria-selected="true">Suggested Friends</button>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -201,7 +208,31 @@
                                
                             </ul>
                         </div>
+                        <div class="tab-pane fade " id="suggested_user" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                            <ul class="list-group">
+                            </ul>
+                        </div>
                     </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="requests" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Friend Requests</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="getFrnd" >
+
+                    <ul class="list-group">
+
+                    </ul>
+
                 </div>
 
             </div>
@@ -261,6 +292,31 @@
                     }
                 });
             });
+            $('#nav-sugested-tab').on('click', function () {
+                $.ajax({
+                    url: '/userdata/GetSuggested',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#suggested_user').html(data); // Load the returned partial view into the #contact div
+                    },
+                    error: function () {
+                        alert('Failed to load contacts.');
+                    }
+                });
+            });
+            $('#friendPost').on('click', function () {
+                $.ajax({
+                    url: '/userdata/GetFriendRequest',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#getFrnd').html(data); // Load the returned partial view into the #getFrnd div
+                    },
+                    error: function () {
+                        alert('Failed to load friend requests.');
+                    }
+                });
+            });
+
         });
     </script>
     

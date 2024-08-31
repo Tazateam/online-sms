@@ -5,11 +5,13 @@ namespace online_sms.Models;
 
 public partial class Friend
 {
+    public int Id { get; set; }
+
     public int UserId { get; set; }
 
     public int FriendUserId { get; set; }
 
-    public string? Status { get; set; }
+    public string Status { get; set; } = null!;
 
     public virtual User FriendUser { get; set; } = null!;
 
