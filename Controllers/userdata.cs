@@ -55,82 +55,85 @@ namespace online_sms.Controllers
             return View();
         }
         [Authorize]
-        public IActionResult Profile()
-		{
-			var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
 
-			var user = db.Users.FirstOrDefault(u => u.UserId == Convert.ToInt32(currentUserId));
+        public IActionResult EditProfile()
+        {
+         
+            return View();
+        }
 
-			if (user != null)
-			{
-				ViewBag.UserName = user.Username;
-				ViewBag.ProfilePhoto = user.ProfilePhoto; 
-				ViewBag.Password = user.Password;
-				ViewBag.Email = user.Email;
-				ViewBag.MobileNumber = user.MobileNumber;
-				ViewBag.FirstName = user.FirstName;
-				ViewBag.LastName = user.LastName;
-				ViewBag.Gender = user.Gender;
-				ViewBag.Dob = user.Dob;
-				ViewBag.Address = user.Address;
-				ViewBag.MaritalStatus = user.MaritalStatus;
-				ViewBag.Hobbies = user.Hobbies; 
-                ViewBag.Sports = user.Sports;
-				ViewBag.Qualification = user.Qualification;
-				ViewBag.Designation = user.Designation;
-			}
-			else
-			{
-				ViewBag.UserName = "Profile not found.";
-			}
+            [HttpGet]
+            public IActionResult Profile()
+            {
+                var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+                var user = db.Users.Find(int.Parse(currentUserId));
 
-			return View();
-		}
+                if (user == null)
+                {
+                    return RedirectToAction("Error", "Home");
+                }
 
+                var a = new User
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    ProfilePhoto = user.ProfilePhoto,
+                    Email = user.Email,
+                    Gender = user.Gender,
+                    Dob = user.Dob,
+                    Address = user.Address,
+                    MaritalStatus = user.MaritalStatus,
+                    Qualification = user.Qualification,
+                    Sports = user.Sports,
+                    Hobbies = user.Hobbies,
+                    Designation = user.Designation
+                };
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-        [Authorize]
-        public IActionResult Profile(User model)
-		{
-			if (ModelState.IsValid)
-			{
-				var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
-				var user = db.Users.FirstOrDefault(u => u.UserId == Convert.ToInt32(currentUserId));
+                return View(a);
+            } 
 
-				if (user == null)
-				{
-					user.FirstName = model.FirstName;
-					user.LastName = model.LastName;
-					user.ProfilePhoto = model.ProfilePhoto;
-					ViewBag.Email = user.Email;
-					user.Gender = model.Gender;
-					user.Dob = model.Dob;
-					user.Address = model.Address;
-					user.MaritalStatus = model.MaritalStatus;
-					user.Qualification = model.Qualification;
-					user.Sports = model.Sports;
-					user.Hobbies = model.Hobbies;
-					user.Designation = model.Designation;
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public IActionResult Profile(User a)
+            {
+                if (ModelState.IsValid)
+                {
+                    var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+                    var user = db.Users.Find(int.Parse(currentUserId));
 
-					db.Users.Update(user);
-					db.SaveChanges();
+                    if (user != null)
+                    {
+                        user.FirstName = a.FirstName;
+                        user.LastName = a.LastName;
+                        user.ProfilePhoto = a.ProfilePhoto;
+                        user.Email = a.Email;
+                        user.Gender = a.Gender;
+                        user.Dob = a.Dob;
+                        user.Address = a.Address;
+                        user.MaritalStatus = a.MaritalStatus;
+                        user.Qualification = a.Qualification;
+                        user.Sports = a.Sports;
+                        user.Hobbies = a.Hobbies;
+                        user.Designation = a.Designation;
 
-					TempData["SuccessMessage"] = "Profile updated successfully!";
-					return RedirectToAction("Profile");
-				}
-				else
-				{
-					ViewBag.ErrorMessage = "Profile not found.";
-					return View("Error");
-				}
-			}
-			return View(model);
-		}
-        [AllowAnonymous]
+                        db.Users.Update(user);
+                        db.SaveChanges();
+
+                        TempData["SuccessMessage"] = "Profile updated successfully!";
+                        return RedirectToAction("profile");
+                    }
+                    else
+                    {
+                        return View("Error");
+                    }
+                }
+
+                return View("Index", a);
+            }
+
         public IActionResult Login()
         {
-            return View();
+             return View();
         }
 
         [HttpPost]

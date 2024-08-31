@@ -35,7 +35,7 @@ public partial class OnlineMessagesContext : DbContext
     {
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB1009D9BA");
+            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB5C78FE3E");
 
             entity.Property(e => e.ContactId).HasColumnName("ContactID");
             entity.Property(e => e.ContactNumber).HasMaxLength(15);
@@ -50,7 +50,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC2772A5A3D9");
+            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC27E87053D5");
 
             entity.HasIndex(e => new { e.UserId, e.FriendUserId }, "UQ_UserFriend").IsUnique();
 
@@ -74,7 +74,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037CECB98D1F");
+            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037CD195EE90");
 
             entity.Property(e => e.MessageId).HasColumnName("MessageID");
             entity.Property(e => e.MessageText).HasMaxLength(120);
@@ -92,7 +92,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA596DB840");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA203B3859");
 
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
@@ -102,13 +102,13 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC05ABD44A");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC88F2F7A6");
 
-            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1244766DB").IsUnique();
+            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B18617CD07").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Users__536C85E4EB562509").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__536C85E43DD19E09").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534BCFF7E75").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D105349B15CE6F").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Address).HasMaxLength(255);
@@ -126,7 +126,7 @@ public partial class OnlineMessagesContext : DbContext
             entity.Property(e => e.IsVerified).HasDefaultValueSql("((0))");
             entity.Property(e => e.LastName).HasMaxLength(100);
             entity.Property(e => e.MaritalStatus).HasMaxLength(20);
-            entity.Property(e => e.MobileNumber).HasMaxLength(10);
+            entity.Property(e => e.MobileNumber).HasMaxLength(15);
             entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.Qualification).HasMaxLength(255);
             entity.Property(e => e.Sports).HasMaxLength(255);
@@ -136,7 +136,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<UserService>(entity =>
         {
-            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF901A4BA07");
+            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF921423B62");
 
             entity.Property(e => e.UserServiceId).HasColumnName("UserServiceID");
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");

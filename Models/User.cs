@@ -13,7 +13,7 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
-    public string MobileNumber { get; set; } = null!;
+    public string? MobileNumber { get; set; }
 
     public string? VerificationCode { get; set; }
 
