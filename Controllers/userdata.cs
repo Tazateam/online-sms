@@ -19,12 +19,14 @@ namespace online_sms.Controllers
 {
     public class userdata : Controller
     {
-        OnlineMessagesContext db = new OnlineMessagesContext(); 
+        OnlineMessagesContext db = new OnlineMessagesContext();
+
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult Signup()
         {
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
@@ -33,6 +35,7 @@ namespace online_sms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public IActionResult Signup(User enter)
         {
             var emails = db.Users.FirstOrDefault(Users => Users.Email == enter.Email);
@@ -51,7 +54,8 @@ namespace online_sms.Controllers
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
-		public IActionResult Profile()
+        [Authorize]
+        public IActionResult Profile()
 		{
 			var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
 
@@ -86,7 +90,8 @@ namespace online_sms.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Profile(User model)
+        [Authorize]
+        public IActionResult Profile(User model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -122,13 +127,15 @@ namespace online_sms.Controllers
 			}
 			return View(model);
 		}
-		public IActionResult Login()
+        [AllowAnonymous]
+        public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public IActionResult Login(User logg)
         {
             var user = db.Users.FirstOrDefault(x => x.Email == logg.Email && x.Password == logg.Password);
@@ -150,17 +157,14 @@ namespace online_sms.Controllers
 
             return View();
         }
+        [Authorize]
         public IActionResult Logout()
         {
             var lgoin = HttpContext.SignOutAsync
                 (CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index","Home");
         }
-
-
-
-
-
+        [Authorize]
         public IActionResult Inbox()
         {
             // Get the current user's ID (you might need to adjust this based on your authentication setup)
@@ -180,6 +184,7 @@ namespace online_sms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Inbox(Message model, int? SenderUserId, int? ReceiverUserId)
         {
             if (ModelState.IsValid)
@@ -210,6 +215,7 @@ namespace online_sms.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetMessages(int receiverId)
         {
             var userIdString = User.FindFirst(ClaimTypes.Sid)?.Value;
@@ -246,6 +252,7 @@ namespace online_sms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Index(Contact con)
         {
             if (ModelState.IsValid)
