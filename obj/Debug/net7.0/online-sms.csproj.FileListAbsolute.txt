@@ -1053,3 +1053,9 @@ D:\online-sms\bin\Debug\net7.0\JsonSubTypes.dll
 D:\online-sms\bin\Debug\net7.0\System.Net.Http.Formatting.dll
 D:\online-sms\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
 D:\online-sms\bin\Debug\net7.0\Mocean.dll
+C:\Users\asp\Desktop\online-sms\bin\Debug\net7.0\Infobip.Api.SDK.dll
+C:\Users\asp\Desktop\online-sms\bin\Debug\net7.0\JsonSubTypes.dll
+C:\Users\asp\Desktop\online-sms\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+C:\Users\asp\Desktop\online-sms\bin\Debug\net7.0\Mocean.dll
+C:\Users\asp\Desktop\online-sms\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\asp\Desktop\online-sms\bin\Debug\net7.0\RestSharp.dll
