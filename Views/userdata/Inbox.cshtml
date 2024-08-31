@@ -13,7 +13,7 @@
     Layout = "userLayout";
 }
 @using System.Security.Claims;
-@model online_sms.Models.Message
+@model online_sms.Models.Message;
 
 
 <div class="main-container" id="container">
@@ -28,8 +28,8 @@
                 <input type="text" placeholder="search" />
                 <i class="fa fa-search"></i>
             </div>
-                    <ul id="userList">
-                        @if (ViewBag.Users != null)
+                    <div id="userList">
+                       @*  @if (ViewBag.Users != null)
                         {
                             foreach (var user in ViewBag.Users)
                             {
@@ -43,8 +43,8 @@
                                     </div>
                                 </li>
                             }
-                        }
-                    </ul>
+                        } *@
+                    </div>
 
         </div>
         </div>
@@ -127,55 +127,58 @@
 
 
 <script>
-    $(document).ready(function () {
-        $('.userClick').click(function () {
-            var receiverId = $(this).data('userid');
-            var username = $(this).data('username');
-            $(".user_name").text(username);
-            $("#receiver-user-id").val(receiverId);
+    function ChatRoom(uid, username) {
+        alert("test");
 
-            $.ajax({
-                url: '@Url.Action("GetMessages", "userdata")', // Replace with your controller name
-                type: 'GET',
-                data: { receiverId: receiverId },
-                success: function (response) {
-                    if (response.success) {
-                        var chatHistory = $('#chat-history ul');
-                        chatHistory.empty(); // Clear existing messages
-                        console.log(response)
-                        // Iterate over messages and append them
-                        response.messages.forEach(function (message) {
-                            var messageItem = '';
-                            var messageTime = new Date(message.sentAt).toLocaleTimeString(); // Format time as needed
-                            var messageName = message.senderUserId === receiverId ? username : 'You'; // Example names
-                            var messageClass = message.senderUserId === receiverId ? 'my-message' : 'other-message';
-                            var alignClass = message.senderUserId === receiverId ? '' : 'align-right';
+        $(".user_name").text(username);
+        $("#receiver-user-id").val(uid);
 
-                            messageItem = `
-                                <li class="clearfix">
-                                    <div class="message-data ${alignClass}">
-                                        <span class="message-data-time">${messageTime}</span> &nbsp; &nbsp;
-                                        <span class="message-data-name">${messageName}</span>
-                                        <i class="fa fa-circle ${message.senderUserId === receiverId ? 'me' : 'online'}"></i>
-                                    </div>
-                                    <div class="message ${messageClass} float-${message.senderUserId === receiverId ? 'right' : 'left'}">
-                                        ${message.messageText}
-                                    </div>
-                                </li>
-                            `;
+        $.ajax({
+            url: '@Url.Action("GetMessages", "userdata")', // Replace with your controller name
+            type: 'GET',
+            data: { receiverId: uid }, // Correctly use 'uid' instead of 'receiverId'
+            success: function (response) {
+                if (response.success) {
+                    var chatHistory = $('#chat-history ul');
+                    chatHistory.empty(); // Clear existing messages
+                    console.log(response);
+                    // Iterate over messages and append them
+                    response.messages.forEach(function (message) {
+                        var messageItem = '';
+                        var messageTime = new Date(message.sentAt).toLocaleTimeString(); // Format time as needed
+                        var messageName = message.senderUserId === uid ? username : 'You'; // Example names
+                        var messageClass = message.senderUserId === uid ? 'my-message' : 'other-message';
+                        var alignClass = message.senderUserId === uid ? '' : 'align-right';
 
-                            chatHistory.append(messageItem);
-                        });
-                    } else {
-                        console.log('Failed to retrieve messages.');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error:', error);
+                        messageItem = `
+                            <li class="clearfix">
+                                <div class="message-data ${alignClass}">
+                                    <span class="message-data-time">${messageTime}</span> &nbsp; &nbsp;
+                                    <span class="message-data-name">${messageName}</span>
+                                    <i class="fa fa-circle ${message.senderUserId === uid ? 'me' : 'online'}"></i>
+                                </div>
+                                <div class="message ${messageClass} float-${message.senderUserId === uid ? 'right' : 'left'}">
+                                    ${message.messageText}
+                                </div>
+                            </li>
+                        `;
+
+                        chatHistory.append(messageItem);
+                    });
+                } else {
+                    console.log('Failed to retrieve messages.');
                 }
-            });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
         });
+    }
 
+
+    $(document).ready(function () {
+    
+       
         $('#message-form').submit(function (e) {
             e.preventDefault(); // Prevent the default form submission
 
@@ -241,6 +244,71 @@
                 }
             });
         });
+   
+        function fetchMesg() {
+            var receiverId = $(this).data('userid');
+          
+            $("#receiver-user-id").val(receiverId);
+
+            $.ajax({
+                url: '@Url.Action("GetMessages", "userdata")', // Replace with your controller name
+                type: 'GET',
+                data: { receiverId: receiverId },
+                success: function (response) {
+                    if (response.success) {
+                        var chatHistory = $('#chat-history ul');
+                        chatHistory.empty(); // Clear existing messages
+                        console.log(response)
+                        // Iterate over messages and append them
+                        response.messages.forEach(function (message) {
+                            var messageItem = '';
+                            var messageTime = new Date(message.sentAt).toLocaleTimeString(); // Format time as needed
+                            var messageName = message.senderUserId === receiverId ? username : 'You'; // Example names
+                            var messageClass = message.senderUserId === receiverId ? 'my-message' : 'other-message';
+                            var alignClass = message.senderUserId === receiverId ? '' : 'align-right';
+
+                            messageItem = `
+                                    <li class="clearfix">
+                                        <div class="message-data ${alignClass}">
+                                            <span class="message-data-time">${messageTime}</span> &nbsp; &nbsp;
+                                            <span class="message-data-name">${messageName}</span>
+                                            <i class="fa fa-circle ${message.senderUserId === receiverId ? 'me' : 'online'}"></i>
+                                        </div>
+                                        <div class="message ${messageClass} float-${message.senderUserId === receiverId ? 'right' : 'left'}">
+                                            ${message.messageText}
+                                        </div>
+                                    </li>
+                                `;
+
+                            chatHistory.append(messageItem);
+                        });
+                    } else {
+                        console.log('Failed to retrieve messages.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    
+      function fetchFriend(){
+            $.ajax({
+                url: '/userdata/GetFriends',
+                type: 'GET',
+                success: function (data) {
+                    $('#userList').html(data); // Load the returned partial view into the #getFrnd div
+                },
+                error: function () {
+                    alert('Failed to load friend requests.');
+                }
+            });
+      }
+        setInterval(() => {
+            fetchFriend();
+            fetchMesg();
+        },2000)
+    
     });
 
         

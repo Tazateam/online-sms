@@ -167,18 +167,6 @@ namespace online_sms.Controllers
         [Authorize]
         public IActionResult Inbox()
         {
-            // Get the current user's ID (you might need to adjust this based on your authentication setup)
-            var currentUserId = User.FindFirstValue(ClaimTypes.Sid); // or use another method to get the current user's ID
-
-            // Fetch users from the database
-            var users = db.Users.ToList();
-
-            // Exclude the current user from the list
-            var filteredUsers = users.Where(u => u.UserId != Convert.ToInt32(currentUserId)).ToList();
-
-            // Pass the filtered users list to the view using ViewBag
-            ViewBag.Users = filteredUsers;
-
             return View();
         }
 
@@ -338,6 +326,25 @@ namespace online_sms.Controllers
             // Return the list of users who sent the friend requests to the partial view
             return PartialView("_GetFriendRequest", friendRequests);
         }
+
+        public ActionResult GetFriends()
+        {
+
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+
+            // Get the list of friends where the current user is either UserId or FriendUserId and the status is "Accepted"
+            var friends = db.Friends
+                .Where(f =>
+                    (f.UserId == userId || f.FriendUserId == userId) &&
+                    f.Status == "Accepted"
+                )
+                .Select(f => f.UserId == userId ? f.FriendUser : f.User) // Select the friend user
+                .Distinct() // Ensure unique friends are returned
+                .ToList();
+
+            return PartialView("_Friends", friends);
+        }
+
 
         [HttpPost]
         public IActionResult RespondToFriendRequest(int friend_id, string response)
