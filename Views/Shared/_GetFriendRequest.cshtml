@@ -11,7 +11,7 @@
                 <p>@contact.FirstName</p>
                 <p>@contact.LastName</p>
             </div>
-            <form asp-action="+" method="post">
+            <form asp-action="RespondToFriendRequest" method="post">
                 <input type="hidden" name="friend_id" value="@contact.UserId" />
                 <button type="submit" name="response" value="Accept" class="btn btn-primary">Accept Request</button>
                 <button type="submit" name="response" value="Reject" class="btn btn-danger">Reject Request</button>

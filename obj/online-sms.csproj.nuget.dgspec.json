@@ -50,6 +50,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Infobip.Api.SDK": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -69,6 +73,18 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "Mocean.Csharp.Client": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[112.0.0, )"
             }
           },
           "imports": [

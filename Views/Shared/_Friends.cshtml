@@ -1,0 +1,25 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+
+@model IEnumerable<online_sms.Models.User>
+<ul class="list-group">
+    @foreach (var contact in Model)
+    {
+        <li class="clearfix userClick"
+            onclick="ChatRoom(@contact.UserId, '@contact.Username')"
+            data-userid="@contact.UserId"
+            data-username="@contact.Username">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
+            <div class="about">
+                <div class="name ">@contact.Username</div>
+                <div class="status">
+                    <i class="fa fa-circle online"></i> online
+                </div>
+            </div>
+        </li>
+    }
+</ul>

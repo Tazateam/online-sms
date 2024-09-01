@@ -8,6 +8,7 @@ namespace online_sms.Controllers
 {
     public class HomeController : Controller
     {
+        OnlineMessagesContext db = new OnlineMessagesContext();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -19,7 +20,20 @@ namespace online_sms.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(ContactU conn)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ContactUs.Add(conn);
+                db.SaveChanges();
 
+            }
+
+            // If model state is not valid, return the same view with the model to show validation errors
+            return View(conn);
+        }
         public IActionResult Privacy()
         {
             return View();
