@@ -91,7 +91,7 @@
             <ul class="list-unstyled menu-categories" id="topAccordion">
 
                 <li class="menu single-menu active">
-                    <a href="" class="">
+                    <a asp-action="Index" asp-controller="userdata" class="">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                             <span>Dashboard</span>
@@ -100,16 +100,16 @@
                 </li>
 
                 <li class="menu single-menu">
-                    <a href="https://smsarc.com/ui/messenger/" class="">
+                    <a asp-action="Inbox" asp-controller="userdata" class="">
                         <div class="">
                             &nbsp; <i class="fa fa-comments" style="font-size:18px;"></i>&nbsp;
 
-                            <span>Two-Way SMS</span>
+                            <span>Chat</span>
                         </div>
                     </a>
                 </li>
                 <li class="menu single-menu"   >
-                    <a class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a class="" data-bs-toggle="modal" style="cursor:pointer;" data-bs-target="#exampleModal">
                         <div class="">
                             &nbsp; <i class="fa fa-mobile-alt" style="font-size:18px;color:#6259ca;"></i>&nbsp;
                             <span>Add Contact</span>
@@ -125,9 +125,13 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </a>
                     <ul class="collapse submenu list-unstyled" id="more" data-parent="#topAccordion">
+                       
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         <li>
-                            <a asp-action="Profile" asp-controller="userdata"> My Profile</a>
+                                <a asp-action="Profile" asp-controller="userdata" asp-route-id="@User.FindFirst(ClaimTypes.Sid)?.Value"> My Profile</a>
                         </li>   
+                        }
                         <li>
                             <a data-bs-toggle="modal" data-bs-target="#myContact"> My Contacts</a>
                         </li>
@@ -201,7 +205,11 @@
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="friends" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">Friends</div>
+                        <div class="tab-pane fade show active" id="friends" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                            <ul class="list-group">
+
+                            </ul>
+                        </div>
                         <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
                             <ul class="list-group">
                                
@@ -275,7 +283,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
-    <script src="~/assets/user/js/dashboard/chat.js"></script>
+    @* <script src="~/assets/user/js/dashboard/chat.js"></script> *@
    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -318,6 +326,23 @@
             });
 
         });
+
+            function GetFriend() {
+                $.ajax({
+                    url: '/userdata/GetFriendsAll',
+            type: 'GET',
+            success: function (data) {
+                $('#friends').html(data); // Load the returned partial view into the #getFrnd div
+                },
+                    error: function () {
+                        alert('Failed to load friend requests.');
+                    }
+                });
+            }
+                     setInterval(() => {
+                        GetFriend();
+            }, 2000)
+
     </script>
     
     <script>

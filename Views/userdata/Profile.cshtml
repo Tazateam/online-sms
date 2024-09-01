@@ -1,17 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = null;
 }
-
-@{
-	Layout = "userLayout";
-}
-@model online_sms.Models.User;
-@{
-	var userName = ViewBag.UserName as string;
-	var profilePhoto = ViewBag.ProfilePhoto as string;
-}
+@model online_sms.Models.User
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +35,15 @@
 	<!-- Internal Gallery css-->
 	<link href="~/assets/admin/plugins/gallery/gallery.css" rel="stylesheet">
 
+	<style>
+		body {
+			background: #0e1726 !important;
+		}
+	</style>
+
 </head>
+
+
 
 <body class="ltr main-body leftmenu">
 
@@ -55,47 +53,42 @@
 	</div>
 	<!-- End Loader -->
 	<!-- Page -->
-	<div class="container-fluid" >
+	<div class="container-fluid">
 		<div class="row p-5">
-			<div class="col-md-12" >
-			<!-- Page Header -->
-			<div class="page-header">
-				<div>
-					<h2 class="main-content-title tx-24 mg-b-5">Profile</h2>
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#">Pages</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Profile</li>
-					</ol>
-				</div>
-				<div class="d-flex">
-					<div class="justify-content-center">
-						<button type="button" class="btn btn-white btn-icon-text my-2 me-2">
-							<i class="fe fe-download me-2"></i> Import
-						</button>
-						<button type="button" class="btn btn-white btn-icon-text my-2 me-2">
-							<i class="fe fe-filter me-2"></i> Filter
-						</button>
-						<button type="button" class="btn btn-primary my-2 btn-icon-text">
-							<i class="fe fe-download-cloud me-2"></i> Download Report
-						</button>
+			<div class="col-md-12">
+				<!-- Page Header -->
+				<div class="page-header">
+					<div>
+						<h2 class="main-content-title tx-24 mg-b-5">Profile</h2>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Pages</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Profile</li>
+						</ol>
+					</div>
+					<div class="d-flex">
+						<div class="justify-content-center">
+							<a asp-action="Index" asp-controller="userdata" class="btn btn-white btn-icon-text my-2 me-2">
+								Back To Dashboard
+							</a>
+						
+						</div>
 					</div>
 				</div>
-			</div>
-			<!-- End Page Header -->
 
-			<div class="row square">
-				<div class="col-lg-12 col-md-12">
-					<div class="card custom-card">
-						<div class="card-body">
-								@if (!string.IsNullOrEmpty(userName))
+				<!-- End Page Header -->
+
+				<div class="row square">
+					<div class="col-lg-12 col-md-12">
+						<div class="card custom-card">
+							<div class="card-body">
+								@if (ViewBag.UserName != null)
 								{
 									<div class="panel profile-cover">
 										<div class="profile-cover__img">
-											@if (!string.IsNullOrEmpty(profilePhoto))
-											{
-												<img src="@profilePhoto" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%;" />
-											}
-											<h3 class="h3">@userName</h3>
+											
+												<img src="@ViewBag.Image" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%;" />
+											
+											<h3 class="h3">@ViewBag.UserName</h3>
 										</div>
 									</div>
 								}
@@ -125,8 +118,7 @@
 							<div class="profile-tab tab-menu-heading">
 								<nav class="nav main-nav-line p-3 tabs-menu profile-nav-line bg-gray-100">
 									<a class="nav-link  active" data-bs-toggle="tab" href="#about">About</a>
-									<a class="nav-link" data-bs-toggle="tab" href="#edit">Edit Profile</a>
-									<a class="nav-link" data-bs-toggle="tab" href="#Contacts">Contacts</a>
+									<a class="nav-link" data-bs-toggle="tab" href="#edit">Edit Profile</a>								
 								</nav>
 							</div>
 						</div>
@@ -134,8 +126,7 @@
 				</div>
 			</div>
 
-			<!-- Row -->
-			<div class="row row-sm">
+			
 				<div class="col-lg-12 col-md-12">
 					<div class="card custom-card main-content-body-profile">
 						<div class="tab-content">
@@ -243,329 +234,145 @@
 							<div class="main-content-body tab-pane p-4 border-top-0" id="edit">
 								<div class="card-body border">
 									<div class="mb-4 main-content-label">Personal Information</div>
-									<form asp-action="Profile" enctype="multipart/form-data" class="form-horizontal">
-										<div class="form-group ">
-											<div class="row row-sm">
-												<div class="col-md-3">
-													<label asp-for="FirstName" class="form-label">FirstName</label>
-												</div>
-												<div class="col-md-9">
-													<input type="text" asp-for="FirstName" class="form-control" placeholder="Name" value="@ViewBag.FirstName">
-												</div>
-											</div>
+									<form asp-action="Profile" enctype="multipart/form-data">
+										<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+										<input type="hidden" asp-for="UserId" />
+										<div class="form-group">
+											<label asp-for="Username" class="control-label"></label>
+											<input asp-for="Username" class="form-control" />
+											<span asp-validation-for="Username" class="text-danger"></span>
 										</div>
-										<div class="form-group ">
-											<div class="row row-sm">
-												<div class="col-md-3">
-													<label asp-for="LastName" class="form-label">LastName</label>
-												</div>
-												<div class="col-md-9">
-													<input type="text" asp-for="LastName" class="form-control" placeholder="Name">
-												</div>
-											</div>
+									
+										<div class="form-group">
+											<label asp-for="Email" class="control-label"></label>
+											<input asp-for="Email" readonly class="form-control" />
+											<span asp-validation-for="Email" class="text-danger"></span>
 										</div>
-										<div class="form-group ">
-											<div class="row row-sm">
-												<div class="col-md-3">
-													<label asp-for="ProfilePhoto" class="form-label">ProfilePhoto</label>
-												</div>
-												<div class="col-md-9">
-													<input type="file" asp-for="ProfilePhoto" class="form-control" placeholder="Name">
-												</div>
-											</div>
+										<div class="form-group">
+											<label asp-for="MobileNumber" class="control-label"></label>
+											<input asp-for="MobileNumber" readonly class="form-control" />
+											<span asp-validation-for="MobileNumber" class="text-danger"></span>
+										</div>										
+										<div class="form-group">
+											<label asp-for="FirstName" class="control-label"></label>
+											<input asp-for="FirstName" class="form-control" />
+											<span asp-validation-for="FirstName" class="text-danger"></span>
 										</div>
-										<div class="form-group ">
-											<div class="row row-sm">
-												<div class="col-md-3">
-													<label asp-for="Gender" class="form-label">Gender</label>
-												</div>
-												<div class="col-md-9">
-														<select asp-for="Gender" class="form-control select2" data-select2-id="5" tabindex="-1" aria-hidden="true">
-															<option data-select2-id="109">Male</option>
-															<option data-select2-id="110">Female</option>
-														</select>
-												</div>
-											</div>
+										<div class="form-group">
+											<label asp-for="LastName" class="control-label"></label>
+											<input asp-for="LastName" class="form-control" />
+											<span asp-validation-for="LastName" class="text-danger"></span>
 										</div>
-										<div class="form-group ">
-											<div class="row row-sm">
-												<div class="col-md-3">
-														<label asp-for="Dob" class="form-label">Date of Birth</label>
-												</div>
-												<div class="col-md-9">
-														<input type="date" asp-for="Dob" class="form-control" placeholder="Date of Birth">
-												</div>
-											</div>
+										<div class="form-group">
+											<label asp-for="Gender" class="control-label"></label>
+											<select asp-for="Gender" class="form-control">
+												<option value="">Select Gender</option>
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+											</select>
+											<span asp-validation-for="Gender" class="text-danger"></span>
 										</div>
-											<div class="form-group ">
-												<div class="row row-sm">
-													<div class="col-md-3">
-														<label asp-for="Address" class="form-label">Address</label>
-													</div>
-													<div class="col-md-9">
-														<textarea class="form-control" asp-for="Address" rows="2" placeholder="Address"></textarea>
-													</div>
-												</div>
-											</div>
-											<div class="form-group ">
-												<div class="row row-sm">
-													<div class="col-md-3">
-														<label asp-for="MaritalStatus" class="form-label">Marital Status</label>
-													</div>
-													<div class="col-md-9">
-														<select asp-for="MaritalStatus" class="form-control select2" data-select2-id="5" tabindex="-1" aria-hidden="true">
-															<option data-select2-id="109">Single</option>
-															<option data-select2-id="110">Married</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="form-group ">
-												<div class="row row-sm">
-													<div class="col-md-3">
-														<label asp-for="Qualification" class="form-label">Qualification</label>
-													</div>
-													<div class="col-md-9">
-														<input asp-for="Qualification" type="text" class="form-control" placeholder="Qualification">
-													</div>
-												</div>
-											</div>
-											<div class="form-group ">
-												<div class="row row-sm">
-													<div class="col-md-3">
-														<label asp-for="Sports" class="form-label">Sports</label>
-													</div>
-													<div class="col-md-9">
-														<input asp-for="Sports" type="text" class="form-control" placeholder="Sports">
-													</div>
-												</div>
-											</div>
-											<div class="form-group ">
-												<div class="row row-sm">
-													<div class="col-md-3">
-														<label asp-for="Hobbies" class="form-label">Hobbies</label>
-													</div>
-													<div class="col-md-9">
-														<input asp-for="Hobbies" type="text" class="form-control" placeholder="Hobbies">
-													</div>
-												</div>
-											</div>
-											<div class="form-group ">
-												<div class="row row-sm">
-													<div class="col-md-3">
-														<label asp-for="Designation" class="form-label">Designation</label>
-													</div>
-													<div class="col-md-9">
-														<input asp-for="Designation" type="text" class="form-control" placeholder="Designation">
-													</div>
-												</div>
-											</div>
-										<div class="mb-4 main-content-label">Contact Info</div>
-										<div class="form-group ">
-											<div class="row row-sm">
-												<div class="col-md-3">
-													<label asp-for="Email" class="form-label">Email</label>
-												</div>
-												<div class="col-md-9">
-													<input asp-for="Email" type="text" readonly class="form-control" placeholder="Email" value="@ViewBag.Email">
-												</div>
-											</div>
+
+										<div class="form-group">
+											<label asp-for="Dob" class="control-label"></label>
+											<input asp-for="Dob" class="form-control" />
+											<span asp-validation-for="Dob" class="text-danger"></span>
 										</div>
-											<div class="form-group ">
-												<div class="row row-sm">
-													<div class="col-md-9">
-														<button class="btn btn-primary">Update</button>
-													</div>
-												</div>
-											</div>
-			
+										<div class="form-group">
+											<label asp-for="Address" class="control-label"></label>
+											<input asp-for="Address" class="form-control" />
+											<span asp-validation-for="Address" class="text-danger"></span>
+										</div>
+										<div class="form-group">
+											<label asp-for="MaritalStatus" class="control-label"></label>
+											<select asp-for="MaritalStatus" class="form-control">
+												<option value="">Select Marital Status</option>
+												<option value="Married">Married</option>
+												<option value="Single">Single</option>
+											</select>
+											<span asp-validation-for="MaritalStatus" class="text-danger"></span>
+										</div>
+
+										<div class="form-group">
+											<label asp-for="Hobbies" class="control-label"></label>
+											<input asp-for="Hobbies" class="form-control" />
+											<span asp-validation-for="Hobbies" class="text-danger"></span>
+										</div>
+										<div class="form-group">
+											<label asp-for="Sports" class="control-label"></label>
+											<input asp-for="Sports" class="form-control" />
+											<span asp-validation-for="Sports" class="text-danger"></span>
+										</div>
+										<div class="form-group">
+											<label asp-for="ProfilePhoto" class="control-label"></label>
+											<input asp-for="ProfilePhoto" type="file" class="form-control" />
+											<span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+										</div>
+										<div class="form-group">
+											<label asp-for="Qualification" class="control-label"></label>
+											<input asp-for="Qualification" class="form-control" />
+											<span asp-validation-for="Qualification" class="text-danger"></span>
+										</div>
+										<div class="form-group">
+											<label asp-for="Designation" class="control-label"></label>
+											<input asp-for="Designation" class="form-control" />
+											<span asp-validation-for="Designation" class="text-danger"></span>
+										</div>
+										<div class="form-group">
+											<input type="submit" value="Save" class="btn btn-primary" />
+										</div>
 									</form>
 								</div>
-							</div>
-								<div class="main-content-body tab-pane border-top-0" id="Contacts">
-								<div class="card-body border pd-b-10">
-									<!-- row -->
-									<div class="row row-sm">
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"><img alt="avatar" class="rounded-circle" src="../assets/img/users/2.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class=" mb-1 mt-3 main-content-label">Socrates Itumay</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">Project Manager</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"><img alt="avatar" class="rounded-circle" src="../assets/img/users/3.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class="mb-1 mt-3  main-content-label">Reynante Labares</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">Web Designer</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"><img alt="avatar" class="rounded-circle" src="../assets/img/users/4.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class="mb-1 mt-3 main-content-label">Owen Bongcaras</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">App Developer</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"><img alt="avatar" class="rounded-circle" src="../assets/img/users/8.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class="mb-1 mt-3 main-content-label">Stephen Metcalfe</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">Administrator</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"> <img alt="avatar" class="rounded-circle" src="../assets/img/users/2.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class=" mb-1 mt-3 main-content-label">Socrates Itumay</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">Project Manager</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"> <img alt="avatar" class="rounded-circle" src="../assets/img/users/3.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class="mb-1 mt-3  main-content-label">Reynante Labares</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">Web Designer</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"><img alt="avatar" class="rounded-circle" src="../assets/img/users/4.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class="mb-1 mt-3 main-content-label">Owen Bongcaras</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">App Developer</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-											<div class="card custom-card border">
-												<div class="card-body text-center">
-													<div class="user-lock text-center">
-														<div class="dropdown text-end">
-															<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fe fe-more-vertical"></i> </a>
-															<div class="dropdown-menu dropdown-menu-end shadow"> <a class="dropdown-item" href="#"><i class="fe fe-message-square me-2"></i> Message</a> <a class="dropdown-item" href="#"><i class="fe fe-edit-2 me-2"></i> Edit</a> <a class="dropdown-item" href="#"><i class="fe fe-eye me-2"></i> View</a> <a class="dropdown-item" href="#"><i class="fe fe-trash-2 me-2"></i> Delete</a> </div>
-														</div>
-														<a href="profile.html"><img alt="avatar" class="rounded-circle" src="../assets/img/users/8.jpg"></a>
-													</div>
-													<a href="profile.html"><h5 class="mb-1 mt-3 main-content-label">Stephen Metcalfe</h5></a>
-													<p class="mb-2 mt-1 tx-inverse">Administrator</p>
-													<p class="text-muted text-center mt-1">Lorem Ipsum is not simply popular belief Contrary.</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							</div>							
 						</div>
 					</div>
-				</div>
+			
 			</div>
-	</div>
 		</div>
 	</div>
+	</div>
 
 
 
-			<!-- Jquery js-->
-		<script src="~/assets/admin/plugins/jquery/jquery.min.js"></script>
+	<!-- Jquery js-->
+	<script src="~/assets/admin/plugins/jquery/jquery.min.js"></script>
 
-		<!-- Bootstrap js-->
-		<script src="~/assets/admin/plugins/bootstrap/js/popper.min.js"></script>
-		<script src="~/assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Bootstrap js-->
+	<script src="~/assets/admin/plugins/bootstrap/js/popper.min.js"></script>
+	<script src="~/assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-		<!-- Perfect-scrollbar js -->
-		<script src="~/assets/admin/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<!-- Perfect-scrollbar js -->
+	<script src="~/assets/admin/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
-		<!-- Internal Gallery js-->
-		<script src="~/assets/admin/plugins/gallery/picturefill.js"></script>
-        <script src="~/assets/admin/plugins/gallery/lightgallery.js"></script>
-		<script src="~/assets/admin/plugins/gallery/lightgallery-1.js"></script>
-        <script src="~/assets/admin/plugins/gallery/lg-pager.js"></script>
-        <script src="~/assets/admin/plugins/gallery/lg-autoplay.js"></script>
-        <script src="~/assets/admin/plugins/gallery/lg-fullscreen.js"></script>
-        <script src="~/assets/admin/plugins/gallery/lg-zoom.js"></script>
-        <script src="~/assets/admin/plugins/gallery/lg-hash.js"></script>
-        <script src="~/assets/admin/plugins/gallery/lg-share.js"></script>
+	<!-- Internal Gallery js-->
+	<script src="~/assets/admin/plugins/gallery/picturefill.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lightgallery.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lightgallery-1.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lg-pager.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lg-autoplay.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lg-fullscreen.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lg-zoom.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lg-hash.js"></script>
+	<script src="~/assets/admin/plugins/gallery/lg-share.js"></script>
 
-		<!-- Sidemenu js -->
-		<script src="~/assets/admin/plugins/sidemenu/sidemenu.js" id="leftmenu"></script>
+	<!-- Sidemenu js -->
+	<script src="~/assets/admin/plugins/sidemenu/sidemenu.js" id="leftmenu"></script>
 
-		<!-- Sidebar js -->
-		<script src="~/assets/admin/plugins/sidebar/sidebar.js"></script>
+	<!-- Sidebar js -->
+	<script src="~/assets/admin/plugins/sidebar/sidebar.js"></script>
 
-		<!-- Select2 js-->
-		<script src="~/assets/admin/plugins/select2/js/select2.min.js"></script>
-		<script src="~/assets/admin/js/select2.js"></script>
+	<!-- Select2 js-->
+	<script src="~/assets/admin/plugins/select2/js/select2.min.js"></script>
+	<script src="~/assets/admin/js/select2.js"></script>
 
-		<!-- Color Theme js -->
-		<script src="~/assets/admin/js/themeColors.js"></script>
+	<!-- Color Theme js -->
+	<script src="~/assets/admin/js/themeColors.js"></script>
 
-		<!-- Sticky js -->
-		<script src="~/assets/admin/js/sticky.js"></script>
+	<!-- Sticky js -->
+	<script src="~/assets/admin/js/sticky.js"></script>
 
-		<!-- Custom js -->
-		<script src="~/assets/admin/js/custom.js"></script>
+	<!-- Custom js -->
+	<script src="~/assets/admin/js/custom.js"></script>
 
 </body>
 </html>

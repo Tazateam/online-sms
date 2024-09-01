@@ -4,10 +4,10 @@
 }
 
 body {
-  background: #C5DDEB;
-  font: 14px/20px "Lato", Arial, sans-serif;
-  padding: 40px 0;
-  color: white;
+    background: #0e1726 !important;
+    font: 14px/20px "Lato", Arial, sans-serif;
+    padding: 40px 0;
+    color: white;
 }
 
 .container {
@@ -19,8 +19,8 @@ body {
 .people-list {
     float: left;
     width: 100%;
-    background: #0e1726;
-    border-radius:10px;
+    background: #171e3a;
+    border-radius: 10px;
 }
 .people-list .search {
   padding: 20px;

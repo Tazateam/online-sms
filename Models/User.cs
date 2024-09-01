@@ -37,7 +37,7 @@ public partial class User
 
     public string? Sports { get; set; }
 
-    public byte[]? ProfilePhoto { get; set; }
+    public string? ProfilePhoto { get; set; }
 
     public string? Qualification { get; set; }
 

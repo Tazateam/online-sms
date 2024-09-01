@@ -15,6 +15,7 @@ using Infobip.Api.SDK;
 using Infobip.Api.SDK.SMS.Models;
 
 using System.Collections.Specialized;
+using Microsoft.IdentityModel.Tokens;
 namespace online_sms.Controllers
 {
     public class userdata : Controller
@@ -55,79 +56,67 @@ namespace online_sms.Controllers
             return View();
         }
         [Authorize]
-        public IActionResult Profile()
+        public IActionResult Profile(int id)
 		{
-			var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+            var data = db.Users.Where(u => u.UserId == id).FirstOrDefault();
+			ViewBag.Username = data.Username;
+			ViewBag.Image = data.ProfilePhoto;
+			return View(data);
+          
 
-			var user = db.Users.FirstOrDefault(u => u.UserId == Convert.ToInt32(currentUserId));
-
-			if (user != null)
-			{
-				ViewBag.UserName = user.Username;
-				ViewBag.ProfilePhoto = user.ProfilePhoto; 
-				ViewBag.Password = user.Password;
-				ViewBag.Email = user.Email;
-				ViewBag.MobileNumber = user.MobileNumber;
-				ViewBag.FirstName = user.FirstName;
-				ViewBag.LastName = user.LastName;
-				ViewBag.Gender = user.Gender;
-				ViewBag.Dob = user.Dob;
-				ViewBag.Address = user.Address;
-				ViewBag.MaritalStatus = user.MaritalStatus;
-				ViewBag.Hobbies = user.Hobbies; 
-                ViewBag.Sports = user.Sports;
-				ViewBag.Qualification = user.Qualification;
-				ViewBag.Designation = user.Designation;
-			}
-			else
-			{
-				ViewBag.UserName = "Profile not found.";
-			}
-
-			return View();
-		}
+        }
 
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        [Authorize]
-        public IActionResult Profile(User model)
+		[Authorize]
+		public IActionResult Profile(User us, IFormFile ProfilePhoto)
 		{
-			if (ModelState.IsValid)
+			var data = db.Users.Where(u => u.UserId == us.UserId).FirstOrDefault();
+
+			if (data != null)
 			{
-				var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
-				var user = db.Users.FirstOrDefault(u => u.UserId == Convert.ToInt32(currentUserId));
+				// Update other fields
+				data.FirstName = us.FirstName;
+				data.LastName = us.LastName;
+				data.Gender = us.Gender;
+				data.Dob = us.Dob;
+				data.Address = us.Address;
+				data.MaritalStatus = us.MaritalStatus;
+				data.Qualification = us.Qualification;
+				data.Sports = us.Sports;
+				data.Hobbies = us.Hobbies;
+				data.Designation = us.Designation;
 
-				if (user == null)
+				// Handle Profile Photo Upload
+				if (ProfilePhoto != null && ProfilePhoto.Length > 0)
 				{
-					user.FirstName = model.FirstName;
-					user.LastName = model.LastName;
-					user.ProfilePhoto = model.ProfilePhoto;
-					ViewBag.Email = user.Email;
-					user.Gender = model.Gender;
-					user.Dob = model.Dob;
-					user.Address = model.Address;
-					user.MaritalStatus = model.MaritalStatus;
-					user.Qualification = model.Qualification;
-					user.Sports = model.Sports;
-					user.Hobbies = model.Hobbies;
-					user.Designation = model.Designation;
+					// Generate a unique filename using the user's ID
+					var fileName = $"{us.UserId}_{Path.GetFileName(ProfilePhoto.FileName)}";
+					var filePath = Path.Combine("wwwroot", "assets", "userimages", fileName);
 
-					db.Users.Update(user);
-					db.SaveChanges();
+					// Save the file to the server
+					using (var stream = new FileStream(filePath, FileMode.Create))
+					{
+						ProfilePhoto.CopyTo(stream);
+					}
 
-					TempData["SuccessMessage"] = "Profile updated successfully!";
-					return RedirectToAction("Profile");
+					// Update the profile photo path in the database
+					data.ProfilePhoto = $"/assets/userimages/{fileName}";
 				}
-				else
-				{
-					ViewBag.ErrorMessage = "Profile not found.";
-					return View("Error");
-				}
+
+				db.SaveChanges();
 			}
-			return View(model);
+
+			return RedirectToAction("Profile");
 		}
-        [AllowAnonymous]
+
+
+
+
+
+
+		[AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -285,14 +274,23 @@ namespace online_sms.Controllers
         public ActionResult GetSuggested()
         {
             // Get the current user's ID
-            var userId = User.FindFirstValue(ClaimTypes.Sid);
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
 
-            // Get the list of users excluding the current user
-            var contacts = db.Users.Where(u => u.UserId != Convert.ToInt32(userId)).ToList();
+            // Get the list of user IDs who are already friends with the current user
+            var friendIds = db.Friends
+                .Where(f => f.UserId == userId || f.FriendUserId == userId)
+                .Select(f => f.UserId == userId ? f.FriendUserId : f.UserId)
+                .ToList();
+
+            // Get the list of users excluding the current user and the users who are already friends
+            var contacts = db.Users
+                .Where(u => u.UserId != userId && !friendIds.Contains(u.UserId))
+                .ToList();
 
             // Return the filtered list of users to the partial view
             return PartialView("_SuggestedUser", contacts);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -344,25 +342,57 @@ namespace online_sms.Controllers
 
             return PartialView("_Friends", friends);
         }
+        public ActionResult GetFriendsAll()
+        {
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+            var friends = db.Friends
+                .Where(f =>
+                    (f.UserId == userId || f.FriendUserId == userId) &&
+                    f.Status == "Accepted"
+                )
+                .Select(f => f.UserId == userId ? f.FriendUser : f.User) // Select the friend user
+                .Distinct() // Ensure unique friends are returned
+                .ToList();
 
+            return PartialView("_AllFriends", friends);
+        }
 
         [HttpPost]
         public IActionResult RespondToFriendRequest(int friend_id, string response)
         {
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
 
-            // Find the existing friend request
-            var friendRequest = db.Friends
-                .FirstOrDefault(f => f.FriendUserId == userId && f.UserId == friend_id && f.Status == "Pending");
-
-            if (friendRequest != null)
+            if (response == "Reject" || response == "Unfriend")
             {
-                if (response == "Accept")
+                // Find the friendship records in both directions
+                var friendRequest = db.Friends
+                    .FirstOrDefault(f => f.FriendUserId == friend_id&& f.UserId == userId);
+
+                var reciprocalFriendship = db.Friends
+                    .FirstOrDefault(f => f.UserId == userId && f.FriendUserId == friend_id);
+
+                if (friendRequest != null)
                 {
-                    // Update the status of the friend request to "Accepted"
+                    db.Friends.Remove(friendRequest);
+                }
+
+                if (reciprocalFriendship != null)
+                {
+                    db.Friends.Remove(reciprocalFriendship);
+                }
+
+                db.SaveChanges();
+            }
+            else if (response == "Accept")
+            {
+                // Accept friend logic (already implemented)
+                var friendRequest = db.Friends
+                    .FirstOrDefault(f => f.FriendUserId == userId && f.UserId == friend_id && f.Status == "Pending");
+
+                if (friendRequest != null)
+                {
                     friendRequest.Status = "Accepted";
 
-                    // Check if the reciprocal friendship exists; if not, create it
                     var reciprocalFriendship = db.Friends
                         .FirstOrDefault(f => f.UserId == friend_id && f.FriendUserId == userId);
 
@@ -370,19 +400,14 @@ namespace online_sms.Controllers
                     {
                         db.Friends.Add(new Friend { UserId = friend_id, FriendUserId = userId, Status = "Accepted" });
                     }
-                }
-                else if (response == "Reject")
-                {
-                    // Update the status of the friend request to "Rejected"
-                    friendRequest.Status = "Rejected";
-                }
 
-                db.SaveChanges();
+                    db.SaveChanges();
+                }
             }
 
-            // Redirect to the same view or another appropriate action
             return RedirectToAction("Index");
         }
+
 
         public ActionResult SendBulkMessage(int contactId)
         {
@@ -403,107 +428,128 @@ namespace online_sms.Controllers
             return View();
         }
 
+        private readonly string MyUsername = "923422704726"; // Your SendPK username
+        private readonly string MyPassword = "Merijaan"; // Your SendPK password
+        private readonly string Masking = "SMS Alert"; // Your Company Brand Name
+      
+		//public async Task<IActionResult> sendBulkMessage(string reciverNumber, string message)
+		//{
+		//    var configuration = new ApiClientConfiguration(
+		//        "https://e1vz92.api.infobip.com",
+		//        "f23377a18161d10f311f63d1defe8a7d-6c5dce47-5a02-4604-961a-c7d0ef4c6cd2"
+		//    );
+		//    var client = new InfobipApiClient(configuration);
 
-        //private readonly string MyApiKey = "923422704726-6b2eb1f1-1af6-4c6b-b016-7cf09f8cd3ae"; // Your API Key
-        //private readonly string MyUsername = "923422704726"; // Your SendPK username
-        //private readonly string MyPassword = "Merijaan"; // Your SendPK password
-        //private readonly string Masking = "SMS Alert"; // Your Company Brand Name
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> sendBulkMessage(string reciverNumber, string message)
-        //{
-        //    var configuration = new ApiClientConfiguration(
-        //        "https://e1vz92.api.infobip.com",
-        //        "f23377a18161d10f311f63d1defe8a7d-6c5dce47-5a02-4604-961a-c7d0ef4c6cd2"
-        //    );
-        //    var client = new InfobipApiClient(configuration);
+		//    var destination = new SmsDestination(
+		//        to:"923132239840"
+		//    );
+		//    var msg = new SmsMessage(
+		//        destinations: new List<SmsDestination> { destination },
+		//        from: "Infobip SMS",
+		//        text: message
+		//    );
+		//    var request = new SendSmsMessageRequest(
+		//        messages: new List<SmsMessage> { msg }
+		//    );
 
-        //    var destination = new SmsDestination(
-        //        to:"923132239840"
-        //    );
-        //    var msg = new SmsMessage(
-        //        destinations: new List<SmsDestination> { destination },
-        //        from: "Infobip SMS",
-        //        text: message
-        //    );
-        //    var request = new SendSmsMessageRequest(
-        //        messages: new List<SmsMessage> { msg }
-        //    );
+		//    var response = await client.Sms.SendSmsMessage(request);
 
-        //    var response = await client.Sms.SendSmsMessage(request);
+		//    ViewBag.Message = response?.Messages?[0]?.Status?.Description ?? "SMS sent successfully!";
+		//    return View();
+		//}
 
-        //    ViewBag.Message = response?.Messages?[0]?.Status?.Description ?? "SMS sent successfully!";
-        //    return View();
-        //}
+		//public IActionResult sendBulkMessage(string reciverNumber, string message)
+		//{
+		//    string result = sendSMS(reciverNumber, message);
+		//    ViewBag.Message = result; // Display the response from the API
+		//    return View();
+		//}
 
-        public IActionResult sendBulkMessage(string reciverNumber, string message)
-        {
-            string result = sendSMS(reciverNumber, message);
-            ViewBag.Message = result; // Display the response from the API
-            return View();
-        }
-
-        public string sendSMS(string reciver, string message)
-        {
-            String msg = HttpUtility.UrlEncode(message);
-            using (var wb = new WebClient())
-            {
-                byte[] response = wb.UploadValues("https://api.txtlocal.com/send/", new NameValueCollection()
-                {
-                {"apikey" , "MzI2NzU2NzE0NDY5NTY1YTQzNjI2MTZmNmE3YTM3NzE="},
-                {"numbers" , "+923422704726"},
-                {"message" , msg},
-                {"sender" , "Zeeshan"}
-                });
-                string result = System.Text.Encoding.UTF8.GetString(response);
-                return result;
-            }
-        }
-
-        //public IActionResult sendBulkMessage(string reciverNumber, string message)
-        //{
-        //    string result = sendSMS(reciverNumber, message);
-        //    ViewBag.Message = result; // Display the response from the API
-        //    return View();
-        //}
-
-        //public string sendSMS(string reciverNumber, string message)
-        //{
-        //    string URI = "https://sendpk.com/api/sms.php?" +
-        //                 "api_key=" + MyApiKey +
-        //                 "&sender=" + Masking +
-        //                 "&mobile=" + 923142780007 +
-        //                 "&message=" + Uri.UnescapeDataString(message);
-
-        //    try
-        //    {
-        //        WebRequest req = WebRequest.Create(URI);
-        //        WebResponse resp = req.GetResponse();
-        //        using (var sr = new System.IO.StreamReader(resp.GetResponseStream()))
-        //        {
-        //            return sr.ReadToEnd().Trim();
-        //        }
-        //    }
-        //    catch (WebException ex)
-        //    {
-        //        var httpWebResponse = ex.Response as HttpWebResponse;
-        //        if (httpWebResponse != null)
-        //        {
-        //            switch (httpWebResponse.StatusCode)
-        //            {
-        //                case HttpStatusCode.NotFound:
-        //                    return "404: URL not found: " + URI;
-        //                case HttpStatusCode.BadRequest:
-        //                    return "400: Bad Request";
-        //                default:
-        //                    return httpWebResponse.StatusCode.ToString();
-        //            }
-        //        }
-        //        return "Error occurred while sending SMS.";
-        //    }
-        //}
+		//public string sendSMS(string reciver, string message)
+		//{
+		//    String msg = HttpUtility.UrlEncode(message);
+		//    using (var wb = new WebClient())
+		//    {
+		//        byte[] response = wb.UploadValues("https://api.txtlocal.com/send/", new NameValueCollection()
+		//        {
+		//        {"apikey" , "MzI2NzU2NzE0NDY5NTY1YTQzNjI2MTZmNmE3YTM3NzE="},
+		//        {"numbers" , "+923422704726"},
+		//        {"message" , msg},
+		//        {"sender" , "Zeeshan"}
+		//        });
+		//        string result = System.Text.Encoding.UTF8.GetString(response);
+		//        return result;
+		//    }
+		//}
 
 
+		private string MyApiKey = "73efec4a491d801bc7eb723832cf02f9";
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult SendBulkMessage(string receiverNumber, string message)
+		{
+			string result = SendSMS(MyApiKey, receiverNumber, "Default", message);
+			ViewBag.Message = result; // Display the response from the API
+			return View();
+		}
 
-    }
+		public string SendSMS(string apiKey, string receiver, string sender, string textMessage)
+		{
+			// API endpoint for sending SMS
+			string uri = "https://api.veevotech.com/v3/sendsms";
+
+			// Prepare the request parameters
+			string postData = $"hash={apiKey}&receivernum={receiver}&medium=1&sendernum={sender}&text_message={Uri.EscapeDataString(textMessage)}";
+
+			try
+			{
+				// Create the web request
+				WebRequest request = WebRequest.Create(uri);
+				request.Method = "POST";
+				request.ContentType = "application/x-www-form-urlencoded";
+
+				// Write the POST data to the request
+				byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(postData);
+				request.ContentLength = byteArray.Length;
+
+				using (Stream dataStream = request.GetRequestStream())
+				{
+					dataStream.Write(byteArray, 0, byteArray.Length);
+				}
+
+				// Get the response from the API
+				using (WebResponse response = request.GetResponse())
+				{
+					using (Stream responseStream = response.GetResponseStream())
+					{
+						using (StreamReader reader = new StreamReader(responseStream))
+						{
+							return reader.ReadToEnd().Trim();
+						}
+					}
+				}
+			}
+			catch (WebException ex)
+			{
+				// Handle specific HTTP error responses
+				if (ex.Response is HttpWebResponse httpWebResponse)
+				{
+					switch (httpWebResponse.StatusCode)
+					{
+						case HttpStatusCode.NotFound:
+							return "404: URL not found: " + uri;
+						case HttpStatusCode.BadRequest:
+							return "400: Bad Request - Please check your parameters.";
+						default:
+							return httpWebResponse.StatusCode.ToString();
+					}
+				}
+				return "Error occurred while sending SMS. Details: " + ex.Message;
+			}
+		}
+
+
+
+
+	}
 }
