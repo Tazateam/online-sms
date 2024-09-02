@@ -39,28 +39,55 @@ namespace online_sms.Controllers
         [AllowAnonymous]
         public IActionResult Signup(User enter)
         {
-            var emails = db.Users.FirstOrDefault(Users => Users.Email == enter.Email);
-
-            if (emails == null)
+            try
             {
-                db.Users.Add(enter);
-                db.SaveChanges();
-				return RedirectToAction("Login", "userdata");
+                var emails = db.Users.FirstOrDefault(Users => Users.Email == enter.Email);
 
-			}
-			else
-            {
-                ViewBag.b = "Already Registered";
+                if (emails == null)
+                {
+                    db.Users.Add(enter);
+                    db.SaveChanges();
+
+                    TempData["Message"] = "Signup successful!";
+                    TempData["MessageType"] = "success";
+                    return RedirectToAction("Login", "userdata");
+                }
+                else
+                {
+                    TempData["Message"] = "Email is already registered!";
+                    TempData["MessageType"] = "error";
+                }
             }
+            catch (Exception ex)
+            {
+                // Log the exception if necessary
+                TempData["Message"] = "An error occurred: " + ex.Message;
+                TempData["MessageType"] = "error";
+            }
+
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
+
         [Authorize]
         public IActionResult Profile(int id)
 		{
             var data = db.Users.Where(u => u.UserId == id).FirstOrDefault();
 			ViewBag.Username = data.Username;
 			ViewBag.Image = data.ProfilePhoto;
+			ViewBag.FirstName = data.FirstName;
+			ViewBag.PhoneNum = data.MobileNumber;
+			ViewBag.Email = data.Email;
+			ViewBag.LastName = data.LastName;
+			ViewBag.Gender = data.Gender;
+			ViewBag.Dob = data.Dob;
+			ViewBag.Address = data.Address;
+			ViewBag.MaritalStatus = data.MaritalStatus;
+			ViewBag.Qualification = data.Qualification;
+			ViewBag.Sports = data.Sports;
+			ViewBag.Hobbies = data.Hobbies;
+			ViewBag.Designation = data.Designation;
+
 			return View(data);
           
 

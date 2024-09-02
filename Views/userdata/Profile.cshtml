@@ -38,6 +38,15 @@
 	<style>
 		body {
 			background: #0e1726 !important;
+			color:white !important;
+		}
+
+		.table tbody tr {
+		background:transparent !important;
+		}
+
+		.table > tbody > tr > td, .table > tbody > tr > th {
+			color: white !important;
 		}
 	</style>
 
@@ -59,10 +68,10 @@
 				<!-- Page Header -->
 				<div class="page-header">
 					<div>
-						<h2 class="main-content-title tx-24 mg-b-5">Profile</h2>
+						<h2 class="main-content-title tx-24 mg-b-5 text-white ">Profile</h2>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Pages</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Profile</li>
+							<li class="breadcrumb-item"><a href="#  " class="text-white" >Pages</a></li>
+							<li class="breadcrumb-item active text-white " aria-current="page">Profile</li>
 						</ol>
 					</div>
 					<div class="d-flex">
@@ -79,42 +88,29 @@
 
 				<div class="row square">
 					<div class="col-lg-12 col-md-12">
-						<div class="card custom-card">
+						<div class="card custom-card" style="box-shadow: -7.829px 11.607px 20px 0px #3c4858 !important;background:#0e1726 !important;">
 							<div class="card-body">
 								@if (ViewBag.UserName != null)
 								{
 									<div class="panel profile-cover">
 										<div class="profile-cover__img">
-											
-												<img src="@ViewBag.Image" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%;" />
-											
-											<h3 class="h3">@ViewBag.UserName</h3>
+											<img src="@(string.IsNullOrEmpty(ViewBag.Image) ? Url.Content("~/assets/img/person.png") : ViewBag.Image)"
+												 alt="Profile Picture"
+												 style="width: 100px; height: 100px; border-radius: 50%;" />
+											<h3 class="h3 text-white">@ViewBag.UserName</h3>
 										</div>
+
 									</div>
 								}
 								else
 								{
 									<p class="btn btn-danger">Profile not found.</p>
-								}
-								<div class="btn-profile">
-									<button class="btn btn-rounded btn-danger">
-										<i class="fa fa-plus"></i>
-										<span>Follow</span>
-									</button>
-									<button class="btn btn-rounded btn-success">
-										<i class="fa fa-comment"></i>
-										<span>Message</span>
-									</button>
-								</div>
-								<div class="profile-cover__action bg-img"></div>
-								<div class="profile-cover__info">
-									<ul class="nav">
-										<li><strong>26</strong>Projects</li>
-										<li><strong>33</strong>Followers</li>
-										<li><strong>136</strong>Following</li>
-									</ul>
-								</div>
+								}							
+								<div class="profile-cover__action bg-img"></div>								
 							</div>
+
+							<br /> <br />
+							 
 							<div class="profile-tab tab-menu-heading">
 								<nav class="nav main-nav-line p-3 tabs-menu profile-nav-line bg-gray-100">
 									<a class="nav-link  active" data-bs-toggle="tab" href="#about">About</a>
@@ -128,33 +124,53 @@
 
 			
 				<div class="col-lg-12 col-md-12">
-					<div class="card custom-card main-content-body-profile">
+				<div class="card custom-card main-content-body-profile" style="box-shadow: -7.829px 11.607px 20px 0px #3c4858 !important;background:#0e1726 !important;">
 						<div class="tab-content">
 							<div class="main-content-body tab-pane p-4 border-top-0 active" id="about">
 								<div class="card-body p-0 border p-0 rounded-10">
 									<div class="p-4">
-										<h4 class="tx-15 text-uppercase mb-3">BIOdata</h4>
-										<p class="m-b-5">Hi I'm Petey Cruiser,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-										<div class="m-t-30">
-											<h4 class="tx-15 text-uppercase mt-3">Experience</h4>
-											<div class=" p-t-10">
-												<h5 class="text-primary m-b-5 tx-14">Lead designer / Developer</h5>
-												<p class="">websitename.com</p>
-												<p><b>2010-2015</b></p>
-												<p class="text-muted tx-13 m-b-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-											</div>
-
-											<div class="">
-												<h5 class="text-primary m-b-5 tx-14">Senior Graphic Designer</h5>
-												<p class="">coderthemes.com</p>
-												<p><b>2007-2009</b></p>
-												<p class="text-muted tx-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-											</div>
+										<h4 class="tx-15 text-uppercase mb-3">User Detail</h4>
+										
+									<div class="col-xl-12">
+										<div class="table-responsive">
+											<table class="table mb-0 border-top table-bordered text-nowrap">
+												<tbody>
+													<tr>
+														<th scope="row">First Name</th>
+														<td>@ViewBag.FirstName</td>
+													</tr>
+													<tr>
+														<th scope="row">Last Name</th>
+														<td>@ViewBag.LastName</td>
+													</tr>
+													<tr>
+														<th scope="row">Gender</th>
+														<td>@ViewBag.Gender</td>
+													</tr>
+													<tr>
+														<th scope="row">Date Of Birth</th>
+														<td>@ViewBag.Dob</td>
+													</tr>
+													<tr>
+														<th scope="row">Address</th>
+														<td>@ViewBag.Address</td>
+													</tr>
+													<tr>
+														<th scope="row">Qualification </th>
+														<td>@ViewBag.Qualification</td>
+													</tr>
+													<tr>
+														<th scope="row">Designation</th>
+														<td>@ViewBag.Designation</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
+									</div>
 									</div>
 									<div class="border-top"></div>
 									<div class="p-4">
-										<label class="main-content-label tx-13 mg-b-20">Contact</label>
+										<label class="main-content-label tx-13 mg-b-20 text-white">Contact</label>
 										<div class="d-sm-flex">
 											<div class="mg-sm-r-20 mg-b-10">
 												<div class="main-profile-contact-list">
@@ -162,7 +178,7 @@
 														<div class="media-icon bg-primary-transparent text-primary"> <i class="icon ion-md-phone-portrait"></i> </div>
 														<div class="media-body">
 															<span>Mobile</span>
-															<div> +245 354 654 </div>
+															<div> @ViewBag.PhoneNum</div>
 														</div>
 													</div>
 												</div>
@@ -172,68 +188,20 @@
 													<div class="media">
 														<div class="media-icon bg-success-transparent text-success"> <i class="icon ion-logo-slack"></i> </div>
 														<div class="media-body">
-															<span>Slack</span>
-															<div> </div>
+															<span>Email</span>
+														<div> @ViewBag.Email</div>
 														</div>
 													</div>
 												</div>
-											</div>
-											<div class="">
-												<div class="main-profile-contact-list">
-													<div class="media">
-														<div class="media-icon bg-info-transparent text-info"> <i class="icon ion-md-locate"></i> </div>
-														<div class="media-body">
-															<span>Current Address</span>
-															<div> San Francisco, CA </div>
-														</div>
-													</div>
-												</div>
-											</div>
+											</div>										
 										</div>
 									</div>
-									<div class="border-top"></div>
-									<div class="p-3 p-sm-4">
-										<label class="main-content-label tx-13 mg-b-20">Social</label>
-										<div class="d-xl-flex">
-											<div class="mg-md-r-20 mg-b-10">
-												<div class="main-profile-social-list">
-													<div class="media">
-														<div class="media-icon bg-primary-transparent text-primary"> <i class="icon ion-logo-github"></i> </div>
-														<div class="media-body"> <span>Github</span> <a href="">github.com/spruko</a> </div>
-													</div>
-												</div>
-											</div>
-											<div class="mg-md-r-20 mg-b-10">
-												<div class="main-profile-social-list">
-													<div class="media">
-														<div class="media-icon bg-success-transparent text-success"> <i class="icon ion-logo-twitter"></i> </div>
-														<div class="media-body"> <span>Twitter</span> <a href="">twitter.com/spruko.me</a> </div>
-													</div>
-												</div>
-											</div>
-											<div class="mg-md-r-20 mg-b-10">
-												<div class="main-profile-social-list">
-													<div class="media">
-														<div class="media-icon bg-info-transparent text-info"> <i class="icon ion-logo-linkedin"></i> </div>
-														<div class="media-body"> <span>Linkedin</span> <a href="">linkedin.com/in/spruko</a> </div>
-													</div>
-												</div>
-											</div>
-											<div class="mg-md-r-20 mg-b-10">
-												<div class="main-profile-social-list">
-													<div class="media">
-														<div class="media-icon bg-danger-transparent text-danger"> <i class="icon ion-md-link"></i> </div>
-														<div class="media-body"> <span>My Portfolio</span> <a href="">spruko.com/</a> </div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 							<div class="main-content-body tab-pane p-4 border-top-0" id="edit">
 								<div class="card-body border">
-									<div class="mb-4 main-content-label">Personal Information</div>
+									<div class="mb-4 main-content-label text-white ">Personal Information</div>
 									<form asp-action="Profile" enctype="multipart/form-data">
 										<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 										<input type="hidden" asp-for="UserId" />

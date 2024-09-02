@@ -9,13 +9,14 @@
 <ul class="list-group">
     @foreach (var contact in Model)
     {
-        <li class="clearfix userClick"
-            onclick="ChatRoom(@contact.UserId, '@contact.Username')"
+        <li class="clearfix userClick d-flex align-items-center p-2"
+            style="background:#0a1726 !important;border-radius:8px;"
+            onclick="ChatRoom(@contact.UserId, '@contact.Username','@contact.ProfilePhoto')"
             data-userid="@contact.UserId"
             data-username="@contact.Username">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
+            <img src="@(string.IsNullOrEmpty(contact.ProfilePhoto) ? Url.Content("~/assets/img/person.png") : contact.ProfilePhoto)" width="40px" height="40px" style="border-radius:50%;" alt="avatar" />
             <div class="about">
-                <div class="name ">@contact.Username</div>
+                <div class="name  " style="cursor:pointer;" >@contact.Username</div>
                 <div class="status">
                     <i class="fa fa-circle online"></i> online
                 </div>

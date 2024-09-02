@@ -5,50 +5,100 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
+
+
+@* <p>
     <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContactNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ContactId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</p> *@
+
+
+<div class="main-content side-content pt-0">
+
+    <div class="main-container container-fluid">
+        <div class="inner-body">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h2 class="main-content-title tx-24 mg-b-5">Welcome To Dashboard</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                    </ol>
+                </div>
+              
+            </div>
+            <!-- End Page Header -->
+            <!--Row-->
+            <div class="row row-sm">
+                <div class="col-sm-12 col-lg-12 col-xl-12">
+
+
+                    <!--row-->
+                    <div class="row row-sm">
+                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                            <div class="card custom-card overflow-hidden">
+                                <div class="card-header border-bottom-0">
+                                    <div>
+                                        <label class="main-content-label mb-2">Contacts</label> 
+                                    </div>
+                                </div>
+                                <div class="card-body ps-0">
+                                    <div class>
+                                        <div class="container">
+                                            <div class="table-responsive">
+                                                <table class="table" id="example1" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.FirstName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.LastName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.ContactNumber)
+                                                            </th>
+                                                          
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.LastName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                                                </td>
+                                                               
+                                                                <td>
+                                                                    <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a> 
+                                                                    <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- col end -->
+
+                    </div><!-- Row end -->
+                </div><!-- col end -->
+
+            </div><!-- Row end -->
+        </div>
+    </div>
+</div>

@@ -8,8 +8,8 @@
     {
         <li style="background: transparent;border: 1px solid gray;margin-top: 5px;margin-left:10px;" class="list-group-item d-flex justify-content-between align-items-center">
             <div>
+                <p>@contact.Username</p>
                 <p>@contact.FirstName</p>
-                <p>@contact.LastName</p>
             </div>
             <form asp-action="RespondToFriendRequest" method="post">
                 <input type="hidden" name="friend_id" value="@contact.UserId" />
