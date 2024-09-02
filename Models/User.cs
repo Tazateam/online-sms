@@ -15,6 +15,8 @@ public partial class User
 
     public string MobileNumber { get; set; } = null!;
 
+    public int MsgCount { get; set; }
+
     public string? VerificationCode { get; set; }
 
     public bool? IsVerified { get; set; }
