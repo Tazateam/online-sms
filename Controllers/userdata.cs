@@ -15,6 +15,7 @@ using Infobip.Api.SDK;
 using Infobip.Api.SDK.SMS.Models;
 using System.Collections.Specialized;
 using Microsoft.IdentityModel.Tokens;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace online_sms.Controllers
 {
     public class userdata : Controller
@@ -166,6 +167,40 @@ namespace online_sms.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBalance(User model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Return the same view with validation errors
+                return View(model);
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.Sid);
+            var user = await db.Users.FindAsync(Convert.ToInt32(userId));
+
+            if (user == null)
+            {
+                // Handle the case when user is not found
+                return NotFound();
+            }
+
+            // Update only the MsgCount field
+            user.Username = user.Username;
+            user.Password= user.Password;
+            user.MobileNumber = user.MobileNumber;
+            user.Email = user.Email;
+
+            user.MsgCount = model.MsgCount;
+
+            // Save changes to the database
+            await db.SaveChangesAsync();
+
+            // Redirect or return a view as needed
+            return RedirectToAction("Index"); // Adjust as needed
+        }
+
 
 
 
