@@ -13,7 +13,6 @@ using RestSharp;
 using System.Threading.Tasks;
 using Infobip.Api.SDK;
 using Infobip.Api.SDK.SMS.Models;
-
 using System.Collections.Specialized;
 using Microsoft.IdentityModel.Tokens;
 namespace online_sms.Controllers
@@ -23,20 +22,43 @@ namespace online_sms.Controllers
         OnlineMessagesContext db = new OnlineMessagesContext();
 
         [Authorize]
+      
         public IActionResult Index()
         {
+            // Retrieve the current user's ID
+            var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+
+            // Convert the currentUserId to integer
+            int currentUserIdInt = Convert.ToInt32(currentUserId);
+
+            // Fetch the total number of users
+            int totalUsers = db.Users.Count();
+
+            // Fetch the current user's details, including the MsgCount
+            var currentUser = db.Users.FirstOrDefault(u => u.UserId == currentUserIdInt);
+
+            // Fetch the total number of friends for the current user
+            int totalFriends = db.Friends.Count(f => f.UserId == currentUserIdInt || f.FriendUserId == currentUserIdInt);
+
+            // Pass the data to the view
+            ViewBag.TotalFriends = totalFriends;
+            ViewBag.TotalUsers = totalUsers;
+            ViewBag.MSGCOUNT = currentUser?.MsgCount ?? 0; // Use the null-conditional operator to avoid null reference
+
             return View();
         }
+
         [AllowAnonymous]
         public IActionResult Signup()
         {
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
+
+       
         public IActionResult Signup(User enter)
         {
             try
@@ -139,11 +161,15 @@ namespace online_sms.Controllers
 		}
 
 
+        [Authorize]
+        public IActionResult AddBalance()
+        {
+            return View();
+        }
 
 
 
-
-		[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
