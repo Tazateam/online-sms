@@ -15,6 +15,8 @@ public partial class OnlineMessagesContext : DbContext
     {
     }
 
+    public virtual DbSet<Admin> Admins { get; set; }
+
     public virtual DbSet<Contact> Contacts { get; set; }
 
     public virtual DbSet<ContactU> ContactUs { get; set; }
@@ -31,13 +33,24 @@ public partial class OnlineMessagesContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=.;initial catalog=Online_Messages;user id=sa;password=aptech; TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("data source=DESKTOP-DIBKE47\\SQLEXPRESS;initial catalog=Online_Messages;user id=sa;password=anas; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Admin>(entity =>
+        {
+            entity.HasKey(e => e.AdminId).HasName("PK__Admin__719FE4E81459E7E6");
+
+            entity.ToTable("Admin");
+
+            entity.Property(e => e.AdminId).HasColumnName("AdminID");
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.Password).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BBCEC27E67");
+            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB667B4EA0");
 
             entity.Property(e => e.ContactId).HasColumnName("ContactID");
             entity.Property(e => e.ContactNumber).HasMaxLength(15);
@@ -47,12 +60,12 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Contacts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Contacts__UserID__37A5467C");
+                .HasConstraintName("FK__Contacts__UserID__5EBF139D");
         });
 
         modelBuilder.Entity<ContactU>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ContactU__3214EC0777182C9F");
+            entity.HasKey(e => e.Id).HasName("PK__ContactU__3214EC07114A14A4");
 
             entity.ToTable("ContactU");
 
@@ -76,7 +89,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC272F599E2D");
+            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC27E55FA605");
 
             entity.HasIndex(e => new { e.UserId, e.FriendUserId }, "UQ_UserFriend").IsUnique();
 
@@ -100,7 +113,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037C53644D5D");
+            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037C6D6EF03F");
 
             entity.Property(e => e.MessageId).HasColumnName("MessageID");
             entity.Property(e => e.MessageText).HasMaxLength(120);
@@ -113,12 +126,12 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.SenderUser).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.SenderUserId)
-                .HasConstraintName("FK__Messages__Sender__3A81B327");
+                .HasConstraintName("FK__Messages__Sender__619B8048");
         });
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA7517C17A");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EAF2E09967");
 
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
@@ -128,13 +141,13 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC9E38035B");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC19F8D1CB");
 
-            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B14742D80A").IsUnique();
+            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B193B099FD").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Users__536C85E4AEF19038").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__536C85E49F353414").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D105348102062F").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534B8AD6694").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Address).HasMaxLength(255);
@@ -153,6 +166,7 @@ public partial class OnlineMessagesContext : DbContext
             entity.Property(e => e.LastName).HasMaxLength(100);
             entity.Property(e => e.MaritalStatus).HasMaxLength(20);
             entity.Property(e => e.MobileNumber).HasMaxLength(15);
+            entity.Property(e => e.MsgCount).HasDefaultValueSql("((2))");
             entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.Qualification).HasMaxLength(255);
             entity.Property(e => e.Sports).HasMaxLength(255);
@@ -162,7 +176,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<UserService>(entity =>
         {
-            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF94225242B");
+            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF989BA9759");
 
             entity.Property(e => e.UserServiceId).HasColumnName("UserServiceID");
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
@@ -173,11 +187,11 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.Service).WithMany(p => p.UserServices)
                 .HasForeignKey(d => d.ServiceId)
-                .HasConstraintName("FK__UserServi__Servi__3B75D760");
+                .HasConstraintName("FK__UserServi__Servi__628FA481");
 
             entity.HasOne(d => d.User).WithMany(p => p.UserServices)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__UserServi__UserI__3C69FB99");
+                .HasConstraintName("FK__UserServi__UserI__6383C8BA");
         });
 
         OnModelCreatingPartial(modelBuilder);
