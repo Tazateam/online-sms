@@ -5,20 +5,173 @@
     Layout = null;
 }
 
-<h2>Login</h2>
 
-<form asp-action="Login" method="post">
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password" class="control-label"></label>
-        <input asp-for="Password" class="form-control" type="password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Login" class="btn btn-primary" />
-    </div>
-</form>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - online_sms</title>
+
+	<link rel="icon" href="../assets/img/brand/favicon.ico" type="image/x-icon" />
+
+	<!-- Title -->
+	<title>Spruha - Bootstrap Premium HTML Dashboard Template</title>
+
+	<!-- Bootstrap css-->
+	<link id="style" href="~/assets/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Icons css-->
+	<link href="~/assets/admin/plugins/web-fonts/icons.css" rel="stylesheet" />
+	<link href="~/assets/admin/plugins/web-fonts/font-awesome/font-awesome.min.css" rel="stylesheet">
+	<link href="~/assets/admin/plugins/web-fonts/plugin.css" rel="stylesheet" />
+
+	<!-- Style css-->
+	<link href="~/assets/admin/css/style.css" rel="stylesheet">
+
+	<!-- Select2 css-->
+	<link href="~/assets/admin/plugins/select2/css/select2.min.css" rel="stylesheet">
+
+	<!-- Mutipleselect css-->
+	<link rel="stylesheet" href="~/assets/admin/plugins/multipleselect/multiple-select.css">
+
+
+	<!-- DATA TABLE CSS -->
+	<link href="~/assets/admin/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
+	<link href="~/assets/admin/plugins/datatable/css/buttons.bootstrap5.min.css" rel="stylesheet">
+	<link href="~/assets/admin/plugins/datatable/css/responsive.bootstrap5.css" rel="stylesheet" />
+
+
+</head>
+<body class="ltr main-body leftmenu">
+	<!-- Loader -->
+	<div id="global-loader">
+		<img src="../assets/img/loader.svg" class="loader-img" alt="Loader">
+	</div>
+	<!-- End Loader -->
+
+
+
+	<div class="page">
+
+		<!-- Row -->
+		<div class="row signpages text-center">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="row row-sm">
+						<div class="col-lg-6 col-xl-5 d-none d-lg-block text-center bg-primary details">
+							<div class="mt-5 pt-4 p-2 pos-absolute">
+								<img src="../assets/img/brand/logo-light.png" class="d-lg-none header-brand-img text-start float-start mb-4 error-logo-light" alt="logo">
+								<img src="../assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-start float-start mb-4 error-logo" alt="logo">
+								<div class="clearfix"></div>
+								<img src="../assets/img/svgs/user.svg" class="ht-100 mb-0" alt="user">
+								<h5 class="mt-4 text-white">Login Your Account</h5>
+							
+							</div>
+						</div>
+						<div class="col-lg-6 col-xl-7 col-xs-12 col-sm-12 login_form ">
+							<div class="main-container container-fluid">
+								<div class="row row-sm">
+									<div class="card-body mt-2 mb-2">
+										<img src="../assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-start float-start mb-4" alt="logo">
+										<div class="clearfix"></div>
+										<form asp-action="Login" method="post">
+											<h5 class="text-start mb-2">Signin to Your Account</h5>
+											<p class="mb-4 text-muted tx-13 ms-0 text-start">Signin to create, discover and connect with the global community</p>
+											<div class="form-group text-start">
+												<label asp-for="Email" class="control-label"></label>
+												<input asp-for="Email" class="form-control" />
+												<span asp-validation-for="Email" class="text-danger"></span>
+											</div>
+											<div class="form-group text-start">
+												<label asp-for="Password" class="control-label"></label>
+												<input asp-for="Password" class="form-control" type="password" />
+												<span asp-validation-for="Password" class="text-danger"></span>
+											</div>
+											<button class="btn ripple btn-main-primary btn-block">Sign In</button>
+										</form>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Row -->
+
+	</div>
+	<!-- End Page -->
+	<!-- Back-to-top -->
+	<a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
+
+	<!-- Jquery js-->
+	<script src="~/assets/admin/plugins/jquery/jquery.min.js"></script>
+	<script src="~/assets/user/js/libs/jquery-3.1.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap js-->
+	<script src="~/assets/admin/plugins/bootstrap/js/popper.min.js"></script>
+	<script src="~/assets/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Internal Chart.Bundle js-->
+	<script src="~/assets/admin/plugins/chart.js/Chart.bundle.min.js"></script>
+
+	<!-- Peity js-->
+	<script src="~/assets/admin/plugins/peity/jquery.peity.min.js"></script>
+
+	<!-- Select2 js-->
+	<script src="~/assets/admin/plugins/select2/js/select2.min.js"></script>
+
+
+
+	<script src="~/assets/admin/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+	<script src="~/assets/admin/plugins/datatable/js/dataTables.buttons.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/js/jszip.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/pdfmake/pdfmake.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/pdfmake/vfs_fonts.js"></script>
+	<script src="~/assets/admin/plugins/datatable/js/buttons.html5.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/js/buttons.print.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/js/buttons.colVis.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/dataTables.responsive.min.js"></script>
+	<script src="~/assets/admin/plugins/datatable/responsive.bootstrap5.min.js"></script>
+	<script src="~/assets/admin/js/table-data.js"></script>
+	<script src="~/assets/admin/js/select2.js"></script>
+	<!-- Perfect-scrollbar js -->
+	<script src="~/assets/admin/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+	<!-- Sidemenu js -->
+	<script src="~/assets/admin/plugins/sidemenu/sidemenu.js"></script>
+
+	<!-- Sidebar js -->
+	<script src="~/assets/admin/plugins/sidebar/sidebar.js"></script>
+
+	<!-- Internal Morris js -->
+	<script src="~/assets/admin/plugins/raphael/raphael.min.js"></script>
+	<script src="~/assets/admin/plugins/morris.js/morris.min.js"></script>
+
+	<!-- Circle Progress js-->
+	<script src="~/assets/admin/js/circle-progress.min.js"></script>
+	<script src="~/assets/admin/js/chart-circle.js"></script>
+
+	<!-- Internal Dashboard js-->
+	<script src="~/assets/admin/js/index.js"></script>
+
+	<!-- Color Theme js -->
+	<script src="~/assets/admin/js/themeColors.js"></script>
+
+	<!-- Sticky js -->
+	<script src="~/assets/admin/js/sticky.js"></script>
+
+	<!-- Custom js -->
+	<script src="~/assets/admin/js/custom.js"></script>
+
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -13,7 +13,6 @@ using RestSharp;
 using System.Threading.Tasks;
 using Infobip.Api.SDK;
 using Infobip.Api.SDK.SMS.Models;
-
 using System.Collections.Specialized;
 using Microsoft.IdentityModel.Tokens;
 namespace online_sms.Controllers
@@ -23,44 +22,94 @@ namespace online_sms.Controllers
         OnlineMessagesContext db = new OnlineMessagesContext();
 
         [Authorize]
+      
         public IActionResult Index()
         {
+            // Retrieve the current user's ID
+            var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+
+            // Convert the currentUserId to integer
+            int currentUserIdInt = Convert.ToInt32(currentUserId);
+
+            // Fetch the total number of users
+            int totalUsers = db.Users.Count();
+
+            // Fetch the current user's details, including the MsgCount
+            var currentUser = db.Users.FirstOrDefault(u => u.UserId == currentUserIdInt);
+
+            // Fetch the total number of friends for the current user
+            int totalFriends = db.Friends.Count(f => f.UserId == currentUserIdInt || f.FriendUserId == currentUserIdInt);
+
+            // Pass the data to the view
+            ViewBag.TotalFriends = totalFriends;
+            ViewBag.TotalUsers = totalUsers;
+            ViewBag.MSGCOUNT = currentUser?.MsgCount ?? 0; // Use the null-conditional operator to avoid null reference
+
             return View();
         }
+
         [AllowAnonymous]
         public IActionResult Signup()
         {
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
+
+       
         public IActionResult Signup(User enter)
         {
-            var emails = db.Users.FirstOrDefault(Users => Users.Email == enter.Email);
-
-            if (emails == null)
+            try
             {
-                db.Users.Add(enter);
-                db.SaveChanges();
-				return RedirectToAction("Login", "userdata");
+                var emails = db.Users.FirstOrDefault(Users => Users.Email == enter.Email);
 
-			}
-			else
-            {
-                ViewBag.b = "Already Registered";
+                if (emails == null)
+                {
+                    db.Users.Add(enter);
+                    db.SaveChanges();
+
+                    TempData["Message"] = "Signup successful!";
+                    TempData["MessageType"] = "success";
+                    return RedirectToAction("Login", "userdata");
+                }
+                else
+                {
+                    TempData["Message"] = "Email is already registered!";
+                    TempData["MessageType"] = "error";
+                }
             }
+            catch (Exception ex)
+            {
+                // Log the exception if necessary
+                TempData["Message"] = "An error occurred: " + ex.Message;
+                TempData["MessageType"] = "error";
+            }
+
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
+
         [Authorize]
         public IActionResult Profile(int id)
 		{
             var data = db.Users.Where(u => u.UserId == id).FirstOrDefault();
 			ViewBag.Username = data.Username;
 			ViewBag.Image = data.ProfilePhoto;
+			ViewBag.FirstName = data.FirstName;
+			ViewBag.PhoneNum = data.MobileNumber;
+			ViewBag.Email = data.Email;
+			ViewBag.LastName = data.LastName;
+			ViewBag.Gender = data.Gender;
+			ViewBag.Dob = data.Dob;
+			ViewBag.Address = data.Address;
+			ViewBag.MaritalStatus = data.MaritalStatus;
+			ViewBag.Qualification = data.Qualification;
+			ViewBag.Sports = data.Sports;
+			ViewBag.Hobbies = data.Hobbies;
+			ViewBag.Designation = data.Designation;
+
 			return View(data);
           
 
@@ -112,11 +161,15 @@ namespace online_sms.Controllers
 		}
 
 
+        [Authorize]
+        public IActionResult AddBalance()
+        {
+            return View();
+        }
 
 
 
-
-		[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -364,9 +417,9 @@ namespace online_sms.Controllers
 
             if (response == "Reject" || response == "Unfriend")
             {
-                // Find the friendship records in both directions
+                //Find the friendship records in both directions
                 var friendRequest = db.Friends
-                    .FirstOrDefault(f => f.FriendUserId == friend_id&& f.UserId == userId);
+                    .FirstOrDefault(f => f.FriendUserId == friend_id && f.UserId == userId);
 
                 var reciprocalFriendship = db.Friends
                     .FirstOrDefault(f => f.UserId == userId && f.FriendUserId == friend_id);
@@ -385,7 +438,7 @@ namespace online_sms.Controllers
             }
             else if (response == "Accept")
             {
-                // Accept friend logic (already implemented)
+                //Accept friend logic(already implemented)
                 var friendRequest = db.Friends
                     .FirstOrDefault(f => f.FriendUserId == userId && f.UserId == friend_id && f.Status == "Pending");
 
@@ -408,7 +461,7 @@ namespace online_sms.Controllers
             return RedirectToAction("Index");
         }
 
-
+      
         public ActionResult SendBulkMessage(int contactId)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
@@ -431,32 +484,81 @@ namespace online_sms.Controllers
         private readonly string MyUsername = "923422704726"; // Your SendPK username
         private readonly string MyPassword = "Merijaan"; // Your SendPK password
         private readonly string Masking = "SMS Alert"; // Your Company Brand Name
-      
-		//public async Task<IActionResult> sendBulkMessage(string reciverNumber, string message)
-		//{
-		//    var configuration = new ApiClientConfiguration(
-		//        "https://e1vz92.api.infobip.com",
-		//        "f23377a18161d10f311f63d1defe8a7d-6c5dce47-5a02-4604-961a-c7d0ef4c6cd2"
-		//    );
-		//    var client = new InfobipApiClient(configuration);
+													   //f23377a18161d10f311f63d1defe8a7d-6c5dce47-5a02-4604-961a-c7d0ef4c6cd2
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> sendBulkMessage(string reciverNumber, string message)
+		{
+			var userId = User.FindFirstValue(ClaimTypes.Sid);
 
-		//    var destination = new SmsDestination(
-		//        to:"923132239840"
-		//    );
-		//    var msg = new SmsMessage(
-		//        destinations: new List<SmsDestination> { destination },
-		//        from: "Infobip SMS",
-		//        text: message
-		//    );
-		//    var request = new SendSmsMessageRequest(
-		//        messages: new List<SmsMessage> { msg }
-		//    );
+			if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out int id))
+			{
+				// Handle invalid userId
+				ViewBag.Message = "Invalid user ID.";
+				return View();
+			}
 
-		//    var response = await client.Sms.SendSmsMessage(request);
+			var data = db.Users.FirstOrDefault(u => u.UserId == id);
+			if (data == null)
+			{
+				// Handle user not found scenario
+				ViewBag.Message = "User not found.";
+				return View();
+			}
 
-		//    ViewBag.Message = response?.Messages?[0]?.Status?.Description ?? "SMS sent successfully!";
-		//    return View();
-		//}
+			if (data.MsgCount <= 0)
+			{
+				ViewBag.ErrorMessage = "Your Free Message Limit has been Completed ";
+				return View();
+			}
+
+			var configuration = new ApiClientConfiguration(
+				"https://e1vz92.api.infobip.com",
+				"885fffbc32d196549cca81fb05d8c71c-0accd86b-4ec5-4f27-8f7a-f0e1e9e515aa"
+			);
+			var client = new InfobipApiClient(configuration);
+
+			var destination = new SmsDestination(to: reciverNumber);
+			var msg = new SmsMessage(
+				destinations: new List<SmsDestination> { destination },
+				from: "Infobip SMS",
+				text: message
+			);
+			var request = new SendSmsMessageRequest(
+				messages: new List<SmsMessage> { msg }
+			);
+
+			try
+			{
+				var response = await client.Sms.SendSmsMessage(request);
+
+			
+
+				if (response?.Messages?[0]?.Status?.Description == "Message sent to next instance")
+				{
+					// Update the message count
+					data.MsgCount -= 1;
+
+					// Save changes to the database
+					await db.SaveChangesAsync();  // Use SaveChangesAsync for async operations
+
+					ViewBag.Message = "SMS sent successfully!";
+				}
+				else
+				{
+					ViewBag.Message = response?.Messages?[0]?.Status?.Description + data.MsgCount ?? "Failed to send SMS.";
+				}
+			}
+			catch (Exception ex)
+			{
+				// Log exception (optional) and handle the error
+				ViewBag.Message = $"An error occurred: {ex.Message}";
+			}
+
+			return View();
+		}
+
+
 
 		//public IActionResult sendBulkMessage(string reciverNumber, string message)
 		//{
@@ -484,69 +586,68 @@ namespace online_sms.Controllers
 
 
 		private string MyApiKey = "73efec4a491d801bc7eb723832cf02f9";
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult SendBulkMessage(string receiverNumber, string message)
-		{
-			string result = SendSMS(MyApiKey, receiverNumber, "Default", message);
-			ViewBag.Message = result; // Display the response from the API
-			return View();
-		}
+	
+		//public IActionResult SendBulkMessage(string receiverNumber, string message)
+		//{
+		//	string result = SendSMS(MyApiKey, receiverNumber, "Default", message);
+		//	ViewBag.Message = result; // Display the response from the API
+		//	return View();
+		//}
 
-		public string SendSMS(string apiKey, string receiver, string sender, string textMessage)
-		{
-			// API endpoint for sending SMS
-			string uri = "https://api.veevotech.com/v3/sendsms";
+		//public string SendSMS(string apiKey, string receiver, string sender, string textMessage)
+		//{
+		//	// API endpoint for sending SMS
+		//	string uri = "https://api.veevotech.com/v3/sendsms";
 
-			// Prepare the request parameters
-			string postData = $"hash={apiKey}&receivernum={receiver}&medium=1&sendernum={sender}&text_message={Uri.EscapeDataString(textMessage)}";
+		//	// Prepare the request parameters
+		//	string postData = $"hash={apiKey}&receivernum={receiver}&medium=1&sendernum={sender}&text_message={Uri.EscapeDataString(textMessage)}";
 
-			try
-			{
-				// Create the web request
-				WebRequest request = WebRequest.Create(uri);
-				request.Method = "POST";
-				request.ContentType = "application/x-www-form-urlencoded";
+		//	try
+		//	{
+		//		// Create the web request
+		//		WebRequest request = WebRequest.Create(uri);
+		//		request.Method = "POST";
+		//		request.ContentType = "application/x-www-form-urlencoded";
 
-				// Write the POST data to the request
-				byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(postData);
-				request.ContentLength = byteArray.Length;
+		//		// Write the POST data to the request
+		//		byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(postData);
+		//		request.ContentLength = byteArray.Length;
 
-				using (Stream dataStream = request.GetRequestStream())
-				{
-					dataStream.Write(byteArray, 0, byteArray.Length);
-				}
+		//		using (Stream dataStream = request.GetRequestStream())
+		//		{
+		//			dataStream.Write(byteArray, 0, byteArray.Length);
+		//		}
 
-				// Get the response from the API
-				using (WebResponse response = request.GetResponse())
-				{
-					using (Stream responseStream = response.GetResponseStream())
-					{
-						using (StreamReader reader = new StreamReader(responseStream))
-						{
-							return reader.ReadToEnd().Trim();
-						}
-					}
-				}
-			}
-			catch (WebException ex)
-			{
-				// Handle specific HTTP error responses
-				if (ex.Response is HttpWebResponse httpWebResponse)
-				{
-					switch (httpWebResponse.StatusCode)
-					{
-						case HttpStatusCode.NotFound:
-							return "404: URL not found: " + uri;
-						case HttpStatusCode.BadRequest:
-							return "400: Bad Request - Please check your parameters.";
-						default:
-							return httpWebResponse.StatusCode.ToString();
-					}
-				}
-				return "Error occurred while sending SMS. Details: " + ex.Message;
-			}
-		}
+		//		// Get the response from the API
+		//		using (WebResponse response = request.GetResponse())
+		//		{
+		//			using (Stream responseStream = response.GetResponseStream())
+		//			{
+		//				using (StreamReader reader = new StreamReader(responseStream))
+		//				{
+		//					return reader.ReadToEnd().Trim();
+		//				}
+		//			}
+		//		}
+		//	}
+		//	catch (WebException ex)
+		//	{
+		//		// Handle specific HTTP error responses
+		//		if (ex.Response is HttpWebResponse httpWebResponse)
+		//		{
+		//			switch (httpWebResponse.StatusCode)
+		//			{
+		//				case HttpStatusCode.NotFound:
+		//					return "404: URL not found: " + uri;
+		//				case HttpStatusCode.BadRequest:
+		//					return "400: Bad Request - Please check your parameters.";
+		//				default:
+		//					return httpWebResponse.StatusCode.ToString();
+		//			}
+		//		}
+		//		return "Error occurred while sending SMS. Details: " + ex.Message;
+		//	}
+		//}
 
 
 

@@ -4,51 +4,160 @@
 }
 @model IEnumerable<online_sms.Models.User>
 
-@{
-    ViewData["Title"] = "Users List";
-}
+<div class="main-content side-content pt-0">
+	<div class="main-container container-fluid">
+		<div class="inner-body">
+			<!-- Page Header -->
+			<div class="page-header">
+				<div>
+					<h2 class="main-content-title tx-24 mg-b-5">Welcome To Dashboard</h2>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>					
+					</ol>
+				</div>
+			</div>
+			<!-- End Page Header -->
+			<!--Row-->
+			<div class="row row-sm">
+				<div class="col-sm-12 col-lg-12 col-xl-12">
 
-<h1>@ViewData["Title"]</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>UserId</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Mobile Number</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Date of Birth</th>
-            <th>Address</th>
-            <th>Marital Status</th>
-            <th>Hobbies</th>
-            <th>Sports</th>
-            <th>Qualification</th>
-            <th>Designation</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.UserId</td>
-                <td>@user.Username</td>
-                <td>@user.Email</td>
-                <td>@user.MobileNumber</td>
-                <td>@user.FirstName</td>
-                <td>@user.LastName</td>
-                <td>@user.Gender</td>
-                <td>@user.Dob?.ToString("yyyy-MM-dd")</td>
-                <td>@user.Address</td>
-                <td>@user.MaritalStatus</td>
-                <td>@user.Hobbies</td>
-                <td>@user.Sports</td>
-                <td>@user.Qualification</td>
-                <td>@user.Designation</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+					<!--row-->
+					<div class="row row-sm">
+						<div class="col-sm-12 col-lg-12 col-xl-12">
+							<div class="card custom-card overflow-hidden">
+								<div class="card-header border-bottom-0">
+									<div>
+										<label class="main-content-label mb-2">Users</label> 
+									</div>
+								</div>
+								<div class="card-body ps-0">
+									<div class>
+										<div class="container">
+                                            <div class="table-responsive">
+                                            <table class="table table-bordered border-bottom" id="example1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Username)
+                                                        </th>
+                                                     
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Email)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.MobileNumber)
+                                                        </th>
+                                                       
+                                                      
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.CreatedAt)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.FirstName)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.LastName)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Gender)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Dob)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Address)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.MaritalStatus)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Hobbies)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Sports)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.ProfilePhoto)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Qualification)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => model.Designation)
+                                                        </th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Username)
+                                                            </td>
+                                                           
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Email)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.MobileNumber)
+                                                            </td>
+                                                         
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.CreatedAt)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.LastName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Gender)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Dob)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Address)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.MaritalStatus)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Hobbies)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Sports)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.ProfilePhoto)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Qualification)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Designation)
+                                                            </td>
+                                                            <td>
+                                                                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> 
+                                                                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                            </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div><!-- col end -->
+						
+					</div><!-- Row end -->
+				</div><!-- col end -->
+			
+			</div><!-- Row end -->
+		</div>
+	</div>
+</div>
