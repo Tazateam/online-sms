@@ -70,7 +70,91 @@
                 <h1 class="fw-bold fs-1 text-center " >Uprage Your Package</h1>
                     <form asp-controller="userdata" asp-action="AddBalance">
                         <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Username" class="form-control" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="MobileNumber" class="form-control" />
+                            <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                        </div>
+                       
+                        <div class="form-group">
+                            <input type="hidden" asp-for="VerificationCode" class="form-control" />
+                            <span asp-validation-for="VerificationCode" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="IsVerified" class="form-control" />
+                            <span asp-validation-for="IsVerified" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
 
+                            <input type="hidden" asp-for="CreatedAt" class="form-control" />
+                            <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="Gender" class="form-control" />
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="Dob" class="form-control" />
+                            <span asp-validation-for="Dob" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="MaritalStatus" class="form-control" />
+                            <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="Hobbies" class="form-control" />
+                            <span asp-validation-for="Hobbies" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="Sports" class="form-control" />
+                            <span asp-validation-for="Sports" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="ProfilePhoto" class="form-control" />
+                            <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="Qualification" class="form-control" />
+                            <span asp-validation-for="Qualification" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" asp-for="Designation" class="form-control" />
+                            <span asp-validation-for="Designation" class="text-danger"></span>
+                        </div>
                         <div class="mb-3">
                             <label asp-for="MsgCount" class="col-form-label">Message Count:</label>
                             <input asp-for="MsgCount" type="number" class="form-control" id="msg-count" required />

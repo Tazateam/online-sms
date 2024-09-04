@@ -17,19 +17,18 @@
 
 
 <div class="main-container" id="container">
-
-    <!-- partial:index.partial.html -->
     <div class="container-fluid clearfix">
         <div class="row" style="padding: 20px;">
         <div class="col-md-4" >
 
         <div class="people-list" id="people-list">
-            <div class="search">
-                <input type="text" placeholder="search" />
-                <i class="fa fa-search"></i>
-            </div>
+                    <div class="search">
+                        <input type="text" id="searchInput" placeholder="search" />
+                        <i class="fa fa-search"></i>
+                    </div>
                     <div id="userList">
-                     
+
+                        <div id="notFound" style="display: none;">No users found</div>
                     </div>
 
         </div>
@@ -120,6 +119,36 @@
 
 
 <script>
+    $(document).ready(function () {
+        const $searchInput = $('#searchInput');
+        const $userListItems = $('#userList .userClick');
+        const $notFoundMessage = $('#notFound');
+
+        $searchInput.on('input', function () {
+            const query = $searchInput.val().toLowerCase();
+            let hasMatch = false;
+
+            $userListItems.each(function () {
+                const $item = $(this);
+                const username = $item.find('.name').text().toLowerCase();
+
+                if (username.includes(query)) {
+                    $item.show();
+                    hasMatch = true;
+                } else {
+                    $item.hide();
+                }
+            });
+
+            if (hasMatch) {
+                $notFoundMessage.hide();
+            } else {
+                $notFoundMessage.show();
+            }
+        });
+    });
+
+
     function ChatRoom(uid, username,img) {
         alert("test");
 

@@ -1,4 +1,5 @@
-﻿@*
+﻿@using System.Security.Claims;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -74,7 +75,7 @@
 
 
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                    <div class="widget widget-account-invoice-two">
+                    <div class="widget widget-account-invoice-two"> 
                         <div class="widget-content">
                             <div class="account-box">
                                 <div class="info">
@@ -82,7 +83,7 @@
                                     <p class="inv-balance">@ViewBag.MSGCOUNT</p>
                                 </div>
                                 <div class="acc-action">                                 
-                                    <a asp-action="AddBalance" asp-controller="userdata">Manage Balance</a>
+                                    <a asp-action="addb" asp-controller="userdata" asp-route-id="@User.FindFirst(ClaimTypes.Sid)?.Value">Manage Balance</a>
                                 </div>
                             </div>
                         </div>

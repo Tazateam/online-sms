@@ -162,43 +162,30 @@ namespace online_sms.Controllers
 		}
 
 
-        [Authorize]
-        public IActionResult AddBalance()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddBalance(User model)
-        {
-            if (!ModelState.IsValid)
+            [Authorize]
+            public IActionResult addb(int id)
             {
-                // Return the same view with validation errors
-                return View(model);
+                var dd = db.Users.Find(id);
+                return View(dd);
             }
-
-            var userId = User.FindFirstValue(ClaimTypes.Sid);
-            var user = await db.Users.FindAsync(Convert.ToInt32(userId));
-
-            if (user == null)
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public async Task<IActionResult> addb(User model)
             {
-                // Handle the case when user is not found
-                return NotFound();
-            }
 
-            // Update only the MsgCount field
-            user.Username = user.Username;
-            user.Password= user.Password;
-            user.MobileNumber = user.MobileNumber;
-            user.Email = user.Email;
 
-            user.MsgCount = model.MsgCount;
 
-            // Save changes to the database
-            await db.SaveChangesAsync();
-
-            // Redirect or return a view as needed
-            return RedirectToAction("Index"); // Adjust as needed
+                var existingUser = db.Users.Find(model.UserId);
+                if (existingUser != null)
+                {
+                    // Update the necessary fields
+                    existingUser.MsgCount = model.MsgCount;
+                    db.Users.Update(existingUser);
+                    // Save changes
+                    db.SaveChanges();
+                }
+              
+                return View();
         }
 
 
