@@ -27,6 +27,7 @@ namespace online_sms.Controllers
         }
 
         // GET: Contacts/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Contacts == null)
@@ -46,6 +47,7 @@ namespace online_sms.Controllers
         }
 
         // GET: Contacts/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
@@ -57,6 +59,7 @@ namespace online_sms.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("ContactId,UserId,FirstName,LastName,ContactNumber")] Contact contact)
         {
             if (ModelState.IsValid)
@@ -69,7 +72,8 @@ namespace online_sms.Controllers
             return View(contact);
         }
 
-        // GET: Contacts/Edit/5
+        // GET: Contacts/Edit/5\
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Contacts == null)
@@ -91,6 +95,7 @@ namespace online_sms.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ContactId,UserId,FirstName,LastName,ContactNumber")] Contact contact)
         {
             if (id != contact.ContactId)
@@ -123,6 +128,7 @@ namespace online_sms.Controllers
         }
 
         // GET: Contacts/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Contacts == null)
@@ -142,6 +148,7 @@ namespace online_sms.Controllers
         }
 
         // POST: Contacts/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

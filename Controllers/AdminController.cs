@@ -10,14 +10,13 @@ namespace online_sms.Controllers
     public class AdminController : Controller
     {
         OnlineMessagesContext db = new OnlineMessagesContext();
-        
 
         public async Task<IActionResult> Index()
         {
             var users = await db.Users.ToListAsync();
             return View(users);
         }
-
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -25,7 +24,8 @@ namespace online_sms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("UserId,Username,Password,Email,MobileNumber,VerificationCode,IsVerified,CreatedAt,FirstName,LastName,Gender,Dob,Address,MaritalStatus,Hobbies,Sports,ProfilePhoto,Qualification,Designation")] User user)
+        [Authorize]
+        public async Task<IActionResult> Create([Bind("UserId,Username,Password,Email,MobileNumber,VerificationCode,IsVerified,CreatedAt,FirstName,LastName,Gender,Dob,Address,MaritalStatus,Hobbies,Sports,ProfilePhoto,Qualification,Designation")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -36,8 +36,9 @@ namespace online_sms.Controllers
             return View(user);
         }
 
-		// GET: Admin/Edit/5
-		public async Task<IActionResult> Edit(int? id)
+        // GET: Admin/Edit/5
+        [Authorize]
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || db.Users == null)
             {
@@ -54,7 +55,8 @@ namespace online_sms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Password,Email,MobileNumber,VerificationCode,IsVerified,CreatedAt,FirstName,LastName,Gender,Dob,Address,MaritalStatus,Hobbies,Sports,ProfilePhoto,Qualification,Designation")] User user)
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Password,Email,MobileNumber,VerificationCode,IsVerified,CreatedAt,FirstName,LastName,Gender,Dob,Address,MaritalStatus,Hobbies,Sports,ProfilePhoto,Qualification,Designation")] User user)
         {
             if (id != user.UserId)
             {
@@ -83,8 +85,9 @@ namespace online_sms.Controllers
             }
             return View(user);
         }
-		
-		public async Task<IActionResult> Delete(int? id)
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || db.Users == null)
             {
@@ -103,8 +106,8 @@ namespace online_sms.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-		
-		public async Task<IActionResult> DeleteConfirmed(int id)
+        [Authorize]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (db.Users == null)
             {
@@ -124,13 +127,15 @@ namespace online_sms.Controllers
         {
             return (db.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
+        [AllowAnonymous]
         public IActionResult Login()
 		{
 			return View();
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Login(Admin adm)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(Admin adm)
 		{
 			if (ModelState.IsValid)
 			{
@@ -152,7 +157,8 @@ namespace online_sms.Controllers
 			
 			return View(adm);
 		}
-		public IActionResult Logout()
+        [Authorize]
+        public IActionResult Logout()
 		{
 			var lgoin = HttpContext.SignOutAsync
 				(CookieAuthenticationDefaults.AuthenticationScheme);
