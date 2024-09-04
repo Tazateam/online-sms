@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "d34qfuyp6vw+T7t4xVVtpfsOiCkbFeZ7GWkMhdEKOCk=",
+  "Hash": "qobfg2iJaw2nj7X9PinNIYUAT7ShhShhFdMWJlHTTmo=",
   "Source": "online-sms",
   "BasePath": "_content/online-sms",
   "Mode": "Default",
@@ -76668,6 +76668,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\admin\\switcher\\js\\switcher.js"
+    },
+    {
+      "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\img\\person.png",
+      "SourceId": "online-sms",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\",
+      "BasePath": "_content/online-sms",
+      "RelativePath": "assets/img/person.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\person.png"
     },
     {
       "Identity": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\banner-bg-14.jpg",

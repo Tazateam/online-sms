@@ -17,41 +17,33 @@
 
 
 <div class="main-container" id="container">
-
-    <!-- partial:index.partial.html -->
     <div class="container-fluid clearfix">
         <div class="row" style="padding: 20px;">
         <div class="col-md-4" >
 
         <div class="people-list" id="people-list">
-            <div class="search">
-                <input type="text" placeholder="search" />
-                <i class="fa fa-search"></i>
-            </div>
+                    <div class="search">
+                        <input type="text" id="searchInput" placeholder="search" />
+                        <i class="fa fa-search"></i>
+                    </div>
                     <div id="userList">
-                       @*  @if (ViewBag.Users != null)
-                        {
-                            foreach (var user in ViewBag.Users)
-                            {
-                                <li class="clearfix userClick" data-userid="@user.UserId" data-username="@user.Username">
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
-                                    <div class="about">
-                                        <div class="name ">@user.Username</div>
-                                        <div class="status">
-                                            <i class="fa fa-circle online"></i> online
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                        } *@
+
+                        <div id="notFound" style="display: none;">No users found</div>
                     </div>
 
         </div>
         </div>
             <div class="col-md-8">
-        <div class="chat">
+                
+                <div class=" align-items-center justify-content-center h-100" id="select_user" style="display:flex;" >
+                    <div>
+                        <h1 class="text-white text-center fw-bold" >Select User</h1>
+                    </div>
+                </div>
+
+        <div class="chat" style="display:none;" >
             <div class="chat-header clearfix">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+                <img src="" width="50px" height="50px" style="border-radius:50%;"  id="userInb" alt="avatar" />
 
                 <div class="chat-about">
                             <div class="chat-with  user_name">Chat with Vincent Porter</div>
@@ -127,10 +119,49 @@
 
 
 <script>
-    function ChatRoom(uid, username) {
+    $(document).ready(function () {
+        const $searchInput = $('#searchInput');
+        const $userListItems = $('#userList .userClick');
+        const $notFoundMessage = $('#notFound');
+
+        $searchInput.on('input', function () {
+            const query = $searchInput.val().toLowerCase();
+            let hasMatch = false;
+
+            $userListItems.each(function () {
+                const $item = $(this);
+                const username = $item.find('.name').text().toLowerCase();
+
+                if (username.includes(query)) {
+                    $item.show();
+                    hasMatch = true;
+                } else {
+                    $item.hide();
+                }
+            });
+
+            if (hasMatch) {
+                $notFoundMessage.hide();
+            } else {
+                $notFoundMessage.show();
+            }
+        });
+    });
+
+
+    function ChatRoom(uid, username,img) {
         alert("test");
 
         $(".user_name").text(username);
+        $(".chat").show();
+        $("#select_user").hide();
+        if (img) {
+            $("#userInb").attr("src", img);
+        } else {
+            $("#userInb").attr("src", '@Url.Content("~/assets/img/person.png")');
+        }
+
+
         $("#receiver-user-id").val(uid);
 
         $.ajax({

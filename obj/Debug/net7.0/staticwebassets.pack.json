@@ -18033,6 +18033,10 @@
       "PackagePath": "staticwebassets\\assets\\admin\\switcher\\js\\switcher.js"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\img\\person.png",
+      "PackagePath": "staticwebassets\\assets\\img\\person.png"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\banner-bg-14.jpg",
       "PackagePath": "staticwebassets\\assets\\user\\banner-bg-14.jpg"
     },

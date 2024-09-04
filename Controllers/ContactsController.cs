@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace online_sms.Controllers
         }
 
         // GET: Contacts
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var onlineMessagesContext = _context.Contacts.Include(c => c.User);
@@ -45,6 +47,7 @@ namespace online_sms.Controllers
         }
 
         // GET: Contacts/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
@@ -69,6 +72,7 @@ namespace online_sms.Controllers
         }
 
         // GET: Contacts/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Contacts == null)
@@ -154,14 +158,14 @@ namespace online_sms.Controllers
             {
                 _context.Contacts.Remove(contact);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContactExists(int id)
         {
-          return (_context.Contacts?.Any(e => e.ContactId == id)).GetValueOrDefault();
+            return (_context.Contacts?.Any(e => e.ContactId == id)).GetValueOrDefault();
         }
     }
 }

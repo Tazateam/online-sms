@@ -13,9 +13,9 @@ using RestSharp;
 using System.Threading.Tasks;
 using Infobip.Api.SDK;
 using Infobip.Api.SDK.SMS.Models;
-
 using System.Collections.Specialized;
 using Microsoft.IdentityModel.Tokens;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace online_sms.Controllers
 {
     public class userdata : Controller
@@ -23,44 +23,94 @@ namespace online_sms.Controllers
         OnlineMessagesContext db = new OnlineMessagesContext();
 
         [Authorize]
+      
         public IActionResult Index()
         {
+            // Retrieve the current user's ID
+            var currentUserId = User.FindFirstValue(ClaimTypes.Sid);
+
+            // Convert the currentUserId to integer
+            int currentUserIdInt = Convert.ToInt32(currentUserId);
+
+            // Fetch the total number of users
+            int totalUsers = db.Users.Count();
+
+            // Fetch the current user's details, including the MsgCount
+            var currentUser = db.Users.FirstOrDefault(u => u.UserId == currentUserIdInt);
+
+            // Fetch the total number of friends for the current user
+            int totalFriends = db.Friends.Count(f => f.UserId == currentUserIdInt || f.FriendUserId == currentUserIdInt);
+
+            // Pass the data to the view
+            ViewBag.TotalFriends = totalFriends;
+            ViewBag.TotalUsers = totalUsers;
+            ViewBag.MSGCOUNT = currentUser?.MsgCount ?? 0; // Use the null-conditional operator to avoid null reference
+
             return View();
         }
+
         [AllowAnonymous]
         public IActionResult Signup()
         {
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
+
+       
         public IActionResult Signup(User enter)
         {
-            var emails = db.Users.FirstOrDefault(Users => Users.Email == enter.Email);
-
-            if (emails == null)
+            try
             {
-                db.Users.Add(enter);
-                db.SaveChanges();
-				return RedirectToAction("Login", "userdata");
+                var emails = db.Users.FirstOrDefault(Users => Users.Email == enter.Email);
 
-			}
-			else
-            {
-                ViewBag.b = "Already Registered";
+                if (emails == null)
+                {
+                    db.Users.Add(enter);
+                    db.SaveChanges();
+
+                    TempData["Message"] = "Signup successful!";
+                    TempData["MessageType"] = "success";
+                    return RedirectToAction("Login", "userdata");
+                }
+                else
+                {
+                    TempData["Message"] = "Email is already registered!";
+                    TempData["MessageType"] = "error";
+                }
             }
+            catch (Exception ex)
+            {
+                // Log the exception if necessary
+                TempData["Message"] = "An error occurred: " + ex.Message;
+                TempData["MessageType"] = "error";
+            }
+
             ViewBag.a = new SelectList(db.Users, "UserId", "Username");
             return View();
         }
+
         [Authorize]
         public IActionResult Profile(int id)
 		{
             var data = db.Users.Where(u => u.UserId == id).FirstOrDefault();
 			ViewBag.Username = data.Username;
 			ViewBag.Image = data.ProfilePhoto;
+			ViewBag.FirstName = data.FirstName;
+			ViewBag.PhoneNum = data.MobileNumber;
+			ViewBag.Email = data.Email;
+			ViewBag.LastName = data.LastName;
+			ViewBag.Gender = data.Gender;
+			ViewBag.Dob = data.Dob;
+			ViewBag.Address = data.Address;
+			ViewBag.MaritalStatus = data.MaritalStatus;
+			ViewBag.Qualification = data.Qualification;
+			ViewBag.Sports = data.Sports;
+			ViewBag.Hobbies = data.Hobbies;
+			ViewBag.Designation = data.Designation;
+
 			return View(data);
           
 
@@ -112,11 +162,36 @@ namespace online_sms.Controllers
 		}
 
 
+            [Authorize]
+            public IActionResult addb(int id)
+            {
+                var dd = db.Users.Find(id);
+                return View(dd);
+            }
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public async Task<IActionResult> addb(User model)
+            {
+
+
+
+                var existingUser = db.Users.Find(model.UserId);
+                if (existingUser != null)
+                {
+                    // Update the necessary fields
+                    existingUser.MsgCount = model.MsgCount;
+                    db.Users.Update(existingUser);
+                    // Save changes
+                    db.SaveChanges();
+                }
+              
+                return View();
+        }
 
 
 
 
-		[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
