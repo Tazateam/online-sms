@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("online-sms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31a0e554b3c78c9160d94a376d5902c3020bb6db")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d71a474377e3c3dd0c8448820a4b9c91faac0224")]
 [assembly: System.Reflection.AssemblyProductAttribute("online-sms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("online-sms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
