@@ -54,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Admin/PackageRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUGFja2FnZVJlcXVlc3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/Contacts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -110,6 +114,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/addb.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcYWRkYi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/AddBalance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcQWRkQmFsYW5jZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -132,6 +140,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/SelectPackage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdXNlcmRhdGFcU2VsZWN0UGFja2FnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Anas brother/OneDrive/Desktop/online-sms/Views/userdata/SendBulkMessage.cshtml]

@@ -1,0 +1,30 @@
+﻿ @model online_sms.Models.Package;
+
+@{
+    ViewBag.Title = "Select Package";
+}
+
+<h2>Select Package</h2>
+
+<form method="post" action="@Url.Action("RequestPackage")">
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+
+    <div>
+        <input type="radio" id="silver" name="PackageType" value="Silver" />
+        <label for="silver">
+            <strong>Silver Package</strong><br />
+            Price: 500 rupees<br />
+            Messages: 50
+        </label>
+    </div>
+    <div>
+        <input type="radio" id="premium" name="PackageType" value="Premium" />
+        <label for="premium">
+            <strong>Premium Package</strong><br />
+            Price: 1000 rupees<br />
+            Messages: 100
+        </label>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+ 

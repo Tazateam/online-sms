@@ -164,6 +164,63 @@ namespace online_sms.Controllers
 				(CookieAuthenticationDefaults.AuthenticationScheme);
 			return RedirectToAction("login", "Admin");
 		}
-	}
+        public async Task<IActionResult> PackageRequests()
+        {
+            // Fetch all package requests from the database
+            var requests = await db.PackageRequests
+                .Include(r => r.User) // Include related User data if needed
+                .ToListAsync();
+
+            // Pass the requests to the view
+            return View(requests);
+        }
+
+        // Action to approve a package request
+        public async Task<IActionResult> ApproveRequest(int id)
+        {
+            // Find the package request by ID
+            var request = await db.PackageRequests.FindAsync(id);
+            if (request == null)
+            {
+                return NotFound(); // Handle case where request is not found
+            }
+
+            // Find the user associated with the request
+            var user = await db.Users.FindAsync(request.UserId);
+            if (user == null)
+            {
+                return NotFound(); // Handle case where user is not found
+            }
+
+            // Update user's message count based on package type
+            if (request.PackageType == "Silver")
+            {
+                user.MsgCount = 50;
+            }
+            else if (request.PackageType == "Premium")
+            {
+                user.MsgCount = 100;
+            }
+            else
+            {
+                return BadRequest("Invalid package type"); // Handle unexpected package type
+            }
+
+            // Update user package type and status
+            user.PackageType = request.PackageType;
+            db.Users.Update(user);
+
+            // Update request status
+            request.Status = "Approved";
+            db.PackageRequests.Update(request);
+
+            // Save changes to the database
+            await db.SaveChangesAsync();
+
+            // Redirect to the list of package requests
+            return RedirectToAction("PackageRequests");
+        }
+
+    }
 }
     

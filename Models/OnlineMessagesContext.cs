@@ -25,6 +25,10 @@ public partial class OnlineMessagesContext : DbContext
 
     public virtual DbSet<Message> Messages { get; set; }
 
+    public virtual DbSet<Package> Packages { get; set; }
+
+    public virtual DbSet<PackageRequest> PackageRequests { get; set; }
+
     public virtual DbSet<Service> Services { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -33,13 +37,13 @@ public partial class OnlineMessagesContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=.;initial catalog=Online_Messages;user id=sa;password=aptech; TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("data source=DESKTOP-DIBKE47\\SQLEXPRESS;initial catalog=Online_Messages;user id=sa;password=anas; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Admin>(entity =>
         {
-            entity.HasKey(e => e.AdminId).HasName("PK__Admin__719FE4E848C70250");
+            entity.HasKey(e => e.AdminId).HasName("PK__Admin__719FE4E89A1C964B");
 
             entity.ToTable("Admin");
 
@@ -50,7 +54,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB15080F35");
+            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB17692F70");
 
             entity.Property(e => e.ContactId).HasColumnName("ContactID");
             entity.Property(e => e.ContactNumber).HasMaxLength(15);
@@ -60,12 +64,12 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Contacts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Contacts__UserID__3A81B327");
+                .HasConstraintName("FK__Contacts__UserID__60A75C0F");
         });
 
         modelBuilder.Entity<ContactU>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ContactU__3214EC07B9702790");
+            entity.HasKey(e => e.Id).HasName("PK__ContactU__3214EC07FF118B3F");
 
             entity.ToTable("ContactU");
 
@@ -89,7 +93,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC2773C95287");
+            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC27E5C95D3F");
 
             entity.HasIndex(e => new { e.UserId, e.FriendUserId }, "UQ_UserFriend").IsUnique();
 
@@ -113,7 +117,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037C1DCD6A6A");
+            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037CD9F4066C");
 
             entity.Property(e => e.MessageId).HasColumnName("MessageID");
             entity.Property(e => e.MessageText).HasMaxLength(120);
@@ -126,12 +130,42 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.SenderUser).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.SenderUserId)
-                .HasConstraintName("FK__Messages__Sender__3D5E1FD2");
+                .HasConstraintName("FK__Messages__Sender__6383C8BA");
+        });
+
+        modelBuilder.Entity<Package>(entity =>
+        {
+            entity.HasKey(e => e.PackageId).HasName("PK__Packages__322035CC511D655C");
+
+            entity.Property(e => e.PackageName).HasMaxLength(50);
+            entity.Property(e => e.PackagePrice).HasColumnType("decimal(10, 2)");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Packages)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__Packages__UserId__72C60C4A");
+        });
+
+        modelBuilder.Entity<PackageRequest>(entity =>
+        {
+            entity.HasKey(e => e.RequestId).HasName("PK__PackageR__33A8517A2A328F31");
+
+            entity.Property(e => e.PackageType).HasMaxLength(50);
+            entity.Property(e => e.RequestDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("('Pending')");
+
+            entity.HasOne(d => d.User).WithMany(p => p.PackageRequests)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__PackageRe__UserI__71D1E811");
         });
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA62A862EE");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA802406DE");
 
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
@@ -141,13 +175,13 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC4D0FE2CF");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACA8DA3A55");
 
-            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1DA0565FE").IsUnique();
+            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B137163BA3").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Users__536C85E4D695DC2D").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__536C85E4CABC4AED").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D105349F5630FD").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D105349F9C5FF4").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Address).HasMaxLength(255);
@@ -167,6 +201,7 @@ public partial class OnlineMessagesContext : DbContext
             entity.Property(e => e.MaritalStatus).HasMaxLength(20);
             entity.Property(e => e.MobileNumber).HasMaxLength(15);
             entity.Property(e => e.MsgCount).HasDefaultValueSql("((2))");
+            entity.Property(e => e.PackageType).HasMaxLength(50);
             entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.Qualification).HasMaxLength(255);
             entity.Property(e => e.Sports).HasMaxLength(255);
@@ -176,7 +211,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<UserService>(entity =>
         {
-            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF9FF0B7DFA");
+            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF94E673098");
 
             entity.Property(e => e.UserServiceId).HasColumnName("UserServiceID");
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
@@ -187,11 +222,11 @@ public partial class OnlineMessagesContext : DbContext
 
             entity.HasOne(d => d.Service).WithMany(p => p.UserServices)
                 .HasForeignKey(d => d.ServiceId)
-                .HasConstraintName("FK__UserServi__Servi__3E52440B");
+                .HasConstraintName("FK__UserServi__Servi__6477ECF3");
 
             entity.HasOne(d => d.User).WithMany(p => p.UserServices)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__UserServi__UserI__3F466844");
+                .HasConstraintName("FK__UserServi__UserI__656C112C");
         });
 
         OnModelCreatingPartial(modelBuilder);
