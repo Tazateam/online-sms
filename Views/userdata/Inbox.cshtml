@@ -17,19 +17,21 @@
 
 
 <div class="main-container" id="container">
+
+    <!-- partial:index.partial.html -->
     <div class="container-fluid clearfix">
         <div class="row" style="padding: 20px;">
         <div class="col-md-4" >
 
         <div class="people-list" id="people-list">
-                    <div class="search">
-                        <input type="text" id="searchInput" placeholder="search" />
-                        <i class="fa fa-search"></i>
-                    </div>
+            <div class="search">
+                <input type="text" placeholder="search" />
+                <i class="fa fa-search"></i>
+            </div>
                     <div id="userList">
-
-                        <div id="notFound" style="display: none;">No users found</div>
+                     
                     </div>
+
 
         </div>
         </div>
@@ -116,36 +118,35 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 <script>
+
     $(document).ready(function () {
-        const $searchInput = $('#searchInput');
-        const $userListItems = $('#userList .userClick');
-        const $notFoundMessage = $('#notFound');
+        function filterUsers() {
+            var query = $('.search input').val().toLowerCase();
+            var resultsFound = false;
 
-        $searchInput.on('input', function () {
-            const query = $searchInput.val().toLowerCase();
-            let hasMatch = false;
-
-            $userListItems.each(function () {
-                const $item = $(this);
-                const username = $item.find('.name').text().toLowerCase();
-
+            $('#userList .list-group .userClick').each(function () {
+                var username = $(this).find('.name').text().toLowerCase();
                 if (username.includes(query)) {
-                    $item.show();
-                    hasMatch = true;
+                    $(this).show();
+                    resultsFound = true;
                 } else {
-                    $item.hide();
+                    $(this).hide();
                 }
             });
 
-            if (hasMatch) {
-                $notFoundMessage.hide();
+            // Show or hide the "No users found" message
+            if (resultsFound) {
+                $('.no-results').hide();
             } else {
-                $notFoundMessage.show();
+                $('.no-results').show();
             }
-        });
+        }
+
+        $('.search input').on('keyup', filterUsers);
     });
 
 
@@ -340,8 +341,9 @@
             }
         });
     }
+    fetchFriend();
     setInterval(() => {
-        fetchFriend();
+   
         fetchMesg();
     }, 2000)
         

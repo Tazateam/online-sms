@@ -1,7 +1,4 @@
 ﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
 
 
 
@@ -9,18 +6,19 @@
 <ul class="list-group">
     @foreach (var contact in Model)
     {
-        <li class="clearfix userClick d-flex align-items-center p-2"
-            style="background:#0a1726 !important;border-radius:8px;"
+        <li class="clearfix userClick  align-items-center p-2"
+            style="background:#0a1726 !important;border-radius:8px;display:flex;"
             onclick="ChatRoom(@contact.UserId, '@contact.Username','@contact.ProfilePhoto')"
             data-userid="@contact.UserId"
             data-username="@contact.Username">
             <img src="@(string.IsNullOrEmpty(contact.ProfilePhoto) ? Url.Content("~/assets/img/person.png") : contact.ProfilePhoto)" width="40px" height="40px" style="border-radius:50%;" alt="avatar" />
             <div class="about">
-                <div class="name  " style="cursor:pointer;" >@contact.Username</div>
+                <div class="name">@contact.Username</div>
                 <div class="status">
                     <i class="fa fa-circle online"></i> online
                 </div>
             </div>
         </li>
     }
+    <div class="no-results text-center"  style="display:none;" >No users found</div>
 </ul>

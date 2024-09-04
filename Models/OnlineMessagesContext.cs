@@ -39,7 +39,7 @@ public partial class OnlineMessagesContext : DbContext
     {
         modelBuilder.Entity<Admin>(entity =>
         {
-            entity.HasKey(e => e.AdminId).HasName("PK__Admin__719FE4E8F5AE691E");
+            entity.HasKey(e => e.AdminId).HasName("PK__Admin__719FE4E848C70250");
 
             entity.ToTable("Admin");
 
@@ -50,7 +50,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BBB6953286");
+            entity.HasKey(e => e.ContactId).HasName("PK__Contacts__5C6625BB15080F35");
 
             entity.Property(e => e.ContactId).HasColumnName("ContactID");
             entity.Property(e => e.ContactNumber).HasMaxLength(15);
@@ -65,7 +65,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<ContactU>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ContactU__3214EC0735077AF5");
+            entity.HasKey(e => e.Id).HasName("PK__ContactU__3214EC07B9702790");
 
             entity.ToTable("ContactU");
 
@@ -89,7 +89,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC27DBB77F0E");
+            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC2773C95287");
 
             entity.HasIndex(e => new { e.UserId, e.FriendUserId }, "UQ_UserFriend").IsUnique();
 
@@ -113,7 +113,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037C844F1AB0");
+            entity.HasKey(e => e.MessageId).HasName("PK__Messages__C87C037C1DCD6A6A");
 
             entity.Property(e => e.MessageId).HasColumnName("MessageID");
             entity.Property(e => e.MessageText).HasMaxLength(120);
@@ -131,7 +131,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA301877F6");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB0EA62A862EE");
 
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
@@ -141,13 +141,13 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC7EDE7D8B");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC4D0FE2CF");
 
-            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1B530B6F3").IsUnique();
+            entity.HasIndex(e => e.MobileNumber, "UQ__Users__250375B1DA0565FE").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Users__536C85E415B8EF06").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__536C85E4D695DC2D").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534BF9F4AA4").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D105349F5630FD").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.Address).HasMaxLength(255);
@@ -176,7 +176,7 @@ public partial class OnlineMessagesContext : DbContext
 
         modelBuilder.Entity<UserService>(entity =>
         {
-            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF9B171A380");
+            entity.HasKey(e => e.UserServiceId).HasName("PK__UserServ__C737CAF9FF0B7DFA");
 
             entity.Property(e => e.UserServiceId).HasColumnName("UserServiceID");
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
