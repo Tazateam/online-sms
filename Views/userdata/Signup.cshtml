@@ -34,20 +34,7 @@
 
 </head>
 <body>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function () {
-            var message = '@TempData["Message"]';
-            var messageType = '@TempData["MessageType"]';
 
-            if (message) {
-                Swal.fire({
-                    icon: messageType,
-                    title: messageType === 'success' ? 'Success' : 'Error',
-                    text: message
-                });
-            }
-        });
-    </script>
     <div class="main">
 
         <div class="account-section bg_img">

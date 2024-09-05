@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XkGCnYWs6ONgRHhhJuOFXeExf6o7VUoaPdkHqt7No6M=",
+  "Hash": "imKkN6hfqNkKhpV5Tkw5ERcSzte16d6ZG/l3InO/NzU=",
   "Source": "online-sms",
   "BasePath": "_content/online-sms",
   "Mode": "Default",
@@ -85743,6 +85743,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\logo.png"
+    },
+    {
+      "Identity": "D:\\online-sms\\wwwroot\\assets\\img\\person.png",
+      "SourceId": "online-sms",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\online-sms\\wwwroot\\",
+      "BasePath": "_content/online-sms",
+      "RelativePath": "assets/img/person.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\person.png"
     },
     {
       "Identity": "D:\\online-sms\\wwwroot\\assets\\img\\Tasheen Raza.jpeg",

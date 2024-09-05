@@ -53,7 +53,7 @@
 					<a class="main-header-menu-icon" href="javascript:void(0)" id="mainSidebarToggle"><span></span></a>
 					<div class="hor-logo">
 						<a class="main-logo" href="index.html">
-							<img src="../assets/img/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+							<img src="~/assets/img/logo.png" class="header-brand-img desktop-logo" alt="logo">
 							<img src="../assets/img/brand/logo-light.png" class="header-brand-img desktop-logo-dark"
 								 alt="logo">
 						</a>
@@ -98,7 +98,7 @@
 									<a class="d-flex" href="javascript:void(0)">
 										<span class="main-img-user">
 											<img alt="avatar"
-												 src="~/assets/admin/img/users/1.jpg">
+												 src="~/assets/img/person.png">
 										</span>
 									</a>
 									<div class="dropdown-menu">
@@ -125,9 +125,9 @@
 			<div class="main-menu main-sidebar main-sidebar-sticky side-menu">
 				<div class="main-sidebar-header main-container-1 active">
 					<div class="sidemenu-logo">
-						<a class="main-logo" href="index.html">
-							<img src="../assets/img/brand/logo-light.png" class="header-brand-img desktop-logo" alt="logo">
-							<img src="../assets/img/brand/icon-light.png" class="header-brand-img icon-logo" alt="logo">
+						<a class="main-logo">
+							<img src="~/assets/img/logo.png" class="header-brand-img desktop-logo"style="width:80px" alt="logo">
+							<img src="../assets/img/brand/icon-light.png" class="header-brand-img icon-logo" Salt="logo">
 							<img src="../assets/img/brand/logo.png" class="header-brand-img desktop-logo theme-logo" alt="logo">
 							<img src="../assets/img/brand/icon.png" class="header-brand-img icon-logo theme-logo" alt="logo">
 						</a>
@@ -148,8 +148,16 @@
 								<a class="nav-link" href="@Url.Action("Index", "Contacts")">
 									<span class="shape1"></span>
 									<span class="shape2"></span>
-									<i class="ti-home sidemenu-icon menu-icon "></i>
+									<i class="ti-user sidemenu-icon menu-icon "></i>
 									<span class="sidemenu-label">Contacts</span>
+								</a>
+							</li>
+								<li class="nav-item">
+								<a class="nav-link" href="@Url.Action("PackageRequests", "Admin")">
+									<span class="shape1"></span>
+									<span class="shape2"></span>
+									<i class="ti-credit-card sidemenu-icon menu-icon "></i>
+									<span class="sidemenu-label">Package Requests</span>
 								</a>
 							</li>
 						</ul>
