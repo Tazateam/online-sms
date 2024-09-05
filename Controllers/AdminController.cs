@@ -175,7 +175,6 @@ namespace online_sms.Controllers
             return View(requests);
         }
 
-        // Action to approve a package request
         public async Task<IActionResult> ApproveRequest(int id)
         {
             // Find the package request by ID
@@ -220,6 +219,7 @@ namespace online_sms.Controllers
             // Redirect to the list of package requests
             return RedirectToAction("PackageRequests");
         }
+
 
     }
 }

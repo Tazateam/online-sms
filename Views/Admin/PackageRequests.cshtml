@@ -1,12 +1,12 @@
-﻿@*  @model online_sms.Models.PackageRequest;
+﻿@model IEnumerable<online_sms.Models.PackageRequest>
 
-    @{
-        ViewBag.Title = "Package Requests";
-    }
+@{
+    ViewData["Title"] = "Package Requests";
+}
 
-    <h2>Package Requests</h2>
+<h1>Package Requests</h1>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>User ID</th>
@@ -24,10 +24,10 @@
                 <tr>
                     <td>@request.UserId</td>
                     <td>@request.PackageType</td>
-                    <td>@request.RequestDate.ToString("yyyy-MM-dd")</td> <!-- Formatting date -->
+                    <td>@request.RequestDate.ToString("yyyy-MM-dd")</td>
                     <td>@request.Status</td>
                     <td>
-                        <a href="@Url.Action("ApproveRequest", new { id = request.RequestId })">Approve</a>
+                        <a href="@Url.Action("ApproveRequest", new { id = request.RequestId })" class="btn btn-primary">Approve</a>
                     </td>
                 </tr>
             }
@@ -35,9 +35,8 @@
         else
         {
             <tr>
-                <td colspan="5">No requests found.</td> <!-- Message when no requests are available -->
+                <td colspan="5">No requests found.</td>
             </tr>
         }
     </tbody>
 </table>
- *@
