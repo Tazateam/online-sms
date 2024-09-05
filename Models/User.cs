@@ -45,6 +45,8 @@ public partial class User
 
     public string? Designation { get; set; }
 
+    public string? PackageType { get; set; }
+
     public virtual ICollection<Contact> Contacts { get; set; } = new List<Contact>();
 
     public virtual ICollection<Friend> FriendFriendUsers { get; set; } = new List<Friend>();
@@ -52,6 +54,10 @@ public partial class User
     public virtual ICollection<Friend> FriendUsers { get; set; } = new List<Friend>();
 
     public virtual ICollection<Message> Messages { get; set; } = new List<Message>();
+
+    public virtual ICollection<PackageRequest> PackageRequests { get; set; } = new List<PackageRequest>();
+
+    public virtual ICollection<Package> Packages { get; set; } = new List<Package>();
 
     public virtual ICollection<UserService> UserServices { get; set; } = new List<UserService>();
 }

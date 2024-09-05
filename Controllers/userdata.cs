@@ -24,7 +24,7 @@ namespace online_sms.Controllers
         OnlineMessagesContext db = new OnlineMessagesContext();
 
         [Authorize]
-      
+
         public IActionResult Index()
         {
             // Retrieve the current user's ID
@@ -60,7 +60,7 @@ namespace online_sms.Controllers
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
 
-       
+
         public IActionResult Signup(User enter)
         {
             try
@@ -97,102 +97,118 @@ namespace online_sms.Controllers
 
         [Authorize]
         public IActionResult Profile(int id)
-		{
+        {
             var data = db.Users.Where(u => u.UserId == id).FirstOrDefault();
-			ViewBag.Username = data.Username;
-			ViewBag.Image = data.ProfilePhoto;
-			ViewBag.FirstName = data.FirstName;
-			ViewBag.PhoneNum = data.MobileNumber;
-			ViewBag.Email = data.Email;
-			ViewBag.LastName = data.LastName;
-			ViewBag.Gender = data.Gender;
-			ViewBag.Dob = data.Dob;
-			ViewBag.Address = data.Address;
-			ViewBag.MaritalStatus = data.MaritalStatus;
-			ViewBag.Qualification = data.Qualification;
-			ViewBag.Sports = data.Sports;
-			ViewBag.Hobbies = data.Hobbies;
-			ViewBag.Designation = data.Designation;
+            ViewBag.Username = data.Username;
+            ViewBag.Image = data.ProfilePhoto;
+            ViewBag.FirstName = data.FirstName;
+            ViewBag.PhoneNum = data.MobileNumber;
+            ViewBag.Email = data.Email;
+            ViewBag.LastName = data.LastName;
+            ViewBag.Gender = data.Gender;
+            ViewBag.Dob = data.Dob;
+            ViewBag.Address = data.Address;
+            ViewBag.MaritalStatus = data.MaritalStatus;
+            ViewBag.Qualification = data.Qualification;
+            ViewBag.Sports = data.Sports;
+            ViewBag.Hobbies = data.Hobbies;
+            ViewBag.Designation = data.Designation;
 
-			return View(data);
-          
+            return View(data);
+
 
         }
 
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		[Authorize]
-		public IActionResult Profile(User us, IFormFile ProfilePhoto)
-		{
-			var data = db.Users.Where(u => u.UserId == us.UserId).FirstOrDefault();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public IActionResult Profile(User us, IFormFile ProfilePhoto)
+        {
+            var data = db.Users.Where(u => u.UserId == us.UserId).FirstOrDefault();
 
-			if (data != null)
-			{
-				// Update other fields
-				data.FirstName = us.FirstName;
-				data.LastName = us.LastName;
-				data.Gender = us.Gender;
-				data.Dob = us.Dob;
-				data.Address = us.Address;
-				data.MaritalStatus = us.MaritalStatus;
-				data.Qualification = us.Qualification;
-				data.Sports = us.Sports;
-				data.Hobbies = us.Hobbies;
-				data.Designation = us.Designation;
-
-				// Handle Profile Photo Upload
-				if (ProfilePhoto != null && ProfilePhoto.Length > 0)
-				{
-					// Generate a unique filename using the user's ID
-					var fileName = $"{us.UserId}_{Path.GetFileName(ProfilePhoto.FileName)}";
-					var filePath = Path.Combine("wwwroot", "assets", "userimages", fileName);
-
-					// Save the file to the server
-					using (var stream = new FileStream(filePath, FileMode.Create))
-					{
-						ProfilePhoto.CopyTo(stream);
-					}
-
-					// Update the profile photo path in the database
-					data.ProfilePhoto = $"/assets/userimages/{fileName}";
-				}
-
-				db.SaveChanges();
-			}
-
-			return RedirectToAction("Profile");
-		}
-
-
-            [Authorize]
-            public IActionResult addb(int id)
+            if (data != null)
             {
-                var dd = db.Users.Find(id);
-                return View(dd);
-            }
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public async Task<IActionResult> addb(User model)
-            {
+                // Update other fields
+                data.FirstName = us.FirstName;
+                data.LastName = us.LastName;
+                data.Gender = us.Gender;
+                data.Dob = us.Dob;
+                data.Address = us.Address;
+                data.MaritalStatus = us.MaritalStatus;
+                data.Qualification = us.Qualification;
+                data.Sports = us.Sports;
+                data.Hobbies = us.Hobbies;
+                data.Designation = us.Designation;
 
-
-
-                var existingUser = db.Users.Find(model.UserId);
-                if (existingUser != null)
+                // Handle Profile Photo Upload
+                if (ProfilePhoto != null && ProfilePhoto.Length > 0)
                 {
-                    // Update the necessary fields
-                    existingUser.MsgCount = model.MsgCount;
-                    db.Users.Update(existingUser);
-                    // Save changes
-                    db.SaveChanges();
+                    // Generate a unique filename using the user's ID
+                    var fileName = $"{us.UserId}_{Path.GetFileName(ProfilePhoto.FileName)}";
+                    var filePath = Path.Combine("wwwroot", "assets", "userimages", fileName);
+
+                    // Save the file to the server
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        ProfilePhoto.CopyTo(stream);
+                    }
+
+                    // Update the profile photo path in the database
+                    data.ProfilePhoto = $"/assets/userimages/{fileName}";
                 }
-              
-                return View();
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Profile");
         }
 
 
+        [Authorize]
+        public IActionResult SelectPackage(int id)
+        {
+            var user = db.Users.Find(id);
+            if (user == null || user.MsgCount > 0)
+            {
+                return RedirectToAction("Index"); // Redirect if not applicable
+            }
 
+            var viewModel = new Package { UserId = id };
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RequestPackage(PackageRequest model)
+        {
+            var user = db.Users.Find(model.UserId);
+            if (user != null)
+            {
+                // Save package request details
+                var packageRequest = new PackageRequest
+                {
+                    UserId = model.UserId,
+                    PackageType = model.PackageType,
+                    RequestDate = DateTime.Now,
+                    Status = "Pending"
+                };
+
+                //db.PackageRequests.Add(packageRequest);
+                await db.SaveChangesAsync();
+
+                // Optionally, notify the admin about the request here
+
+                return RedirectToAction("Index");
+            }
+            return View("Error"); // Display an error view if the user is not found
+        }
+
+        public IActionResult Confirmation()
+        {
+            return View();
+        }
 
         [AllowAnonymous]
         public IActionResult Login()
@@ -209,7 +225,7 @@ namespace online_sms.Controllers
             string encryptedPassword = passwordHash.ConvertToEncrypt(logg.Password);
 
             // Check if the encrypted password matches the stored encrypted password
-            var user = db.Users.FirstOrDefault(x => x.Email == logg.Email && x.Password == encryptedPassword);
+            var user = db.Users.FirstOrDefault(x => x.Email == logg.Email && x.Password == logg.Password);
 
             if (user != null)
             {

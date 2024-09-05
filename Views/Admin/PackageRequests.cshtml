@@ -1,0 +1,90 @@
+﻿@model IEnumerable<online_sms.Models.PackageRequest>
+
+@{
+    ViewData["Title"] = "Package Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Package Requests</h1>
+
+
+<div class="main-content side-content pt-0">
+    <div class="main-container container-fluid">
+        <div class="inner-body">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h2 class="main-content-title tx-24 mg-b-5">Welcome To Dashboard</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Page Header -->
+            <!--Row-->
+            <div class="row row-sm">
+                <div class="col-sm-12 col-lg-12 col-xl-12">
+
+                    <!--row-->
+                    <div class="row row-sm">
+                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                            <div class="card custom-card overflow-hidden">
+                                <div class="card-header border-bottom-0">
+                                    <div>
+                                        <label class="main-content-label mb-2">Users</label>
+                                    </div>
+                                </div>
+                                <div class="card-body ps-0">
+                                    <div class>
+                                        <div class="container">
+                                            <div class="table-responsive">
+                                                <table class="table" id="example1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>User ID</th>
+                                                            <th>Package Type</th>
+                                                            <th>Request Date</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model != null && Model.Any())
+                                                        {
+                                                            @foreach (var request in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@request.UserId</td>
+                                                                    <td>@request.PackageType</td>
+                                                                    <td>@request.RequestDate.ToString("yyyy-MM-dd")</td>
+                                                                    <td>@request.Status</td>
+                                                                    <td>
+                                                                        <a href="@Url.Action("ApproveRequest", new { id = request.RequestId })" class="btn btn-primary">Approve</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td colspan="5">No requests found.</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- col end -->
+
+                    </div><!-- Row end -->
+                </div><!-- col end -->
+
+            </div><!-- Row end -->
+        </div>
+    </div>
+</div>
