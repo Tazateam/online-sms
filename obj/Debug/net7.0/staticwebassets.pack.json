@@ -18053,6 +18053,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\logo.png"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\img\\person.png",
+      "PackagePath": "staticwebassets\\assets\\img\\person.png"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\user\\banner-bg-14.jpg",
       "PackagePath": "staticwebassets\\assets\\user\\banner-bg-14.jpg"
     },
@@ -19149,6 +19153,14 @@
       "PackagePath": "staticwebassets\\assets\\user\\plugins\\sweetalerts\\sweetalert2.min.js"
     },
     {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\userimages\\11_Screenshot (4).png",
+      "PackagePath": "staticwebassets\\assets\\userimages\\11_Screenshot (4).png"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\userimages\\12_Screenshot (4).png",
+      "PackagePath": "staticwebassets\\assets\\userimages\\12_Screenshot (4).png"
+    },
+    {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\userimages\\2_Screenshot_2024_0828_171026.png",
       "PackagePath": "staticwebassets\\assets\\userimages\\2_Screenshot_2024_0828_171026.png"
     },
@@ -19167,6 +19179,14 @@
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\userimages\\5_Areeb Shakil.jpeg",
       "PackagePath": "staticwebassets\\assets\\userimages\\5_Areeb Shakil.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\userimages\\6_446468222_369889629402681_6114789165436794533_n.jpg",
+      "PackagePath": "staticwebassets\\assets\\userimages\\6_446468222_369889629402681_6114789165436794533_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\assets\\userimages\\8_Screenshot (1).png",
+      "PackagePath": "staticwebassets\\assets\\userimages\\8_Screenshot (1).png"
     },
     {
       "Id": "C:\\Users\\asp\\Desktop\\online-sms\\wwwroot\\css\\site.css",

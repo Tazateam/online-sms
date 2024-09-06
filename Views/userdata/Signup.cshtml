@@ -34,27 +34,14 @@
 
 </head>
 <body>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function () {
-            var message = '@TempData["Message"]';
-            var messageType = '@TempData["MessageType"]';
 
-            if (message) {
-                Swal.fire({
-                    icon: messageType,
-                    title: messageType === 'success' ? 'Success' : 'Error',
-                    text: message
-                });
-            }
-        });
-    </script>
     <div class="main">
 
         <div class="account-section bg_img">
             <div class="container">
                 <div class="account-wrapper">
                     <div class="account-header" style="padding:0;">
-                        <h4 class="title">Start Sending SMS</h4>
+                        <h4 class="title">Registration</h4>
                     </div>
                     <div class="account-body">
                         <form  asp-action="Signup"class="account-form" >

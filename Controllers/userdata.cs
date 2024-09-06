@@ -16,6 +16,7 @@ using Infobip.Api.SDK.SMS.Models;
 using System.Collections.Specialized;
 using Microsoft.IdentityModel.Tokens;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using online_sms.commonMethod;
 namespace online_sms.Controllers
 {
     public class userdata : Controller
@@ -68,6 +69,8 @@ namespace online_sms.Controllers
 
                 if (emails == null)
                 {
+                    enter.Password = passwordHash.ConvertToEncrypt(enter.Password);
+
                     db.Users.Add(enter);
                     db.SaveChanges();
 
@@ -197,7 +200,7 @@ namespace online_sms.Controllers
 
                 // Optionally, notify the admin about the request here
 
-                return RedirectToAction("Confirmation");
+                return RedirectToAction("Index");
             }
             return View("Error"); // Display an error view if the user is not found
         }
@@ -218,14 +221,18 @@ namespace online_sms.Controllers
         [AllowAnonymous]
         public IActionResult Login(User logg)
         {
-            var user = db.Users.FirstOrDefault(x => x.Email == logg.Email && x.Password == logg.Password);
+            // Encrypt the entered password
+            string encryptedPassword = passwordHash.ConvertToEncrypt(logg.Password);
+
+            // Check if the encrypted password matches the stored encrypted password
+            var user = db.Users.FirstOrDefault(x => x.Email == logg.Email && x.Password == encryptedPassword);
 
             if (user != null)
             {
                 var identity = new ClaimsIdentity(new[] {
             new Claim(ClaimTypes.Email, logg.Email),
-			new Claim(ClaimTypes.Name, user.Username),
-			new Claim(ClaimTypes.Sid, user.UserId.ToString())
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Sid, user.UserId.ToString())
         }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 var principal = new ClaimsPrincipal(identity);
@@ -235,8 +242,12 @@ namespace online_sms.Controllers
                 return RedirectToAction("Index", "userdata");
             }
 
+            // Handle login failure
+            TempData["Message"] = "Invalid email or password!";
+            TempData["MessageType"] = "error";
             return View();
         }
+
         [Authorize]
         public IActionResult Logout()
         {
@@ -552,8 +563,10 @@ namespace online_sms.Controllers
 
 			var configuration = new ApiClientConfiguration(
 				"https://e1vz92.api.infobip.com",
-				"885fffbc32d196549cca81fb05d8c71c-0accd86b-4ec5-4f27-8f7a-f0e1e9e515aa"
-			);
+                "944f561386ea87f55cee889f1d8ce547-8e4ce293-1a31-4566-84f7-23f150a89bcf"
+            //944f561386ea87f55cee889f1d8ce547 - 8e4ce293 - 1a31 - 4566 - 84f7 - 23f150a89bcf
+            //944f561386ea87f55cee889f1d8ce547-8e4ce293-1a31-4566-84f7-23f150a89bcf
+            );
 			var client = new InfobipApiClient(configuration);
 
 			var destination = new SmsDestination(to: reciverNumber);

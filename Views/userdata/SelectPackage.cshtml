@@ -1,30 +1,128 @@
-﻿ @model online_sms.Models.Package;
+﻿@using System.Security.Claims
+ @model online_sms.Models.Package;
 
 @{
     ViewBag.Title = "Select Package";
+    Layout = null;
 }
 
-<h2>Select Package</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="post" action="@Url.Action("RequestPackage")">
-    <input type="hidden" name="UserId" value="@Model.UserId" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Dashboard | TAZA SMS</title>
+    <link href="~/assets/user/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="~/assets/user/js/loader.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="~/assets/user/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/user/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/css/elements/tooltip.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/user/css/elements/alert.css">
+    <link href="~/assets/user/css/users/account-setting.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/3aeca4f384.js" crossorigin="anonymous"></script>
+    <script src="~/assets/user/plugins/sweetalerts/promise-polyfill.js"></script>
+    <link href="~/assets/user/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/user/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/user/plugins/bootstrap-select/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <!-- Select2 css  -->
+    <link href="~/assets/user/plugins/select2/css/select2.min.css" rel="stylesheet">
+    <!-- Internal Gallery css-->
+    <link href="~/assets/user/plugins/gallery/gallery.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/user/css/dashboard/chat.css">
+    <style>
+        .apexcharts-tooltip {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container">
+        <header class="header navbar navbar-expand-sm">
 
-    <div>
-        <input type="radio" id="silver" name="PackageType" value="Silver" />
-        <label for="silver">
-            <strong>Silver Package</strong><br />
-            Price: 500 rupees<br />
-            Messages: 50
-        </label>
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
+            <div class="nav-logo align-self-center">
+                <a class="navbar-brand" asp-action="Index">
+
+                    <img alt="logo" src="~/assets/img/logo.png" style="width:auto; max-width:150px; height:auto;" alt="TAZA SMS">
+                </a>
+            </div>
+
+            <ul class="navbar-item flex-row mr-auto">
+            </ul>
+
+            <ul class="navbar-item flex-row nav-dropdowns">
+
+
+                <li class="nav-item dropdown user-profile-dropdown order-lg-0 order-1">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media">
+                            <div class="media-body align-self-center">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <h6><span>Welcome, @User.FindFirst(ClaimTypes.Name)?.Value</span></h6>
+                                }
+                            </div>
+                        </div>
+                </li>
+            </ul>
+        </header>
     </div>
-    <div>
-        <input type="radio" id="premium" name="PackageType" value="Premium" />
-        <label for="premium">
-            <strong>Premium Package</strong><br />
-            Price: 1000 rupees<br />
-            Messages: 100
-        </label>
+    <div class="main-container" id="container">
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing d-flex align-items-center justify-content-center">
+
+                <div style="
+    background: #171e3a;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px -1px gray;">
+                    <h1 class="fw-bold fs-1 text-center ">Select Package</h1>
+                    <form method="post" asp-action="RequestPackage" asp-controller="userdata" >
+                        <input type="hidden" name="UserId" value="@Model.UserId" />
+
+                        <div>
+                            <input type="radio" id="silver" name="PackageType" value="Silver" />
+                            <label for="silver" class="ms-2">
+                                <strong>Silver Package</strong><br />
+                                Price: 500 rupees<br />
+                                Messages: 50
+                            </label>
+                        </div>
+                        <div  class="form-group mt-4  "  >
+                            <input type="radio" id="premium" name="PackageType" value="Premium" />
+                            <label for="premium" class="ms-2" >
+                                <strong>Premium Package</strong><br />
+                                Price: 1000 rupees<br />
+                                Messages: 100
+                            </label>
+                        </div>
+                        <div style="display:flex;justify-content:center;" >
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                        </div>
+                    </form>
+
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+        <!--  END CONTENT PART  -->
+
     </div>
-    <button type="submit">Submit</button>
-</form>
- 
+</body>
+</html>
